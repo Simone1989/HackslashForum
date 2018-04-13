@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HackslashForum.Models;
 
 namespace HackslashForum
 {
@@ -12,7 +13,7 @@ namespace HackslashForum
         public DateTime DateTimeCommentMade { get; set; }
         public int Upvotes { get; set; }
         public int Downvotes { get; set; }
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
         public Post Post { get; set; }
     }
 }
