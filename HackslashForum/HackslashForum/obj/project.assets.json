@@ -7576,7 +7576,7 @@
       ]
     },
     "Microsoft.NETCore.Targets/1.1.0": {
-      "sha512": "pyi92PaTqCAh0e4i8CM8ej9AfSS0gXSd8x4mBIlmg7mWU1RLt8bNqCiExLvTxuBFaDF5ulxB57q4e5jM0R7LUw==",
+      "sha512": "aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "type": "package",
       "path": "microsoft.netcore.targets/1.1.0",
       "files": [
@@ -8097,7 +8097,7 @@
       ]
     },
     "runtime.native.System.IO.Compression/4.3.0": {
-      "sha512": "T9HvW8ys5ipU6ENEanasx3OpmLx/yBOzuv0laiWWXnUH+x2/EuQ/TghQfomrrl3CHS8TUdMBosf9lf/q8QKRog==",
+      "sha512": "INBPonS5QPEgn7naufQFXJEp3zX6L4bwHgJ/ZH78aBTpeNfQMtf7C6VrAFhlq2xxWBveIOWyFzQjJ8XzHMhdOQ==",
       "type": "package",
       "path": "runtime.native.system.io.compression/4.3.0",
       "files": [
@@ -8181,7 +8181,7 @@
       ]
     },
     "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple/4.3.0": {
-      "sha512": "aFmnS5qvJruWTPr+W3hQquxtWE+Utn+JBF7IzUWcdKHUr4XaoxhSubjuPhxaOopQ2LVI8aSRw40gVegfQ9gBQw==",
+      "sha512": "kVXCuMTrTlxq4XOOMAysuNwsXWpYeboGddNGpIgNSZmv1b6r/s/DPk0fYMB7Q5Qo4bY68o48jt4T4y5BVecbCQ==",
       "type": "package",
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple/4.3.0",
       "files": [
@@ -12182,7 +12182,7 @@
       ]
     },
     "System.Text.Encoding.CodePages/4.4.0": {
-      "sha512": "6JX7ZdaceBiLKLkYt8zJcp4xTJd1uYyXXEkPw6mnlUIjh1gZPIVKPtRXPmY5kLf6DwZmf5YLwR3QUrRonl7l0A==",
+      "sha512": "EkCBDLsRYCl1NLKUQTPzCpJVKk8hc44UKGIN8X2DASLJEvy3VQHvL/aomCa5sAk19Z1vTNAn3ivhD7uyDj56aA==",
       "type": "package",
       "path": "system.text.encoding.codepages/4.4.0",
       "files": [
@@ -13125,27 +13125,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mon\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\johan\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Dokument\\Repos laptop\\ProjektarbeteForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
+      "projectUniqueName": "C:\\Users\\johan\\Documents\\Programming\\Labbar\\Projekt Green\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
       "projectName": "HackslashForum",
-      "projectPath": "D:\\Dokument\\Repos laptop\\ProjektarbeteForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
-      "packagesPath": "C:\\Users\\Mon\\.nuget\\packages\\",
-      "outputPath": "D:\\Dokument\\Repos laptop\\ProjektarbeteForum\\HackslashForum\\HackslashForum\\obj\\",
+      "projectPath": "C:\\Users\\johan\\Documents\\Programming\\Labbar\\Projekt Green\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
+      "packagesPath": "C:\\Users\\johan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\johan\\Documents\\Programming\\Labbar\\Projekt Green\\HackslashForum\\HackslashForum\\HackslashForum\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Mon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
