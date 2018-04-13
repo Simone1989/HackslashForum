@@ -12182,7 +12182,7 @@
       ]
     },
     "System.Text.Encoding.CodePages/4.4.0": {
-      "sha512": "EkCBDLsRYCl1NLKUQTPzCpJVKk8hc44UKGIN8X2DASLJEvy3VQHvL/aomCa5sAk19Z1vTNAn3ivhD7uyDj56aA==",
+      "sha512": "6JX7ZdaceBiLKLkYt8zJcp4xTJd1uYyXXEkPw6mnlUIjh1gZPIVKPtRXPmY5kLf6DwZmf5YLwR3QUrRonl7l0A==",
       "type": "package",
       "path": "system.text.encoding.codepages/4.4.0",
       "files": [
@@ -13125,23 +13125,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\johan\\.nuget\\packages\\": {},
+    "C:\\Users\\Mon\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\johan\\Documents\\Programming\\Labbar\\Projekt Green\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
+      "projectUniqueName": "E:\\Mina dokument\\MON STUFF\\Repos\\HackSlashForum\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
       "projectName": "HackslashForum",
-      "projectPath": "C:\\Users\\johan\\Documents\\Programming\\Labbar\\Projekt Green\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
-      "packagesPath": "C:\\Users\\johan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\johan\\Documents\\Programming\\Labbar\\Projekt Green\\HackslashForum\\HackslashForum\\HackslashForum\\obj\\",
+      "projectPath": "E:\\Mina dokument\\MON STUFF\\Repos\\HackSlashForum\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
+      "packagesPath": "C:\\Users\\Mon\\.nuget\\packages\\",
+      "outputPath": "E:\\Mina dokument\\MON STUFF\\Repos\\HackSlashForum\\HackslashForum\\HackslashForum\\HackslashForum\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
