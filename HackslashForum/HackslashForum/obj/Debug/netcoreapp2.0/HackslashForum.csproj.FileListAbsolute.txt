@@ -22,3 +22,15 @@ E:\Mina dokument\MON STUFF\Repos\HackSlashForum\HackslashForum\HackslashForum\Ha
 E:\Mina dokument\MON STUFF\Repos\HackSlashForum\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.AssemblyInfo.cs
 E:\Mina dokument\MON STUFF\Repos\HackSlashForum\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.dll
 E:\Mina dokument\MON STUFF\Repos\HackSlashForum\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.pdb
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.deps.json
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.runtimeconfig.json
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.runtimeconfig.dev.json
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.dll
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.pdb
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.csprojResolveAssemblyReference.cache
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.csproj.CoreCompileInputs.cache
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.AssemblyInfoInputs.cache
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.AssemblyInfo.cs
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.dll
+D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.pdb
