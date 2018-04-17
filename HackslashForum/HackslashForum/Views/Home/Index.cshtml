@@ -1,3 +1,19 @@
-﻿@{
+﻿@model IEnumerable<HackslashForum.Post>
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
+<div id="posts">
+@foreach (var item in Model)
+{
+<p>@Html.DisplayFor(modelitem => item.Title)</p>
+}
+
+<p> aksdaslkd</p>
+
+@{int burger = 30; }
+
+<p>@burger</p>
+</div>
+
