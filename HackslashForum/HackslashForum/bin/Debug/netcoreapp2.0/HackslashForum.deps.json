@@ -5347,7 +5347,11 @@
     "Microsoft.NETCore.Targets/1.1.0": {
       "type": "package",
       "serviceable": true,
+<<<<<<< HEAD
       "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
+=======
+      "sha512": "sha512-pyi92PaTqCAh0e4i8CM8ej9AfSS0gXSd8x4mBIlmg7mWU1RLt8bNqCiExLvTxuBFaDF5ulxB57q4e5jM0R7LUw==",
+>>>>>>> developer
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
     },
@@ -5508,7 +5512,11 @@
     "runtime.native.System.IO.Compression/4.3.0": {
       "type": "package",
       "serviceable": true,
+<<<<<<< HEAD
       "sha512": "sha512-INBPonS5QPEgn7naufQFXJEp3zX6L4bwHgJ/ZH78aBTpeNfQMtf7C6VrAFhlq2xxWBveIOWyFzQjJ8XzHMhdOQ==",
+=======
+      "sha512": "sha512-T9HvW8ys5ipU6ENEanasx3OpmLx/yBOzuv0laiWWXnUH+x2/EuQ/TghQfomrrl3CHS8TUdMBosf9lf/q8QKRog==",
+>>>>>>> developer
       "path": "runtime.native.system.io.compression/4.3.0",
       "hashPath": "runtime.native.system.io.compression.4.3.0.nupkg.sha512"
     },
@@ -5557,7 +5565,11 @@
     "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple/4.3.0": {
       "type": "package",
       "serviceable": true,
+<<<<<<< HEAD
       "sha512": "sha512-kVXCuMTrTlxq4XOOMAysuNwsXWpYeboGddNGpIgNSZmv1b6r/s/DPk0fYMB7Q5Qo4bY68o48jt4T4y5BVecbCQ==",
+=======
+      "sha512": "sha512-aFmnS5qvJruWTPr+W3hQquxtWE+Utn+JBF7IzUWcdKHUr4XaoxhSubjuPhxaOopQ2LVI8aSRw40gVegfQ9gBQw==",
+>>>>>>> developer
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple/4.3.0",
       "hashPath": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple.4.3.0.nupkg.sha512"
     },

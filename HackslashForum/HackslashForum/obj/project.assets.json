@@ -13134,11 +13134,19 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\FixxxarN-J-T\\Repositories\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
       "projectName": "HackslashForum",
       "projectPath": "C:\\Users\\FixxxarN-J-T\\Repositories\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
       "packagesPath": "C:\\Users\\FixxxarN-J-T\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\FixxxarN-J-T\\Repositories\\HackslashForum\\HackslashForum\\HackslashForum\\obj\\",
+=======
+      "projectUniqueName": "D:\\Dokument\\Repos laptop\\Projektarbete\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
+      "projectName": "HackslashForum",
+      "projectPath": "D:\\Dokument\\Repos laptop\\Projektarbete\\HackslashForum\\HackslashForum\\HackslashForum\\HackslashForum.csproj",
+      "packagesPath": "C:\\Users\\Mon\\.nuget\\packages\\",
+      "outputPath": "D:\\Dokument\\Repos laptop\\Projektarbete\\HackslashForum\\HackslashForum\\HackslashForum\\obj\\",
+>>>>>>> developer
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
