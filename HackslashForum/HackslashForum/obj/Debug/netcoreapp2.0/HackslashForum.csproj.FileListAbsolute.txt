@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.deps.json
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.runtimeconfig.json
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.runtimeconfig.dev.json
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.dll
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.pdb
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.csprojResolveAssemblyReference.cache
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.csproj.CoreCompileInputs.cache
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.AssemblyInfoInputs.cache
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.AssemblyInfo.cs
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.dll
+C:\Users\FixxxarN-J-T\Repositories\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.pdb
+=======
 C:\Users\johan\Documents\Programming\Labbar\Projekt Green\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.deps.json
 C:\Users\johan\Documents\Programming\Labbar\Projekt Green\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.runtimeconfig.json
 C:\Users\johan\Documents\Programming\Labbar\Projekt Green\HackslashForum\HackslashForum\HackslashForum\bin\Debug\netcoreapp2.0\HackslashForum.runtimeconfig.dev.json
@@ -34,3 +48,4 @@ D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashFo
 D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.AssemblyInfo.cs
 D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.dll
 D:\Dokument\Repos laptop\Projektarbete\HackslashForum\HackslashForum\HackslashForum\obj\Debug\netcoreapp2.0\HackslashForum.pdb
+>>>>>>> developer
