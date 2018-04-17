@@ -12,6 +12,8 @@
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
+    position: relative;
+    top: 200px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -32,10 +34,10 @@
     margin: 15px;
 }
 
-/* Hide/rearrange for smaller screens */
+/* Hide/rearrange for smaller screens 
 @media screen and (max-width: 767px) {
-    /* Hide captions */
+    /* Hide captions 
     .carousel-caption {
         display: none;
     }
-}
+} */
