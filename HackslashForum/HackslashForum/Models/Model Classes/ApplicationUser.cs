@@ -14,7 +14,7 @@ namespace HackslashForum.Models
         public string Location { get; set; }
         public string ProfilePicture { get; set; }
 
-        //public IList<Post> Posts { get; set; }
-        //public IList<Comment> Comments { get; set; }
+        public IList<Post> Posts { get; set; }
+        public IList<Comment> Comments { get; set; }
     }
 }
