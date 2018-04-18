@@ -16,5 +16,6 @@ namespace HackslashForum.Models
 
         public IList<Post> Posts { get; set; }
         public IList<Comment> Comments { get; set; }
+
     }
 }
