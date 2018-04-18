@@ -12,8 +12,8 @@ using System;
 namespace HackslashForum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180417071201_Fixed modelclasses")]
-    partial class Fixedmodelclasses
+    [Migration("20180418073147_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
