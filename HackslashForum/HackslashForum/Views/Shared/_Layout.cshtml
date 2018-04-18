@@ -21,12 +21,12 @@
         <div class="container">
             <div class="header" style="margin-top:10px;">
                 <a style="float:left;" href="https://placeholder.com"><img src="~/images/hackSlashLogo.png" style="width:100px;height:100px;"></a>
-                <h1 style="margin-left: 20px;;margin-top: 25px;float: left;">HackSlash</h1>
+                <h1 style="margin-left: 20px;margin-top: 25px;float: left;">HackSlash</h1>
             </div>
             <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">Skapa inlägg</a></li>
-                </ul>*@
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Posts" asp-action="Index">Inlägg</a></li>
+                </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>

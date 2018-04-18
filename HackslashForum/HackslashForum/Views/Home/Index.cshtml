@@ -5,15 +5,18 @@
 }
 
 <div id="posts">
-@foreach (var item in Model)
-{
-<p>@Html.DisplayFor(modelitem => item.Title)</p>
+
+<h2>Posts</h2>
+
+@{ 
+    int counter = 0; 
 }
 
-<p> aksdaslkd</p>
+@foreach (var item in Model)
+{
+    counter++;
+    <p><a href="https://localhost:44369/Posts/Details/@counter">@Html.DisplayFor(modelitem => item.Title)</a></p>
+}
 
-@{int burger = 30; }
-
-<p>@burger</p>
 </div>
 

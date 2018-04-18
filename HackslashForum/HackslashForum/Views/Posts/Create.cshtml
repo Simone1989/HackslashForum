@@ -1,8 +1,9 @@
 ﻿@model HackslashForum.Post
 
 @{
-    Layout = null;
-}
+    ViewData["Title"] = "Skapa Inlägg";
+ }
+
 
 <!DOCTYPE html>
 
@@ -25,29 +26,14 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateTimePostCreated" class="control-label"></label>
-                <input asp-for="DateTimePostCreated" class="form-control" />
-                <span asp-validation-for="DateTimePostCreated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <select asp-for="Category" class="form-control"></select>
+                <select asp-for="Category" asp-items="Html.GetEnumSelectList<Category>()" class="form-control" ></select>
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group big-textbox">
                 <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
+                <textarea id="input" asp-for="Content" cols="92" rows="15"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpVotes" class="control-label"></label>
-                <input asp-for="UpVotes" class="form-control" />
-                <span asp-validation-for="UpVotes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DownVotes" class="control-label"></label>
-                <input asp-for="DownVotes" class="form-control" />
-                <span asp-validation-for="DownVotes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
