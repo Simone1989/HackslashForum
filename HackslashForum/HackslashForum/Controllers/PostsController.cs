@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HackslashForum;
 using HackslashForum.Data;
+using System.Collections;
 
 namespace HackslashForum.Controllers
 {
@@ -46,6 +47,27 @@ namespace HackslashForum.Controllers
         // GET: Posts/Create
         public IActionResult Create()
         {
+            return View();
+        }
+
+
+        // Shows Enum Discussion / Question
+        public IActionResult Category()
+        {
+            var showCategory = _context.Post.Include(c => c.Category);
+            if (showCategory == null)
+            {
+                return NotFound();
+            }
+
+            List<string> categories = new List<string>();
+
+            foreach(var category in showCategory)
+            {
+                categories.Add(category.Category.ToString());
+            }
+
+            ViewData["ShowCategories"] = categories;
             return View();
         }
 

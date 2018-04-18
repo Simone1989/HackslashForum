@@ -39,7 +39,7 @@ namespace HackslashForum.Controllers
 
         //query start
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var posts = _context.Post.ToList();
             return View(posts);
