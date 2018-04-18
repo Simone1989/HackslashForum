@@ -26,7 +26,10 @@ namespace HackslashForum.Models.ManageViewModels
         public string StatusMessage { get; set; }
 
         public int UpVotes { get; set; }
-
         public int DownVotes { get; set; }
+
+        public int Upvotes { get; set; }
+        public int Downvotes { get; set; }
+
     }
 }
