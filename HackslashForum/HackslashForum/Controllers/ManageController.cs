@@ -37,13 +37,15 @@ namespace HackslashForum.Controllers
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder)
+          UrlEncoder urlEncoder,
+          ApplicationDbContext Context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _context = Context;
         }
 
         [TempData]
@@ -67,7 +69,7 @@ namespace HackslashForum.Controllers
                 IsEmailConfirmed = user.EmailConfirmed,
                 StatusMessage = StatusMessage,
                 AccountCreated = user.AccountCreationDate,
-                //LastLogin = user.LastLogin,
+                LastLogin = user.LastLogin
             };
 
             return View(model);

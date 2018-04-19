@@ -31,7 +31,7 @@ namespace HackslashForum.Models.ManageViewModels
         public int Upvotes { get; set; }
         public int Downvotes { get; set; }
 
-        public DateTime LastLogin { get; set; }
+        public DateTime? LastLogin { get; set; } 
         public DateTime AccountCreated { get; set; }
         public int NumberOfPosts { get; set; }
 

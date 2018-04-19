@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using HackslashForum.Models;
 using HackslashForum.Models.AccountViewModels;
 using HackslashForum.Services;
+using HackslashForum.Data;
 
 namespace HackslashForum.Controllers
 {
@@ -20,6 +21,7 @@ namespace HackslashForum.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -29,13 +31,17 @@ namespace HackslashForum.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            ApplicationDbContext Context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _context = Context;
         }
+
+
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -61,16 +67,21 @@ namespace HackslashForum.Controllers
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
 
+                user.LastLogin = DateTime.Now;
+                _context.Update(user);
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
 
                 if (result.Succeeded)
                 {
+
+                    await _context.SaveChangesAsync();
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
+
                 }
-              
+
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
@@ -131,6 +142,7 @@ namespace HackslashForum.Controllers
 
             if (result.Succeeded)
             {
+                user.LastLogin = DateTime.Now;
                 _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
                 return RedirectToLocal(returnUrl);
             }
@@ -321,6 +333,7 @@ namespace HackslashForum.Controllers
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
+                        user.LastLogin = DateTime.Now;
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
                         return RedirectToLocal(returnUrl);
