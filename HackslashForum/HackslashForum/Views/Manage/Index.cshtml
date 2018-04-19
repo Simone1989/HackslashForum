@@ -42,8 +42,8 @@
 </div>
 <br />
 @* Vet inte riktigt hur rösterna ska displayas än. Plus detta ser väldigt fult ut just nu. Men vill få allt att funka först *@
-<div>Mottagna röster på inlägg: Upp: @Html.DisplayFor(model => model.UpVotes) Ned: @Html.DisplayFor(model => model.DownVotes)</div>
-<div>Mottagna röster på kommentarer: Upp: @Html.DisplayFor(model => model.DownVotes) Ned: @Html.DisplayFor(model => model.DownVotes)</div>
+<div>Mottagna röster på inlägg: Upp: @Html.DisplayFor(model => model.PostUpVotes) Ned: @Html.DisplayFor(model => model.PostDownVotes)</div>
+<div>Mottagna röster på kommentarer: Upp: @Html.DisplayFor(model => model.CommentUpVotes) Ned: @Html.DisplayFor(model => model.CommentDownVotes)</div>
 <div>Antal inlägg skapade: @Html.DisplayFor(model => model.NumberOfPosts)</div>
 <div>Antal kommentarer skrivna: </div>
 <div>Senast inloggad: @Html.DisplayFor(model => model.LastLogin)</div>
