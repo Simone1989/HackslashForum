@@ -13,8 +13,6 @@ using Microsoft.Extensions.Options;
 using HackslashForum.Models;
 using HackslashForum.Models.ManageViewModels;
 using HackslashForum.Services;
-using HackslashForum.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace HackslashForum.Controllers
 {
@@ -22,7 +20,6 @@ namespace HackslashForum.Controllers
     [Route("[controller]/[action]")]
     public class ManageController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -63,11 +60,8 @@ namespace HackslashForum.Controllers
                 Username = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                ProfilePicture = user.ProfilePicture,
                 IsEmailConfirmed = user.EmailConfirmed,
-                StatusMessage = StatusMessage,
-                AccountCreated = user.AccountCreationDate,
-                //LastLogin = user.LastLogin,
+                StatusMessage = StatusMessage
             };
 
             return View(model);
@@ -83,7 +77,6 @@ namespace HackslashForum.Controllers
             }
 
             var user = await _userManager.GetUserAsync(User);
-
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -101,23 +94,15 @@ namespace HackslashForum.Controllers
 
             var phoneNumber = user.PhoneNumber;
             if (model.PhoneNumber != phoneNumber)
-            // Fungerar inte just nu, vill kunna uppdatera username, profilepicture osv.
-            /*var username = user.UserName;
-            if (model.Username != username)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
-                var setUsernameResult = await _userManager.SetUserNameAsync(user, model.Username);
-                if (!setUsernameResult.Succeeded)
                 {
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
-                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
                 }
             }
-            }*/
 
             StatusMessage = "Your profile has been updated";
-            StatusMessage = "Ditt konto har uppdaterats";
             return RedirectToAction(nameof(Index));
         }
 
@@ -172,10 +157,6 @@ namespace HackslashForum.Controllers
             {
                 return View(model);
             }
-
-            var applicationUser = _context.User
-                .Include(u => u.Posts)
-                .Include(p => p.Comments);
 
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
