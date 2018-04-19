@@ -8,21 +8,26 @@ using Microsoft.EntityFrameworkCore;
 using HackslashForum;
 using HackslashForum.Data;
 using System.Collections;
+using Microsoft.AspNetCore.Identity;
+using HackslashForum.Models;
 
 namespace HackslashForum.Controllers
 {
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _manager;
 
-        public PostsController(ApplicationDbContext context)
+        public PostsController(ApplicationDbContext context, UserManager<ApplicationUser> manager)
         {
             _context = context;
+            _manager = manager;
         }
 
         // GET: Posts
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Post.ToListAsync());
         }
 
@@ -34,8 +39,9 @@ namespace HackslashForum.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Post
+            var post = await _context.Post.Include(u => u.User)
                 .SingleOrDefaultAsync(m => m.Id == id);
+
             if (post == null)
             {
                 return NotFound();
@@ -44,11 +50,6 @@ namespace HackslashForum.Controllers
             return View(post);
         }
 
-        // GET: Posts/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
 
         // Shows Enum Discussion / Question
@@ -62,7 +63,7 @@ namespace HackslashForum.Controllers
 
             List<string> categories = new List<string>();
 
-            foreach(var category in showCategory)
+            foreach (var category in showCategory)
             {
                 categories.Add(category.Category.ToString());
             }
@@ -72,6 +73,11 @@ namespace HackslashForum.Controllers
         }
 
         // POST: Posts/Create
+        // GET: Posts/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -80,6 +86,9 @@ namespace HackslashForum.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = await _manager.GetUserAsync(User);
+                post.User = user;
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
