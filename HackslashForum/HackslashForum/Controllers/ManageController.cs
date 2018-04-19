@@ -66,6 +66,8 @@ namespace HackslashForum.Controllers
                 ProfilePicture = user.ProfilePicture,
                 IsEmailConfirmed = user.EmailConfirmed,
                 StatusMessage = StatusMessage,
+                AccountCreated = user.AccountCreationDate,
+                //LastLogin = user.LastLogin,
             };
 
             return View(model);

@@ -41,12 +41,13 @@
 	</div>
 </div>
 <br />
-@* Här får man nog ha en loop för att loopa igenom rösterna och plussa ihop dem. Vet inte riktigt hur det ska 
-	displayas än. *@
+@* Vet inte riktigt hur rösterna ska displayas än. Plus detta ser väldigt fult ut just nu. Men vill få allt att funka först *@
 <div>Mottagna röster på inlägg: Upp: @Html.DisplayFor(model => model.UpVotes) Ned: @Html.DisplayFor(model => model.DownVotes)</div>
 <div>Mottagna röster på kommentarer: Upp: @Html.DisplayFor(model => model.DownVotes) Ned: @Html.DisplayFor(model => model.DownVotes)</div>
-<div>Antal inlägg skapade: </div>
+<div>Antal inlägg skapade: @Html.DisplayFor(model => model.NumberOfPosts)</div>
 <div>Antal kommentarer skrivna: </div>
+<div>Senast inloggad: @Html.DisplayFor(model => model.LastLogin)</div>
+<div>Kontot skapats: @Html.DisplayFor(model => model.AccountCreated)</div>
 
 @section Scripts {
 	@await Html.PartialAsync("_ValidationScriptsPartial")
