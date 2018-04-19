@@ -20,6 +20,22 @@ namespace HackslashForum.Models.ManageViewModels
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
+        [Display(Name = "Profilbild")]
+        public string ProfilePicture { get; set; }
+
         public string StatusMessage { get; set; }
+
+        public int UpVotes { get; set; }
+        public int DownVotes { get; set; }
+
+        public int Upvotes { get; set; }
+        public int Downvotes { get; set; }
+
+        public DateTime LastLogin { get; set; }
+        public DateTime AccountCreated { get; set; }
+        public int NumberOfPosts { get; set; }
+
+
+
     }
 }
