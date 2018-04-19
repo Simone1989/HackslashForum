@@ -119,7 +119,9 @@ namespace HackslashForum.Migrations
 
                     b.Property<int>("DownVotes");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(80);
 
                     b.Property<int>("UpVotes");
 

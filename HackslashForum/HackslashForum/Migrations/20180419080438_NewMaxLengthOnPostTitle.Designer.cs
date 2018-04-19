@@ -12,8 +12,8 @@ using System;
 namespace HackslashForum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180417071201_Fixed modelclasses")]
-    partial class Fixedmodelclasses
+    [Migration("20180419080438_NewMaxLengthOnPostTitle")]
+    partial class NewMaxLengthOnPostTitle
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,7 +120,9 @@ namespace HackslashForum.Migrations
 
                     b.Property<int>("DownVotes");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(80);
 
                     b.Property<int>("UpVotes");
 

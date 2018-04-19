@@ -9,33 +9,95 @@
     background-color: #222;
 }
 
+footer {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    background-color: #222;
+    height: 50px;
+    color: white;
+    padding: 15px;
+}
+
+footer p {
+    float: right;
+}
+
+.top-post {
+    width: 200px;
+    height: 300px;
+    float: right;
+    overflow: hidden;
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid #222;
+    padding: 5px;
+    clear: right;
+}
+
+.top-post-header {
+    width: 200px;
+    height: 20px;
+    float: right;
+    background-color: #222;
+    border-radius: 10px 10px 0px 0px;
+    top: 0px;
+    left: 0px;
+}
+
+.post {
+    height: 10px;
+    width: 75%;
+}
+
+.body-content hr {
+    width:75%;
+}
+
+.post a {
+    float: left;
+    color: green;
+    text-decoration: none;
+}
+
+.post a::after(2) {
+    content: "...";
+}
+
+.post a:hover {
+    text-decoration: underline;
+}
+
+.post p {
+    float: right;
+    margin-right: 10px;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
+    position: relative;
+    top: 125px;
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+#skapaInläggBtn {
+    padding-left: 15px;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
+
+ 
 
 /* QR code generator */
 #qrCode {
     margin: 15px;
 }
 
-/* Hide/rearrange for smaller screens */
+/* Hide/rearrange for smaller screens 
 @media screen and (max-width: 767px) {
-    /* Hide captions */
+    /* Hide captions 
     .carousel-caption {
         display: none;
     }
-}
+} */
