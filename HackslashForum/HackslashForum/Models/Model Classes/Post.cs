@@ -18,6 +18,9 @@ namespace HackslashForum
     public class Post
     {
         public int Id { get; set; }
+        [Required]
+        [MaxLength(50)]
+        [DataType("nvarchar")]
         public string Title { get; set; }
         public DateTime DateTimePostCreated { get; set; } = DateTime.Now;
         public Category Category { get; set; }

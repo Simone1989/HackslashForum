@@ -4,6 +4,11 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div class="top-post-header"></div>
+<div class="top-post">
+    <h5>Most upvoted post:</h5>
+</div>
+
 <div id="posts">
 
 <h2>Posts</h2>
@@ -12,10 +17,17 @@
     int counter = 0; 
 }
 
+
+
 @foreach (var item in Model)
 {
     counter++;
-    <p><a href="https://localhost:44369/Posts/Details/@counter">@Html.DisplayFor(modelitem => item.Title)</a></p>
+    <div class="post">
+        <a href="https://localhost:44369/Posts/Details/@counter">@Html.DisplayFor(modelitem => item.Title)</a>
+        <p>Downvotes: @Html.DisplayFor(modelItem => item.DownVotes)</p>
+        <p>Upvotes: @Html.DisplayFor(modelItem => item.UpVotes)</p>
+    </div>
+    <br />
 }
 
 </div>

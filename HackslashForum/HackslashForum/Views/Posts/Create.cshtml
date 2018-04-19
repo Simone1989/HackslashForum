@@ -32,7 +32,7 @@
             </div>
             <div class="form-group big-textbox">
                 <label asp-for="Content" class="control-label"></label>
-                <textarea id="input" asp-for="Content" cols="92" rows="15"></textarea>
+                <textarea id="input" asp-for="Content" style="min-width:360px;max-width:360px"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -42,9 +42,9 @@
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

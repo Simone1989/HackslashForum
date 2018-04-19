@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace HackslashForum.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Entities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
