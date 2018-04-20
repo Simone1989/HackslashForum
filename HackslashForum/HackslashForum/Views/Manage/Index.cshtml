@@ -1,45 +1,54 @@
 ﻿@model IndexViewModel
 @{
-    ViewData["Title"] = "Profile";
-    ViewData.AddActivePage(ManageNavPages.Index);
+	ViewData["Title"] = "Mina sidor";
+	ViewData.AddActivePage(ManageNavPages.Index);
 }
 
 <h4>@ViewData["Title"]</h4>
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 <div class="row">
-    <div class="col-md-6">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Username"></label>
-                <input asp-for="Username" class="form-control" disabled />
-            </div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                @if (Model.IsEmailConfirmed)
-                {
-                    <div class="input-group">
-                        <input asp-for="Email" class="form-control" />
-                        <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
-                    </div>
-                }
-                else
-                {
-                    <input asp-for="Email" class="form-control" />
-                    <button asp-action="SendVerificationEmail" class="btn btn-link">Send verification email</button>
-                }
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-default">Save</button>
-        </form>
-    </div>
+	<div class="col-md-6">
+		<form method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Username">Användarnamn</label>
+				<input asp-for="Username" class="form-control" disabled />
+			</div>
+			<div class="form-group">
+				<label asp-for="Email"></label>
+				@if (Model.IsEmailConfirmed)
+				{
+					<div class="input-group">
+						<input asp-for="Email" class="form-control" />
+						<span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+					</div>
+				}
+				else
+				{
+					<input asp-for="Email" class="form-control" />
+					<button asp-action="SendVerificationEmail" class="btn btn-link">Skicka bekräftelsemail</button>
+				}
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ProfilePicture">Profilbild</label>
+				<input asp-for="ProfilePicture" class="form-control" />
+				<span asp-validation-for="ProfilePicture" class="text-danger"></span>
+			</div>
+
+			<button type="submit" class="btn btn-default">Spara</button>
+		</form>
+	</div>
 </div>
+<br />
+@* Vet inte riktigt hur rösterna ska displayas än. Plus detta ser väldigt fult ut just nu. Men vill få allt att funka först *@
+<div>Mottagna röster på inlägg: Upp: @Html.DisplayFor(model => model.PostUpVotes) Ned: @Html.DisplayFor(model => model.PostDownVotes)</div>
+<div>Mottagna röster på kommentarer: Upp: @Html.DisplayFor(model => model.CommentUpVotes) Ned: @Html.DisplayFor(model => model.CommentDownVotes)</div>
+<div>Antal inlägg skapade: @Html.DisplayFor(model => model.NumberOfPosts)</div>
+<div>Antal kommentarer skrivna: </div>
+<div>Senast inloggad: @Html.DisplayFor(model => model.LastLogin)</div>
+<div>Kontot skapats: @Html.DisplayFor(model => model.AccountCreated)</div>
 
 @section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
+	@await Html.PartialAsync("_ValidationScriptsPartial")
 }
