@@ -41,6 +41,12 @@ namespace HackslashForum.Controllers
 
         public IActionResult Index()
         {
+            var mostUpvotedPost = _context.Post.OrderByDescending(p => p.UpVotes).Take(1).SingleOrDefault();
+            ViewBag.MostUpvotedPost = mostUpvotedPost;
+
+            var mostCommentedPost = _context.Post.OrderByDescending(p => p.Comments.Count).Take(1).SingleOrDefault();
+            ViewBag.MostCommentedPost = mostCommentedPost;
+
             var posts = _context.Post.ToList();
             return View(posts);
         }

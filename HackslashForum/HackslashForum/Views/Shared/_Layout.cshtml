@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HackslashForum</title>
+    <link rel="icon" type="images/png" href="~/images/hackSlashLogo.png" sizes="16x16" />
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -21,7 +22,7 @@
         <div class="container">
             <div class="header" style="margin-top:10px;">
                 <a style="float:left;" href="/Home/Index/"><img src="~/images/hackSlashLogo.png" style="width:100px;height:100px;"></a>
-                <h1 style="margin-left: 20px;margin-top: 25px;float: left;">HackSlash</h1>
+                <h1 style="margin-left: 20px;margin-top: 25px;float: left;color:white;">HackSlash</h1>
             </div>
             <div class="navbar-collapse collapse">
                 @await Html.PartialAsync("_LoginPartial")

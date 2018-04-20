@@ -44,6 +44,49 @@ namespace HackslashForum.Controllers
             return View(post);
         }
 
+        public async Task<IActionResult> Post(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var post = await _context.Post
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Comments = (from x in _context.Comment
+                               where x.Post.Id == id
+                               select x).ToList();
+
+            return View(post);
+        }
+
+        public async Task<IActionResult> Comment(int? id, string content)
+        {
+            if (id == null)
+                return NotFound();
+
+            var post = (from p in _context.Post
+                       where p.Id == id
+                       select p).Take(1).SingleOrDefault();
+
+            Comment comment = new Comment
+            {
+                Post = post,
+                DateTimeCommentMade = DateTime.Now,
+                Content = content
+            };
+
+            _context.Comment.Add(comment);
+            _context.SaveChanges();
+
+            return RedirectToAction($"Post/{id}");
+        }
+
         // GET: Posts/Create
         public IActionResult Create()
         {
