@@ -25,6 +25,7 @@ namespace HackslashForum.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<Post> _postManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
@@ -37,13 +38,15 @@ namespace HackslashForum.Controllers
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder)
+          UrlEncoder urlEncoder,
+          ApplicationDbContext Context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _context = Context;
         }
 
         [TempData]
@@ -57,17 +60,21 @@ namespace HackslashForum.Controllers
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
+            var getUser = await _context.User.Where(u => u.Id == user.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefaultAsync();
             var model = new IndexViewModel
             {
-                Username = user.UserName,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
-                ProfilePicture = user.ProfilePicture,
-                IsEmailConfirmed = user.EmailConfirmed,
+                Username = getUser.UserName,
+                Email = getUser.Email,
+                PhoneNumber = getUser.PhoneNumber,
+                ProfilePicture = getUser.ProfilePicture,
+                IsEmailConfirmed = getUser.EmailConfirmed,
                 StatusMessage = StatusMessage,
-                AccountCreated = user.AccountCreationDate,
-                //LastLogin = user.LastLogin,
+                AccountCreated = getUser.AccountCreationDate,
+                LastLogin = getUser.LastLogin,
+                PostUpVotes = getUser.Posts.Sum(p => p.UpVotes),
+                PostDownVotes = getUser.Posts.Sum(p => p.DownVotes),
+                CommentUpVotes = getUser.Comments.Sum(c => c.Upvotes),
+                CommentDownVotes = getUser.Comments.Sum(c => c.Downvotes)
             };
 
             return View(model);
@@ -101,22 +108,22 @@ namespace HackslashForum.Controllers
 
             var phoneNumber = user.PhoneNumber;
             if (model.PhoneNumber != phoneNumber)
-            // Fungerar inte just nu, vill kunna uppdatera username, profilepicture osv.
-            /*var username = user.UserName;
-            if (model.Username != username)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                var setUsernameResult = await _userManager.SetUserNameAsync(user, model.Username);
-                if (!setUsernameResult.Succeeded)
+                // Fungerar inte just nu, vill kunna uppdatera username, profilepicture osv.
+                /*var username = user.UserName;
+                if (model.Username != username)
                 {
-                    throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
-                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
+                    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+                    if (!setPhoneResult.Succeeded)
+                    var setUsernameResult = await _userManager.SetUserNameAsync(user, model.Username);
+                    if (!setUsernameResult.Succeeded)
+                    {
+                        throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
+                        throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
+                    }
                 }
-            }
-            }*/
+                }*/
 
-            StatusMessage = "Your profile has been updated";
+                StatusMessage = "Your profile has been updated";
             StatusMessage = "Ditt konto har uppdaterats";
             return RedirectToAction(nameof(Index));
         }

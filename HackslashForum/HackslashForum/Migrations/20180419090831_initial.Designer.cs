@@ -12,8 +12,8 @@ using System;
 namespace HackslashForum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180418104845_Added fluent api for post")]
-    partial class Addedfluentapiforpost
+    [Migration("20180419090831_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,7 +120,9 @@ namespace HackslashForum.Migrations
 
                     b.Property<int>("DownVotes");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(80);
 
                     b.Property<int>("UpVotes");
 

@@ -29,6 +29,7 @@ namespace HackslashForum
         public int DownVotes { get; set; }
 
         public IList<Comment> Comments { get; set; }
+        public IList<Comment> Comments { get; set; } = new List<Comment>();
         public ApplicationUser User { get; set; }
     }
 }

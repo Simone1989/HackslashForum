@@ -9,7 +9,6 @@ namespace HackslashForum.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-        public DateTime? LastLogin { get; set; } = DateTime.Now;
         public DateTime AccountCreationDate { get; set; }
         public string Location { get; set; }
         public string ProfilePicture { get; set; }

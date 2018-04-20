@@ -53,6 +53,12 @@
         <dd>
             @Html.DisplayFor(model => model.DownVotes)
         </dd>
+        <dt>
+            Inlägg skapat av:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
     </dl>
 </div>
 <div>
