@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace HackslashForum.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -168,7 +168,7 @@ namespace HackslashForum.Migrations
                     Content = table.Column<string>(nullable: true),
                     DateTimePostCreated = table.Column<DateTime>(nullable: false),
                     DownVotes = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(maxLength: 80, nullable: false),
                     UpVotes = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },

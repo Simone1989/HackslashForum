@@ -7,26 +7,51 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HackslashForum;
 using HackslashForum.Data;
+using System.Collections;
+using Microsoft.AspNetCore.Identity;
+using HackslashForum.Models;
 
 namespace HackslashForum.Controllers
 {
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _manager;
 
-        public PostsController(ApplicationDbContext context)
+        public PostsController(ApplicationDbContext context, UserManager<ApplicationUser> manager)
         {
             _context = context;
+            _manager = manager;
         }
 
         // GET: Posts
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Post.ToListAsync());
         }
 
         // GET: Posts/Details/5
         public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var post = await _context.Post.Include(u => u.User)
+                .SingleOrDefaultAsync(m => m.Id == id);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            return View(post);
+        }
+
+
+        public async Task<IActionResult> Post(int? id)
         {
             if (id == null)
             {
@@ -40,16 +65,69 @@ namespace HackslashForum.Controllers
                 return NotFound();
             }
 
+            ViewBag.Comments = (from x in _context.Comment
+                               where x.Post.Id == id
+                               select x).ToList();
+
             return View(post);
         }
 
+        public async Task<IActionResult> Comment(int? id, string content)
+        {
+            if (id == null)
+                return NotFound();
+
+            var post = (from p in _context.Post
+                       where p.Id == id
+                       select p).Take(1).SingleOrDefault();
+
+            Comment comment = new Comment
+            {
+                Post = post,
+                DateTimeCommentMade = DateTime.Now,
+                Content = content
+            };
+
+            _context.Comment.Add(comment);
+            _context.SaveChanges();
+
+            return RedirectToAction($"Post/{id}");
+        }
+
+        //// GET: Posts/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+
+
+
+        // Shows Enum Discussion / Question
+        public IActionResult Category()
+        {
+            var showCategory = _context.Post.Include(c => c.Category);
+            if (showCategory == null)
+            {
+                return NotFound();
+            }
+
+            List<string> categories = new List<string>();
+
+            foreach (var category in showCategory)
+            {
+                categories.Add(category.Category.ToString());
+            }
+
+            ViewData["ShowCategories"] = categories;
+            return View();
+        }
+
+        // POST: Posts/Create
         // GET: Posts/Create
         public IActionResult Create()
         {
             return View();
         }
-
-        // POST: Posts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,6 +136,9 @@ namespace HackslashForum.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = await _manager.GetUserAsync(User);
+                post.User = user;
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
