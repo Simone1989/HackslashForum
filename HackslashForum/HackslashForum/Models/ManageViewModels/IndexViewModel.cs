@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace HackslashForum.Models.ManageViewModels
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Profilbild")]
-        public string ProfilePicture { get; set; }
+        public IFormFile ProfilePicture { get; set; }
 
         public string StatusMessage { get; set; }
 

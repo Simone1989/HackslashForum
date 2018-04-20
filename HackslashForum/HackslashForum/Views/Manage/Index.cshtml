@@ -32,7 +32,7 @@
 			</div>
 			<div class="form-group">
 				<label asp-for="ProfilePicture">Profilbild</label>
-				<input asp-for="ProfilePicture" class="form-control" />
+				<input asp-for="ProfilePicture" name="UserPhoto" accept=".png,.jpg,.jpeg,.gif,.tif"class="form-control" />
 				<span asp-validation-for="ProfilePicture" class="text-danger"></span>
 			</div>
 

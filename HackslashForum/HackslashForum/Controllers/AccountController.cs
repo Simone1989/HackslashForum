@@ -14,6 +14,7 @@ using HackslashForum.Models;
 using HackslashForum.Models.AccountViewModels;
 using HackslashForum.Services;
 using HackslashForum.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace HackslashForum.Controllers
 {
@@ -41,7 +42,15 @@ namespace HackslashForum.Controllers
             _context = Context;
         }
 
-
+        public AccountController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender, ILogger logger, string errorMessage)
+        {
+            _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _emailSender = emailSender;
+            _logger = logger;
+            ErrorMessage = errorMessage;
+        }
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -228,11 +237,14 @@ namespace HackslashForum.Controllers
             return View();
         }
 
+      
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
+           
+
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -241,7 +253,6 @@ namespace HackslashForum.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);

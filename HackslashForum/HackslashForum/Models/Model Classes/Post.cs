@@ -12,7 +12,11 @@ namespace HackslashForum
         [Display(Name = "Diskussion")]
         Discussion,
         [Display(Name = "Fråga")]
-        Question
+        Question,
+        [Display(Name = "Java")]
+        Java,
+        [Display(Name = "Csharp")]
+        Csharp
     }
 
     public class Post
