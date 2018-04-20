@@ -23,24 +23,33 @@
 
 <div id="posts">
 
-    <h2>Posts</h2>
+	<h2>Inlägg</h2>
 
-    @{
-        int counter = 0;
-    }
+	@{
+		int counter = 0;
+	}
+
+	<div>
+		<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Sortera på datum</a>
+	</div>
+	<div>
+		<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">@Html.DisplayNameFor(model => model.Title)</a>
+	</div>
+	<div>
+		<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Sortera på röster</a>
+	</div>
 
 
-
-    @foreach (var item in Model)
-    {
-        counter++;
-        <div class="post">
-            <a href="https://localhost:44369/Posts/Post/@counter">@Html.DisplayFor(modelitem => item.Title)</a>
-            <p>Downvotes: @Html.DisplayFor(modelItem => item.DownVotes)</p>
-            <p>Upvotes: @Html.DisplayFor(modelItem => item.UpVotes)</p>
-        </div>
-        <br />
-    }
+	@foreach (var item in Model)
+	{
+		counter++;
+		<div class="post">
+			<a href="https://localhost:44369/Posts/Post/@counter">@Html.DisplayFor(modelitem => item.Title)</a>
+			<p>Downvotes: @Html.DisplayFor(modelItem => item.DownVotes)</p>
+			<p>Upvotes: @Html.DisplayFor(modelItem => item.UpVotes)</p>
+		</div>
+		<br />
+	}
 
 </div>
 
