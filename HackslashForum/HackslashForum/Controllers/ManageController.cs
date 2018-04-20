@@ -75,7 +75,8 @@ namespace HackslashForum.Controllers
                 PostDownVotes = getUser.Posts.Sum(p => p.DownVotes),
                 CommentUpVotes = getUser.Comments.Sum(c => c.Upvotes),
                 CommentDownVotes = getUser.Comments.Sum(c => c.Downvotes),
-                NumberOfPosts = getUser.Posts.Count
+                NumberOfPosts = getUser.Posts.Count,
+                NumberOfComments = getUser.Comments.Count
             };
 
             return View(model);

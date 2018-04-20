@@ -29,15 +29,21 @@
 		int counter = 0;
 	}
 
-	<div>
-		<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Sortera på datum</a>
-	</div>
-	<div>
-		<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">@Html.DisplayNameFor(model => model.Title)</a>
-	</div>
-	<div>
-		<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Sortera på röster</a>
-	</div>
+
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Datum</a>
+		</li>
+		<li class="nav-item">
+			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">Titel</a>
+		</li>
+		<li class="nav-item">
+			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Antal uppröstningar</a>
+		</li>
+		<li class="nav-item">
+			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByComments"]">Antal kommentarer</a>
+		</li>
+	</ul>
 
 
 	@foreach (var item in Model)
@@ -45,8 +51,8 @@
 		counter++;
 		<div class="post">
 			<a href="https://localhost:44369/Posts/Post/@counter">@Html.DisplayFor(modelitem => item.Title)</a>
-			<p>Downvotes: @Html.DisplayFor(modelItem => item.DownVotes)</p>
-			<p>Upvotes: @Html.DisplayFor(modelItem => item.UpVotes)</p>
+			<p>↓: @Html.DisplayFor(modelItem => item.DownVotes)</p>
+			<p>↑: @Html.DisplayFor(modelItem => item.UpVotes)</p>
 		</div>
 		<br />
 	}

@@ -42,9 +42,10 @@ namespace HackslashForum.Controllers
         public IActionResult Index(string sortOrder)
         {
 
-            ViewData["SortByDate"] = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
+            ViewData["SortByDate"] = sortOrder == "Date";
             ViewData["SortByTitle"] = sortOrder == "Title" ? "title_desc" : "Title";
-            ViewData["SortByUpvotes"] = sortOrder == "Upvotes" ? "upvotes_desc" : "Upvotes";
+            ViewData["SortByUpvotes"] = sortOrder == "upvotes_desc" ? "Upvotes" : "upvotes_desc";
+            ViewData["SortByComments"] = sortOrder == "comments_desc" ? "Comments" : "comments_desc";
 
             var postSort = from p in _context.Post
                            select p;
@@ -66,7 +67,12 @@ namespace HackslashForum.Controllers
                 case "Upvotes":
                     postSort = postSort.OrderBy(p => p.UpVotes);
                     break;
-
+                case "Comments":
+                    postSort = postSort.OrderBy(p => p.Comments.Count);
+                    break;
+                case "comments_desc":
+                    postSort = postSort.OrderByDescending(p => p.Comments.Count);
+                    break;
                 default:
                     postSort = postSort.OrderByDescending(p => p.DateTimePostCreated);
                     break;

@@ -36,6 +36,8 @@ namespace HackslashForum.Models.ManageViewModels
         public DateTime AccountCreated { get; set; }
 
         public int NumberOfPosts { get; set; }
+        public int NumberOfComments { get; set; }
+
 
 
 
