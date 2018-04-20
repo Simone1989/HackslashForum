@@ -50,7 +50,7 @@ namespace HackslashForum.Controllers
             return View(post);
         }
 
-<<<<<<< HEAD
+
         public async Task<IActionResult> Post(int? id)
         {
             if (id == null)
@@ -94,13 +94,12 @@ namespace HackslashForum.Controllers
             return RedirectToAction($"Post/{id}");
         }
 
-        // GET: Posts/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-=======
->>>>>>> Strifox
+        //// GET: Posts/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+
 
 
         // Shows Enum Discussion / Question

@@ -25,17 +25,13 @@ namespace HackslashForum.Models.ManageViewModels
 
         public string StatusMessage { get; set; }
 
-        public int UpVotes { get; set; }
-        public int DownVotes { get; set; }
+
         public int PostUpVotes { get; set; }
         public int PostDownVotes { get; set; }
 
-        public int Upvotes { get; set; }
-        public int Downvotes { get; set; }
         public int CommentUpVotes { get; set; }
         public int CommentDownVotes { get; set; }
 
-        public DateTime LastLogin { get; set; }
         public DateTime? LastLogin { get; set; } 
         public DateTime AccountCreated { get; set; }
 
