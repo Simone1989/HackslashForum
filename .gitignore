@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/HackslashForum/.vs/HackslashForum/v15/Server/sqlite3/db.lock
-=======
 
 HackslashForum/\.vs/HackslashForum/v15/Server/sqlite3/storage\.ide-shm
 
 HackslashForum/\.vs/HackslashForum/v15/Server/sqlite3/storage\.ide-wal
->>>>>>> developer
