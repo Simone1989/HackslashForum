@@ -26,28 +26,44 @@ footer p {
 
 .top-post {
     width: 200px;
-    height: 300px;
+    height: auto;
     float: right;
     overflow: hidden;
     border-radius: 0px 0px 10px 10px;
     border: 1px solid #222;
     padding: 5px;
     clear: right;
+    margin-bottom: 10px;
 }
+
+.top-post a {
+    float: left;
+    color: green;
+    text-decoration: none;
+    text-align:center;
+}
+
+.top-post a:hover {
+    text-decoration: underline;
+}
+
+
 
 .top-post-header {
     width: 200px;
-    height: 20px;
+    height: 30px;
     float: right;
     background-color: #222;
     border-radius: 10px 10px 0px 0px;
-    top: 0px;
-    left: 0px;
+    text-align: center;
+    color: white;
+    clear: right;
 }
 
 .post {
     height: 10px;
     width: 75%;
+    clear: left;
 }
 
 .body-content hr {

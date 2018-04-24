@@ -26,6 +26,7 @@ namespace HackslashForum.Models.ManageViewModels
 
         public string StatusMessage { get; set; }
 
+
         public int PostUpVotes { get; set; }
         public int PostDownVotes { get; set; }
 
@@ -36,6 +37,8 @@ namespace HackslashForum.Models.ManageViewModels
         public DateTime AccountCreated { get; set; }
 
         public int NumberOfPosts { get; set; }
+        public int NumberOfComments { get; set; }
+
 
 
 

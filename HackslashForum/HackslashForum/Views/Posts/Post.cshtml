@@ -1,0 +1,28 @@
+﻿@model HackslashForum.Post
+
+@{
+    ViewData["Title"] = "Info om inlägg";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Post</title>
+</head>
+<body>
+    <h3>@Model.Title</h3>
+    <p>@Model.Content</p>
+    <br />
+    @foreach(var x in ViewBag.Comments)
+    {
+        <p>@x.Content</p>
+    }
+    <br />
+    <form asp-action="Comment" asp-route-id="@Model.Id" asp-controller="Posts">
+        <textarea name="content" style="min-width:360px;max-width:360px"></textarea>
+        <br />
+        <input type="submit" value="Comment"/>
+    </form>
+</body>
+</html>

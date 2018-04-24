@@ -39,10 +39,54 @@ namespace HackslashForum.Controllers
 
         //query start
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
+
+            ViewData["SortByDate"] = sortOrder == "Date";
+            ViewData["SortByTitle"] = sortOrder == "Title" ? "title_desc" : "Title";
+            ViewData["SortByUpvotes"] = sortOrder == "upvotes_desc" ? "Upvotes" : "upvotes_desc";
+            ViewData["SortByComments"] = sortOrder == "comments_desc" ? "Comments" : "comments_desc";
+
+            var postSort = from p in _context.Post
+                           select p;
+
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    postSort = postSort.OrderByDescending(p => p.Title);
+                    break;
+                case "Title":
+                    postSort = postSort.OrderBy(p => p.Title);
+                    break;
+                case "Date":
+                    postSort = postSort.OrderBy(p => p.DateTimePostCreated);
+                    break;
+                case "upvotes_desc":
+                    postSort = postSort.OrderByDescending(p => p.UpVotes);
+                    break;
+                case "Upvotes":
+                    postSort = postSort.OrderBy(p => p.UpVotes);
+                    break;
+                case "Comments":
+                    postSort = postSort.OrderBy(p => p.Comments.Count);
+                    break;
+                case "comments_desc":
+                    postSort = postSort.OrderByDescending(p => p.Comments.Count);
+                    break;
+                default:
+                    postSort = postSort.OrderByDescending(p => p.DateTimePostCreated);
+                    break;
+            }
+
+            var mostUpvotedPost = _context.Post.OrderByDescending(p => p.UpVotes).Take(1).SingleOrDefault();
+            ViewBag.MostUpvotedPost = mostUpvotedPost;
+
+            var mostCommentedPost = _context.Post.OrderByDescending(p => p.Comments.Count).Take(1).SingleOrDefault();
+            ViewBag.MostCommentedPost = mostCommentedPost;
+
             var posts = _context.Post.ToList();
-            return View(posts);
+
+            return View(postSort.ToList());
         }
 
         //query end

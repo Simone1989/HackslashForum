@@ -82,7 +82,8 @@ namespace HackslashForum.Controllers
                 PostDownVotes = getUser.Posts.Sum(p => p.DownVotes),
                 CommentUpVotes = getUser.Comments.Sum(c => c.Upvotes),
                 CommentDownVotes = getUser.Comments.Sum(c => c.Downvotes),
-                
+                NumberOfPosts = getUser.Posts.Count,
+                NumberOfComments = getUser.Comments.Count
             };
 
             return View(model);
@@ -115,8 +116,6 @@ namespace HackslashForum.Controllers
                 }
             }
 
-            var phoneNumber = user.PhoneNumber;
-            if (model.PhoneNumber != phoneNumber)
                 // Fungerar inte just nu, vill kunna uppdatera username, profilepicture osv.
                 /*var username = user.UserName;
                 if (model.Username != username)
@@ -132,7 +131,6 @@ namespace HackslashForum.Controllers
                 }
                 }*/
 
-                StatusMessage = "Your profile has been updated";
             StatusMessage = "Ditt konto har uppdaterats";
             return RedirectToAction(nameof(Index));
         }
