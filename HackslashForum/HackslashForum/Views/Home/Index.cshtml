@@ -25,17 +25,10 @@
 
     <h2>Posts</h2>
 
-    @{
-        int counter = 0;
-    }
-
-
-
     @foreach (var item in Model)
     {
-        counter++;
         <div class="post">
-            <a href="https://localhost:44369/Posts/Post/@counter">@Html.DisplayFor(modelitem => item.Title)</a>
+            <a href="https://localhost:44369/Posts/Post/@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(modelitem => item.Title)</a>
             <p>Downvotes: @Html.DisplayFor(modelItem => item.DownVotes)</p>
             <p>Upvotes: @Html.DisplayFor(modelItem => item.UpVotes)</p>
         </div>
