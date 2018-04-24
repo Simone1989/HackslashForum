@@ -68,9 +68,9 @@ namespace HackslashForum.Controllers
                 return NotFound();
             }
 
-            var author = _context.User.Where(u => u.Id == post.User.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefault();
+            //var author = _context.User.Where(u => u.Id == post.User.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefault();
 
-            ViewBag.Author = author.UserName;
+            //ViewBag.Author = author.UserName;
 
             ViewBag.Comments = (from x in _context.Comment
                                 where x.Post.Id == id
