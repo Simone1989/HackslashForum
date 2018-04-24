@@ -22,7 +22,7 @@ namespace HackslashForum.Models.ManageViewModels
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Profilbild")]
-        public IFormFile ProfilePicture { get; set; }
+        public byte[] ProfilePicture { get; set; }
 
         public string StatusMessage { get; set; }
 

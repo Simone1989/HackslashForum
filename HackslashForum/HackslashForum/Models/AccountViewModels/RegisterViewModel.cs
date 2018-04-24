@@ -18,7 +18,7 @@ namespace HackslashForum.Models.AccountViewModels
         public string UserName { get; set; }
 
         [Display(Name = "Profilbild")]
-        public IFormFile ProfilePicture { get; set; }
+        public byte[] ProfilePicture { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]

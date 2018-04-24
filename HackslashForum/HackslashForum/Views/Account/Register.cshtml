@@ -23,11 +23,11 @@
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                        @using (Html.BeginForm("", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-                <input type="file" name="FileUpload1" /><br />
-                <input type="submit" name="Submit" id="Submit" value="Upload" />
-}
+                    @using (Html.BeginForm("", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="file" name="FileUpload1" /><br />
+                        <input type="submit" name="Submit" id="Submit" value="Upload" />
+                    }
                 </div>
                 <div class="form-group">
                     <label asp-for="Password"></label>

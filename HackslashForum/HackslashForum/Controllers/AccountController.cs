@@ -42,16 +42,6 @@ namespace HackslashForum.Controllers
             _context = Context;
         }
 
-        public AccountController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender, ILogger logger, string errorMessage)
-        {
-            _context = context;
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _emailSender = emailSender;
-            _logger = logger;
-            ErrorMessage = errorMessage;
-        }
-
         [TempData]
         public string ErrorMessage { get; set; }
 
