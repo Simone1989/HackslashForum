@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\HackslashForum",
+    "\\HackslashForum\\Models",
+    "\\HackslashForum\\Models\\AccountViewModels",
+    "\\HackslashForum\\Models\\ManageViewModels",
+    "\\HackslashForum\\Models\\Model Classes",
+    "\\HackslashForum\\Properties",
+    "\\HackslashForum\\Views",
+    "\\HackslashForum\\Views\\ApplicationUsers",
+    "\\HackslashForum\\Views\\Manage",
+    "\\HackslashForum\\Views\\Posts"
+  ],
+  "SelectedNode": "\\HackslashForum\\Controllers\\AccountController.cs",
+  "PreviewInSolutionExplorer": false
+}

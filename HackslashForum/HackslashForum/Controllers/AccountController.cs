@@ -40,6 +40,7 @@ namespace HackslashForum.Controllers
             _emailSender = emailSender;
             _logger = logger;
             _context = Context;
+            ErrorMessage = "test";
         }
 
         [TempData]
