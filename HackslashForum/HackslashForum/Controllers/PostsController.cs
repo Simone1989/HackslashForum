@@ -60,7 +60,7 @@ namespace HackslashForum.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Post.Include(u => u.User)
+            var post = await _context.Post
                 .SingleOrDefaultAsync(m => m.Id == id);
 
             if (post == null)
@@ -71,8 +71,6 @@ namespace HackslashForum.Controllers
             //var author = _context.User.Where(u => u.Id == post.User.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefault();
 
             //ViewBag.Author = author.UserName;
-
-            ViewBag.Author = post.User.UserName;
 
             ViewBag.Comments = (from x in _context.Comment
                                 where x.Post.Id == id
