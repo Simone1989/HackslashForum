@@ -13,7 +13,7 @@ namespace HackslashForum.Models
         public DateTime AccountCreationDate { get; set; }
         public string Location { get; set; }
         public byte[] ProfilePicture { get; set; }
-
+        public DateTime? LastLogin { get; set; }
 
         public IList<Post> Posts { get; set; }
         public IList<Comment> Comments { get; set; }
