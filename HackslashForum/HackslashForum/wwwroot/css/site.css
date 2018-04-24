@@ -10,6 +10,10 @@
 }
 
 footer {
+    clear: both;
+}
+
+/*footer {
     position: absolute;
     left: 0px;
     bottom: 0px;
@@ -22,6 +26,64 @@ footer {
 
 footer p {
     float: right;
+}*/
+
+.post-header {
+    width: 500px;
+    height: auto;
+    float: left;
+    background-color: #222;
+    border-radius: 10px 10px 0px 0px;
+    text-align: left;
+    color: white;
+    clear:left;
+}
+
+.post-header h3 {
+    margin-left: 10px;
+}
+
+.post-content {
+    width: 500px;
+    height: auto;
+    float: left;
+    clear: left;
+    overflow: hidden;
+    border: 1px solid #222;
+    padding: 5px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.comment-form {
+    margin-top: 10px;
+    float: left;
+    clear: left;
+}
+
+.comments-header {
+    width: 500px;
+    height: auto;
+    float: right;
+    background-color: #222;
+    border-radius: 10px 10px 0px 0px;
+    text-align: left;
+    color: white;
+    clear: right;
+}
+
+.comments-header h3 {
+    margin-left: 10px;
+}
+
+.comments-content {
+    width: 500px;
+    height: auto;
+    float: right;
+    overflow: hidden;
+    border: 1px solid #222;
+    padding: 5px;
+    clear: right;
+    border-radius: 0px 0px 10px 10px;
 }
 
 .top-post {

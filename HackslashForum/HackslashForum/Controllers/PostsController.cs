@@ -17,11 +17,13 @@ namespace HackslashForum.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _manager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public PostsController(ApplicationDbContext context, UserManager<ApplicationUser> manager)
+        public PostsController(ApplicationDbContext context, UserManager<ApplicationUser> manager, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
             _manager = manager;
+            _signInManager = signInManager;
         }
 
         // GET: Posts
@@ -60,14 +62,19 @@ namespace HackslashForum.Controllers
 
             var post = await _context.Post
                 .SingleOrDefaultAsync(m => m.Id == id);
+
             if (post == null)
             {
                 return NotFound();
             }
 
+            var author = _context.User.Where(u => u.Id == post.User.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefault();
+
+            ViewBag.Author = author.UserName;
+
             ViewBag.Comments = (from x in _context.Comment
-                               where x.Post.Id == id
-                               select x).ToList();
+                                where x.Post.Id == id
+                                select x).ToList();
 
             return View(post);
         }
@@ -81,8 +88,10 @@ namespace HackslashForum.Controllers
                        where p.Id == id
                        select p).Take(1).SingleOrDefault();
 
+
             Comment comment = new Comment
             {
+                User = await _manager.GetUserAsync(User),
                 Post = post,
                 DateTimeCommentMade = DateTime.Now,
                 Content = content
