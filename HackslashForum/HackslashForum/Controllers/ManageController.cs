@@ -15,6 +15,9 @@ using HackslashForum.Models.ManageViewModels;
 using HackslashForum.Services;
 using HackslashForum.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace HackslashForum.Controllers
 {
@@ -25,7 +28,6 @@ namespace HackslashForum.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<Post> _postManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
@@ -52,14 +54,19 @@ namespace HackslashForum.Controllers
         [TempData]
         public string StatusMessage { get; set; }
 
+ 
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+       
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
+         
+
             var getUser = await _context.User.Where(u => u.Id == user.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefaultAsync();
             var model = new IndexViewModel
             {
@@ -92,6 +99,7 @@ namespace HackslashForum.Controllers
             }
 
             var user = await _userManager.GetUserAsync(User);
+
 
             if (user == null)
             {
