@@ -1,23 +1,23 @@
 ﻿@model IEnumerable<HackslashForum.Post>
 
 @{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
 <div style="position:absolute; right: 0px;">
-    <div class="top-post-header">
-        <h5>Most Upvoted Post</h5>
-    </div>
-    <div class="top-post">
-        <a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
-    </div>
+	<div class="top-post-header">
+		<h5>Most Upvoted Post</h5>
+	</div>
+	<div class="top-post">
+		<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
+	</div>
 
-    <div class="top-post-header">
-        <h5>Most Commented Post</h5>
-    </div>
-    <div class="top-post">
-        <a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
-    </div>
+	<div class="top-post-header">
+		<h5>Most Commented Post</h5>
+	</div>
+	<div class="top-post">
+		<a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
+	</div>
 </div>
 
 
@@ -25,10 +25,20 @@
 
 	<h2>Inlägg</h2>
 
+
 	@{
 		int counter = 0;
 	}
 
+	<form asp-action="Index" method="get">
+		<div class="form-actions no-color">
+			<p>
+				Sök på titel: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+				<input type="submit" value="Sök" class="btn btn-default" /> |
+				<a asp-action="Index">Visa alla inlägg</a>
+			</p>
+		</div>
+	</form>
 
 	<ul class="nav nav-tabs">
 		<li class="nav-item">
@@ -43,6 +53,7 @@
 		<li class="nav-item">
 			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByComments"]">Antal kommentarer</a>
 		</li>
+
 	</ul>
 
 
@@ -56,6 +67,7 @@
 		</div>
 		<br />
 	}
+
 
 </div>
 
