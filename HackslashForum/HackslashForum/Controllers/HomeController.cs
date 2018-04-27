@@ -39,16 +39,22 @@ namespace HackslashForum.Controllers
 
         //query start
 
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
 
             ViewData["SortByDate"] = sortOrder == "Date";
             ViewData["SortByTitle"] = sortOrder == "Title" ? "title_desc" : "Title";
             ViewData["SortByUpvotes"] = sortOrder == "upvotes_desc" ? "Upvotes" : "upvotes_desc";
             ViewData["SortByComments"] = sortOrder == "comments_desc" ? "Comments" : "comments_desc";
+            ViewData["CurrentFilter"] = searchString;
 
             var postSort = from p in _context.Post
                            select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                postSort = postSort.Where(p => p.Title.Contains(searchString));
+            }
 
             switch (sortOrder)
             {
@@ -87,6 +93,7 @@ namespace HackslashForum.Controllers
             var posts = _context.Post.ToList();
 
             return View(postSort.ToList());
+
         }
 
         //query end
