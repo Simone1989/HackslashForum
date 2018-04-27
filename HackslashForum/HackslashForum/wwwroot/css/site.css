@@ -28,8 +28,25 @@ footer p {
     float: right;
 }*/
 
+.wrapper {
+    width: 100%;
+    height: auto;
+}
+
+.post-wrapper {
+    width: 48%;
+    height: auto;
+    float: left;
+}
+
+.comment-wrapper {
+    width: 48%;
+    height: auto;
+    float: right;
+}
+
 .post-header {
-    width: 500px;
+    width: 100%;
     height: auto;
     float: left;
     background-color: #222;
@@ -39,12 +56,8 @@ footer p {
     clear:left;
 }
 
-.post-header h3 {
-    margin-left: 10px;
-}
-
 .post-content {
-    width: 500px;
+    width: 100%;
     height: auto;
     float: left;
     clear: left;
@@ -55,13 +68,14 @@ footer p {
 }
 
 .comment-form {
+    width: 100%;
     margin-top: 10px;
     float: left;
     clear: left;
 }
 
 .comments-header {
-    width: 500px;
+    width: 100%;
     height: auto;
     float: right;
     background-color: #222;
@@ -76,7 +90,7 @@ footer p {
 }
 
 .comments-content {
-    width: 500px;
+    width: 100%;
     height: auto;
     float: right;
     overflow: hidden;
@@ -84,6 +98,11 @@ footer p {
     padding: 5px;
     clear: right;
     border-radius: 0px 0px 10px 10px;
+}
+
+.comments-content p {
+    margin: 0px;
+    padding: 0px;
 }
 
 .top-post {

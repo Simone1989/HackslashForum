@@ -11,32 +11,34 @@
     <title>Post</title>
 </head>
 <body>
-    <div class="post-wrapper">
-        <div class="post-header">
-            <h3>@Model.Title</h3>
+    <div class="wrapper">
+        <div class="post-wrapper">
+            <div class="post-header">
+                <h3 style="margin-left: 10px;">@Model.Title</h3>
+            </div>
+            <div class="post-content">
+                <p>Author: @ViewBag.PostAuthor</p>
+                <p>Category: @Model.Category</p>
+                <p>@Model.Content</p>
+            </div>
+            <div class="comment-form">
+                @await Html.PartialAsync("_LoginComment")
+            </div>
         </div>
-        <div class="post-content">
-            <p>Author: @ViewBag.Author</p>
-            <p>Category: @Model.Category</p>
-            <p>@Model.Content</p>
-        </div>
-        <div class="comment-form">
-            <form asp-action="Comment" asp-route-id="@Model.Id" asp-controller="Posts">
-                <textarea name="content" style="min-width:360px;max-width:360px"></textarea>
-                <br />
-                <input type="submit" value="Comment" />
-            </form>
-        </div>
-
-        <div class="comments-header">
-            <h3>Comments</h3>
-        </div>
-        <div class="comments-content">
-            @foreach (var comment in ViewBag.Comments)
-            {
-                <p>@comment.Content</p>
-                <hr />
-            }
+        <div class="comment-wrapper">
+            <div class="comments-header">
+                <h3 style="margin-left: 10px;">Comments</h3>
+            </div>
+            <div class="comments-content">
+                @foreach (var comment in ViewBag.Comments)
+                {
+                    <p style="color:green;">@ViewBag.CommentAuthor:</p>
+                    <p>@comment.Content</p>
+                    <br />
+                    <p style="color:gray">@comment.DateTimeCommentMade</p>
+                    <hr style="width:100%;margin:0px 0px 10px 0px;padding:0px;" />
+                }
+            </div>
         </div>
     </div>
 </body>
