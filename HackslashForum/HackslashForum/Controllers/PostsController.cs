@@ -78,6 +78,15 @@ namespace HackslashForum.Controllers
                                 where x.Post.Id == id
                                 select x).ToList();
 
+            ViewBag.PostAuthor = (from x in _context.User
+                                 join y in _context.Post on x.Id equals y.User.Id
+                                 select x.UserName).Take(1).SingleOrDefault();
+
+            ViewBag.CommentAuthor = (from x in _context.User
+                                     join y in _context.Comment on x.Id equals y.User.Id
+                                     select x.UserName).Take(1).SingleOrDefault();
+
+
             return View(post);
         }
 
