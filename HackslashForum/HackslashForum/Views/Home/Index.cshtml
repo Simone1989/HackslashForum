@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HackslashForum.Post>
 
 @{
-	ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page";
 }
 
 <div style="position:absolute; right: 0px;">
@@ -62,8 +62,8 @@
 	{
 		<div class="post">
 			<a href="https://localhost:44369/Posts/Post/@item.Id">@Html.DisplayFor(modelitem => item.Title)</a>
-			<p>↓: @Html.DisplayFor(modelItem => item.DownVotes)</p>
-			<p>↑: @Html.DisplayFor(modelItem => item.UpVotes)</p>
+      <p> @Html.DisplayFor(modelItem => item.DownVotes)</p><img src="~/images/Downvote.png" style="float:right;" width="20" height="20" />
+      <img src="~/images/Upvote.png" style="float:right;" width="20" height="20" /><p> @Html.DisplayFor(modelItem => item.UpVotes)</p>
 		</div>
 		<br />
 	}

@@ -15,6 +15,15 @@
         <div class="post-wrapper">
             <div class="post-header">
                 <h3 style="margin-left: 10px;">@Model.Title</h3>
+                <span style="float: right; clear: both;">
+                    <img src="~/images/Upvote.png" width="20" height="20" />
+                </span>
+
+                <p style="float: right; clear: both;">@ViewBag.TotalScore</p>
+
+                <span style="float: right; clear: both;">
+                        <img src="~/images/Downvote.png" width="20" height="20" />
+                </span>
             </div>
             <div class="post-content">
                 <p>Author: @ViewBag.PostAuthor</p>
