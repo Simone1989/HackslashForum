@@ -4,8 +4,7 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-{
+
     <div class="row">
         <div class="col-md-4">
             <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
@@ -23,11 +22,9 @@
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    @using (Html.BeginForm("", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
+                 
                         <input type="file" name="FileUpload1" /><br />
                         <input type="submit" name="Submit" id="Submit" value="Upload" />
-                    }
                 </div>
                 <div class="form-group">
                     <label asp-for="Password"></label>
@@ -43,7 +40,6 @@
             </form>
         </div>
     </div>
-}
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
