@@ -3,61 +3,61 @@
 	//ViewData["Title"] = "Mina sidor";
 	ViewData.AddActivePage(ManageNavPages.Index);
 }
-<div class="content">
-	<h4>@ViewData["Title"]</h4>
-	<div class="minaSidorInfoDiv">
-		<ul class="list-group minaSidorInfoLista">
-			<li class="list-group-item list-group-item-success"><p>Mottagna röster på inlägg:</p> ↑ @Html.DisplayFor(model => model.PostUpVotes) ↓ @Html.DisplayFor(model => model.PostDownVotes)</li>
-			<li class="list-group-item list-group-item-success"><p>Mottagna röster på kommentarer:</p> ↑ @Html.DisplayFor(model => model.CommentUpVotes) ↓ @Html.DisplayFor(model => model.CommentDownVotes)</li>
-			<li class="list-group-item list-group-item-success"><p>Antal inlägg skapade:</p> @Html.DisplayFor(model => model.NumberOfPosts)</li>
-			<li class="list-group-item list-group-item-success"><p>Antal kommentarer skrivna:</p> @Html.DisplayFor(model => model.NumberOfComments) </></li>
-			<li class="list-group-item list-group-item-success"><p>Senast inloggad:</p> @Html.DisplayFor(model => model.LastLogin)</li>
-			<li class="list-group-item list-group-item-success"><p>Kontot skapats:</p> @Html.DisplayFor(model => model.AccountCreated)</li>
-		</ul>
-	</div>
-	@Html.Partial("_StatusMessage", Model.StatusMessage)
-	<div class="row">
-		<div class="col-md-6">
-			<form method="post">
-				<div asp-validation-summary="All" class="text-danger"></div>
-				<div class="form-group">
-					<label asp-for="Username">Användarnamn</label>
-					<input asp-for="Username" class="form-control" disabled />
-				</div>
-				<div class="form-group">
-					<label asp-for="Email"></label>
-					@if (Model.IsEmailConfirmed)
-					{
-						<div class="input-group">
-							<input asp-for="Email" class="form-control" />
-							<span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
-						</div>
-					}
-					else
-					{
+
+<h4>@ViewData["Title"]</h4>
+@Html.Partial("_StatusMessage", Model.StatusMessage)
+<div class="row">
+	<div class="col-md-6">
+		<form method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Username">Användarnamn</label>
+				<input asp-for="Username" class="form-control" disabled />
+			</div>
+			<div class="form-group">
+				<label asp-for="Email"></label>
+				@if (Model.IsEmailConfirmed)
+				{
+					<div class="input-group">
 						<input asp-for="Email" class="form-control" />
-						<button asp-action="SendVerificationEmail" class="btn btn-link">Skicka bekräftelsemail</button>
-					}
-					<span asp-validation-for="Email" class="text-danger"></span>
-				</div>
-				<div class="form-group">
-					<label asp-for="ProfilePicture">Profilbild</label>
-					<input asp-for="ProfilePicture" name="UserPhoto" accept=".png,.jpg,.jpeg,.gif,.tif" class="form-control" />
-					<span asp-validation-for="ProfilePicture" class="text-danger"></span>
-				</div>
+						<span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+					</div>
+				}
+				else
+				{
+					<input asp-for="Email" class="form-control" />
+					<button asp-action="SendVerificationEmail" class="btn btn-link">Skicka bekräftelsemail</button>
+				}
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ProfilePicture">Profilbild</label>
+				<input asp-for="ProfilePicture" name="UserPhoto" accept=".png,.jpg,.jpeg,.gif,.tif" class="form-control" />
+				<span asp-validation-for="ProfilePicture" class="text-danger"></span>
+			</div>
 
-				<button type="submit" class="btn btn-default">Spara</button>
-			</form>
+			<button type="submit" class="btn btn-default">Spara</button>
+		</form>
 
-		</div>
 	</div>
-	<br />
+</div>
+<br />
 
+<div>
+	<ul class="list-group minaSidorInfoLista">
+		<li class="list-group-item list-group-item-success"><p>Mottagna röster på inlägg:</p> ↑ @Html.DisplayFor(model => model.PostUpVotes) ↓ @Html.DisplayFor(model => model.PostDownVotes)</li>
+		<li class="list-group-item list-group-item-success"><p>Mottagna röster på kommentarer:</p> ↑ @Html.DisplayFor(model => model.CommentUpVotes) ↓ @Html.DisplayFor(model => model.CommentDownVotes)</li>
+		<li class="list-group-item list-group-item-success"><p>Antal inlägg skapade:</p> @Html.DisplayFor(model => model.NumberOfPosts)</li>
+		<li class="list-group-item list-group-item-success"><p>Antal kommentarer skrivna:</p> @Html.DisplayFor(model => model.NumberOfComments) </></li>
+		<li class="list-group-item list-group-item-success"><p>Senast inloggad:</p> @Html.DisplayFor(model => model.LastLogin)</li>
+		<li class="list-group-item list-group-item-success"><p>Kontot skapats:</p> @Html.DisplayFor(model => model.AccountCreated)</li>
+	</ul>
 </div>
 
 
-	@section Scripts {
-		@await Html.PartialAsync("_ValidationScriptsPartial")
-	}
+
+@section Scripts {
+	@await Html.PartialAsync("_ValidationScriptsPartial")
+}
 
 
