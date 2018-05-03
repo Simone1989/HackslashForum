@@ -68,6 +68,8 @@ namespace HackslashForum.Controllers
                 return NotFound();
             }
 
+            ViewBag.TotalScore = post.UpVotes - post.DownVotes;
+
             //var author = _context.User.Where(u => u.Id == post.User.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefault();
 
             //ViewBag.Author = author.UserName;
@@ -75,6 +77,15 @@ namespace HackslashForum.Controllers
             ViewBag.Comments = (from x in _context.Comment
                                 where x.Post.Id == id
                                 select x).ToList();
+
+            ViewBag.PostAuthor = (from x in _context.User
+                                 join y in _context.Post on x.Id equals y.User.Id
+                                 select x.UserName).Take(1).SingleOrDefault();
+
+            ViewBag.CommentAuthor = (from x in _context.User
+                                     join y in _context.Comment on x.Id equals y.User.Id
+                                     select x.UserName).Take(1).SingleOrDefault();
+
 
             return View(post);
         }
