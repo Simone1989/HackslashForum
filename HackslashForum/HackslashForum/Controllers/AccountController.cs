@@ -238,7 +238,7 @@ namespace HackslashForum.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ProfilePicture = model.ProfilePicture, AccountCreationDate = DateTime.Now };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ProfilePicture = model.ProfilePicture, Role = model.Role, AccountCreationDate = DateTime.Now };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

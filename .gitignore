@@ -7,3 +7,7 @@ HackslashForum/.vs/HackslashForum/v15/Server/sqlite3/storage.ide-wal
 HackslashForum/\.vs/HackslashForum/v15/Server/sqlite3/storage\.ide-wal
 
 *.sqlite
+
+HackslashForum/\.vs/HackslashForum/v15/
+
+HackslashForum/\.vs/config/
