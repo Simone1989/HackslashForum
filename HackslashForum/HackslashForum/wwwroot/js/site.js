@@ -1,12 +1,11 @@
 ﻿window.addEventListener('load', function (event) {
 
 
-	//events: https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public&lon=11.974560&page=20&text=tech&radius=50&lat=57.708870
+	
 	//grupper: https://api.meetup.com/find/groups?&sign=true&photo-host=public&country=se&upcoming_events=true&location=göteborg&text=tech&radius=50&page=10
 
 
 	document.getElementById('getGroups');
-	document.getElementById('getEvents');
 
 	getGroups();
 
