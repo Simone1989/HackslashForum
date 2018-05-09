@@ -8,15 +8,18 @@
     <title>test</title>
 </head>
 <body>
-<div>
+    <div class="content">
 
-    @foreach (var item in Model)
-    {
-             string name = item.ToString();
+        @foreach (var item in Model)
+         {
+            string name = item.ToString();
 
-             <a href="https://localhost:44369/Category/@name"><h3>@item</h3></a>
-     }
-</div>
+            <div class="categoriesstyle">
+            <a href="https://localhost:44369/Category/@name"><h3>@item</h3></a>
+            </div>
+         }
+
+    </div>
 </body>
 </html>
 

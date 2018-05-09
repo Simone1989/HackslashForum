@@ -1,6 +1,6 @@
 ﻿@model IndexViewModel
 @{
-	//ViewData["Title"] = "Mina sidor";
+	ViewData["Title"] = "Information";
 	ViewData.AddActivePage(ManageNavPages.Index);
 }
 
@@ -41,9 +41,10 @@
 
 	</div>
 </div>
+
 <br />
 
-<div>
+<div id="profilestats">
 	<ul class="list-group minaSidorInfoLista">
 		<li class="list-group-item list-group-item-success"><p>Mottagna röster på inlägg:</p> ↑ @Html.DisplayFor(model => model.PostUpVotes) ↓ @Html.DisplayFor(model => model.PostDownVotes)</li>
 		<li class="list-group-item list-group-item-success"><p>Mottagna röster på kommentarer:</p> ↑ @Html.DisplayFor(model => model.CommentUpVotes) ↓ @Html.DisplayFor(model => model.CommentDownVotes)</li>
@@ -53,6 +54,7 @@
 		<li class="list-group-item list-group-item-success"><p>Kontot skapats:</p> @Html.DisplayFor(model => model.AccountCreated)</li>
 	</ul>
 </div>
+
 
 
 

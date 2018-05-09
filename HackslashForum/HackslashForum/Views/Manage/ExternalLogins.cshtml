@@ -38,7 +38,7 @@
 @if (Model.OtherLogins?.Count > 0)
 {
     <h4>Add another service to log in.</h4>
-    <hr />
+    @*<hr />*@
     <form asp-action="LinkLogin" method="post" class="form-horizontal">
         <div id="socialLoginList">
             <p>
@@ -49,4 +49,9 @@
             </p>
         </div>
     </form>
+
+
+
+    <h4></h4>
+    <h4></h4>
 }

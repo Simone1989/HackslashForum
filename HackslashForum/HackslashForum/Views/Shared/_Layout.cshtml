@@ -20,22 +20,30 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="header" style="margin-top:10px;">
-                <a style="float:left;" href="/Home/Index/"><img src="~/images/hackSlashLogo.png" style="width:100px;height:100px;"></a>
-                <h1 style="margin-left: 20px;margin-top: 25px;float: left;color:white;">HackSlash</h1>
-            </div>
-            <div class="navbar-collapse collapse">
-                @await Html.PartialAsync("_LoginPartial")
+            <div id="test101112">
+                <div class="header" style="margin-top:10px;">
+                    <a style="float:left;" href="/Home/Index/"><img src="~/images/hackSlashLogo.png" style="width:100px;height:100px;"></a>
+                    <h1 style="margin-left: 20px;margin-top: 25px;float: left;color:white;">HackSlash</h1>
+                </div>
+                <div id="test123">
+                    <div class="navbar-collapse collapse">
+                        @await Html.PartialAsync("_LoginPartial")
+                    </div>
+                </div>
             </div>
         </div>
+
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <footer>
-            <p>&copy; 2018 - HackslashForum</p>
-        </footer>
+    @*<footer>
+        <p>&copy; 2018 - HackslashForum</p>
+    </footer>*@
     </div>
-
+     
+    
+       
+    
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
