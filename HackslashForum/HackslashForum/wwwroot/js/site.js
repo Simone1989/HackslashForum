@@ -1,18 +1,29 @@
 ﻿window.addEventListener('load', function (event) {
 
-
-	
-	//grupper: https://api.meetup.com/find/groups?&sign=true&photo-host=public&country=se&upcoming_events=true&location=göteborg&text=tech&radius=50&page=10
-
-
 	document.getElementById('getGroups');
+	document.getElementById('userList');
 
-	getGroups();
+	//getGroups();
+	getProlificUsers();
 
-	// Fixa CORS
+	function getProlificUsers() {
+		let userAPI = '/api/GetApplicationUser';
+		fetch(userAPI)
+			.then(response => response.json())
+			.then(data => {
+				let userList = '';
+				data.forEach(function (list) {
+					userList += `
+						<div>${list.UserName}</div>`;
+				});
+				document.getElementById('userList').innerHTML = userList;
+			});
+
+	}
+
 	function getGroups() {
 		let proxy = 'https://cors-anywhere.herokuapp.com/';
-		let api = 'https://api.meetup.com/find/groups?&sign=true&photo-host=public&country=se&upcoming_events=true&location=göteborg&text=tech&radius=50&page=10&key=785d217213c1c192a7e71c4df2734';
+		let api = 'https://api.meetup.com/find/groups?&sign=true&photo-host=public&country=se&upcoming_events=true&location=göteborg&radius=50&page=10&key=785d217213c1c192a7e71c4df2734';
 		fetch(proxy + api, {
 			method: 'GET',
 			headers: {
