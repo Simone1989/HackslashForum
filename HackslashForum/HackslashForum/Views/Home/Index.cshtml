@@ -1,3 +1,105 @@
-﻿@{
+﻿@model IEnumerable<HackslashForum.Post>
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
+<div id="test131416">
+    
+    <div id="t1">
+        <div class="top-post-header">
+            <h5>Most Upvoted Post</h5>
+        </div>
+        <div class="top-post">
+            <a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
+        </div>
+    </div>
+
+    <div id="t2">
+        <div class="top-post-header">
+            <h5>Most Commented Post</h5>
+        </div>
+        <div class="top-post">
+            <a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
+        </div>
+    </div>
+
+</div>
+
+<div id="indexcontent">
+<div class="content">
+
+
+
+
+    @*<div style="position:absolute; right: 0px;">
+            <div class="top-post-header">
+                <h5>Most Upvoted Post</h5>
+            </div>
+            <div class="top-post">
+                @if (ViewBag.MostUpvotedPost != null)
+                {
+                    <a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
+                }
+            </div>
+
+            <div class="top-post-header">
+                <h5>Most Commented Post</h5>
+            </div>
+            <div class="top-post">
+                @if (ViewBag.MostCommentedPost != null)
+                {
+                    <a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
+                }
+            </div>
+        </div>*@
+
+
+    <div id="posts">
+
+        <h2>Inlägg</h2>
+
+        <form asp-action="Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    Sök på titel: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                    <input type="submit" value="Sök" class="btn btn-default" /> |
+                    <a asp-action="Index">Visa alla inlägg</a>
+                </p>
+            </div>
+        </form>
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Datum</a>
+            </li>
+            <li class="nav-item">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">Titel</a>
+            </li>
+            <li class="nav-item">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Antal uppröstningar</a>
+            </li>
+            <li class="nav-item">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByComments"]">Antal kommentarer</a>
+            </li>
+
+        </ul>
+
+
+        @foreach (var item in Model)
+        {
+            <div id="outerpost">
+            <div class="post">
+                <a href="https://localhost:44369/Posts/Post/@item.Id">@Html.DisplayFor(modelitem => item.Title)</a>
+                <p> @Html.DisplayFor(modelItem => item.DownVotes)</p><img src="~/images/Downvote.png" style="float:right;" width="20" height="20" />
+                <img src="~/images/Upvote.png" style="float:right;" width="20" height="20" /><p> @Html.DisplayFor(modelItem => item.UpVotes)</p>
+            </div>
+            </div>
+            //<br />
+        }
+    </div>
+
+
+
+</div>
+</div>

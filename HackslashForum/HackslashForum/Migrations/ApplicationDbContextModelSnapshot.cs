@@ -84,7 +84,9 @@ namespace HackslashForum.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("ProfilePicture");
+                    b.Property<byte[]>("ProfilePicture");
+
+                    b.Property<string>("Role");
 
                     b.Property<string>("SecurityStamp");
 
@@ -119,7 +121,9 @@ namespace HackslashForum.Migrations
 
                     b.Property<int>("DownVotes");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(80);
 
                     b.Property<int>("UpVotes");
 

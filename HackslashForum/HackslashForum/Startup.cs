@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using HackslashForum.Data;
 using HackslashForum.Models;
 using HackslashForum.Services;
+using System.Web.Http.Cors;
 
 namespace HackslashForum
 {
@@ -33,10 +34,19 @@ namespace HackslashForum
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +63,8 @@ namespace HackslashForum
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseCors("AllowAll");
+
             app.UseStaticFiles();
 
             app.UseAuthentication();
@@ -61,7 +73,7 @@ namespace HackslashForum
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Category}/{action=Index}/{id?}");
             });
         }
     }
