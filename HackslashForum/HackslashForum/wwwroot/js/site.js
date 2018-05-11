@@ -1,7 +1,7 @@
 ﻿window.addEventListener('load', function (event) {
 
-	document.getElementById('getGroups');
-	document.getElementById('userList');
+	//document.getElementById('getGroups');
+	let userListDiv = document.getElementById('userList');
 
 	//getGroups();
 	getProlificUsers();
@@ -9,12 +9,12 @@
 	function getProlificUsers() {
 		let userAPI = '/api/GetApplicationUser';
 		fetch(userAPI)
-			.then(response => response.json())
+			.then(response => { return response.json() })
 			.then(data => {
 				let userList = '';
 				data.forEach(function (list) {
 					userList += `
-						<div>${list.UserName}</div>`;
+						<div>${list}</div>`;
 				});
 				document.getElementById('userList').innerHTML = userList;
 			});

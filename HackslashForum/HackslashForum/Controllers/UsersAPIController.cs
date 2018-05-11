@@ -34,19 +34,16 @@ namespace HackslashForum.Controllers
 
         // GET: api/UsersAPI/5
         [HttpGet]
-        public async Task<IActionResult> GetApplicationUser()
+        public IActionResult GetApplicationUser()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            //var applicationUser = await _context.User.SingleOrDefaultAsync(m => m.Id == id);
             var mostProlificUsers = (from u in _context.User
                                      orderby u.Posts.Count descending
                                      select u).Take(3);
-
-            //var mostProlificUsers = await _context.User.OrderByDescending(x => x.Posts.Count).Take<ApplicationUser>(3);
 
             if (mostProlificUsers == null)
             {
