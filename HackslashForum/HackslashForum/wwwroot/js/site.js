@@ -1,11 +1,13 @@
 ﻿window.addEventListener('load', function (event) {
 
-	//document.getElementById('getGroups');
+	let outputGroupsDiv = document.getElementById('outputGroups');
 	let userListDiv = document.getElementById('userList');
+	let btn = document.getElementById('getUserList');
 
-	//getGroups();
-	getProlificUsers();
+	getGroups();
+	//getProlificUsers();
 
+	btn.addEventListener('click', getProlificUsers);
 	function getProlificUsers() {
 		let userAPI = '/api/GetApplicationUser';
 		fetch(userAPI)
@@ -14,9 +16,9 @@
 				let userList = '';
 				data.forEach(function (list) {
 					userList += `
-						<div>${list}</div>`;
+						<div>${list.UserName}</div>`;
 				});
-				document.getElementById('userList').innerHTML = userList;
+				userListDiv.innerHTML = userList;
 			});
 
 	}
@@ -45,11 +47,11 @@
 					`;
 					console.log(data);
 				});
-				document.getElementById('outputGroups').innerHTML = outputGroups;
+				outputGroupsDiv.innerHTML = outputGroups;
 			})
 			.catch(function (error) {
 				console.log(JSON.stringify(error));
-				document.getElementById('outputGroups').innerHTML = JSON.stringify(error);
+				outputGroupsDiv.innerHTML = JSON.stringify(error);
 			});
 	}
 
