@@ -1,6 +1,6 @@
 ﻿@model IndexViewModel
 @{
-	ViewData["Title"] = "Mina sidor";
+	//ViewData["Title"] = "Mina sidor";
 	ViewData.AddActivePage(ManageNavPages.Index);
 }
 
@@ -32,23 +32,32 @@
 			</div>
 			<div class="form-group">
 				<label asp-for="ProfilePicture">Profilbild</label>
-				<input asp-for="ProfilePicture" name="UserPhoto" accept=".png,.jpg,.jpeg,.gif,.tif"class="form-control" />
+				<input asp-for="ProfilePicture" name="UserPhoto" accept=".png,.jpg,.jpeg,.gif,.tif" class="form-control" />
 				<span asp-validation-for="ProfilePicture" class="text-danger"></span>
 			</div>
 
 			<button type="submit" class="btn btn-default">Spara</button>
 		</form>
+
 	</div>
 </div>
 <br />
-@* Vet inte riktigt hur rösterna ska displayas än. Plus detta ser väldigt fult ut just nu. Men vill få allt att funka först *@
-<div>Mottagna röster på inlägg: Upp: @Html.DisplayFor(model => model.PostUpVotes) Ned: @Html.DisplayFor(model => model.PostDownVotes)</div>
-<div>Mottagna röster på kommentarer: Upp: @Html.DisplayFor(model => model.CommentUpVotes) Ned: @Html.DisplayFor(model => model.CommentDownVotes)</div>
-<div>Antal inlägg skapade: @Html.DisplayFor(model => model.NumberOfPosts)</div>
-<div>Antal kommentarer skrivna: @Html.DisplayFor(model => model.NumberOfComments) </div>
-<div>Senast inloggad: @Html.DisplayFor(model => model.LastLogin)</div>
-<div>Kontot skapats: @Html.DisplayFor(model => model.AccountCreated)</div>
+
+<div>
+	<ul class="list-group minaSidorInfoLista">
+		<li class="list-group-item list-group-item-success"><p>Mottagna röster på inlägg:</p> ↑ @Html.DisplayFor(model => model.PostUpVotes) ↓ @Html.DisplayFor(model => model.PostDownVotes)</li>
+		<li class="list-group-item list-group-item-success"><p>Mottagna röster på kommentarer:</p> ↑ @Html.DisplayFor(model => model.CommentUpVotes) ↓ @Html.DisplayFor(model => model.CommentDownVotes)</li>
+		<li class="list-group-item list-group-item-success"><p>Antal inlägg skapade:</p> @Html.DisplayFor(model => model.NumberOfPosts)</li>
+		<li class="list-group-item list-group-item-success"><p>Antal kommentarer skrivna:</p> @Html.DisplayFor(model => model.NumberOfComments) </></li>
+		<li class="list-group-item list-group-item-success"><p>Senast inloggad:</p> @Html.DisplayFor(model => model.LastLogin)</li>
+		<li class="list-group-item list-group-item-success"><p>Kontot skapats:</p> @Html.DisplayFor(model => model.AccountCreated)</li>
+	</ul>
+</div>
+
+
 
 @section Scripts {
 	@await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
+

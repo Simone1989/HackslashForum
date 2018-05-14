@@ -68,6 +68,8 @@ namespace HackslashForum.Controllers
                 return NotFound();
             }
 
+            ViewBag.TotalScore = post.UpVotes - post.DownVotes;
+
             //var author = _context.User.Where(u => u.Id == post.User.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefault();
 
             //ViewBag.Author = author.UserName;
@@ -159,7 +161,7 @@ namespace HackslashForum.Controllers
 
                 _context.Add(post);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(post);
         }

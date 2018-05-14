@@ -68,13 +68,14 @@ namespace HackslashForum.Controllers
 
                 user.LastLogin = DateTime.Now;
                 _context.Update(user);
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
 
+
                 if (result.Succeeded)
                 {
-
                     await _context.SaveChangesAsync();
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
@@ -238,7 +239,7 @@ namespace HackslashForum.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ProfilePicture = model.ProfilePicture, AccountCreationDate = DateTime.Now };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ProfilePicture = model.ProfilePicture, Role = model.Role, AccountCreationDate = DateTime.Now };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
