@@ -21,17 +21,6 @@ namespace HackslashForum.Controllers
             _context = context;
         }
 
-        // GET: api/UsersAPI
-        //[HttpGet]
-        //public IEnumerable<ApplicationUser> GetUser()
-        //{
-        //    var mostProlificUsers = (from u in _context.User
-        //                            orderby u.Posts.Count descending
-        //                            select u).Take(3);
-        //    //return View("~/Views/UsersAPI/GetUser.cshtml");
-        //    return mostProlificUsers;
-        //}
-
         // GET: api/UsersAPI/5
         [HttpGet]
         public IActionResult GetApplicationUser()
@@ -49,6 +38,7 @@ namespace HackslashForum.Controllers
             {
                 return NotFound();
             }
+
 
             return Ok(mostProlificUsers);
         }

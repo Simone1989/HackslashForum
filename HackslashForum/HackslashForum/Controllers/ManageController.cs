@@ -65,15 +65,23 @@ namespace HackslashForum.Controllers
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-         
 
             var getUser = await _context.User.Where(u => u.Id == user.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefaultAsync();
+
+            string base64 = "";
+            string imgSrc = "";
+            if (user.ProfilePicture != null)
+            {
+                base64 = Convert.ToBase64String(user.ProfilePicture);
+                imgSrc = String.Format("data:image/png;base64,{0}", base64);
+            }
+
             var model = new IndexViewModel
             {
                 Username = getUser.UserName,
                 Email = getUser.Email,
                 PhoneNumber = getUser.PhoneNumber,
-                ProfilePicture = getUser.ProfilePicture,
+                ImgSrc = imgSrc,
                 IsEmailConfirmed = getUser.EmailConfirmed,
                 StatusMessage = StatusMessage,
                 AccountCreated = getUser.AccountCreationDate,
@@ -522,6 +530,52 @@ namespace HackslashForum.Controllers
             var model = new ShowRecoveryCodesViewModel { RecoveryCodes = recoveryCodes.ToArray() };
 
             return View(nameof(ShowRecoveryCodes), model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UploadPicture()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var model = new UploadPictureViewModel
+            {
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UploadPicture(UploadPictureViewModel model, List<IFormFile> files)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await _userManager.GetUserAsync(User);
+           // var profile = _context.User.Where(s => s.Id == user.Id).SingleOrDefault();
+            foreach (var formFile in files)
+            {
+                model.ProfilePicture.Add(formFile);
+                if (formFile.Length > 0)
+                {
+
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        var file = model.ProfilePicture[0];
+                        await file.CopyToAsync(memoryStream);
+                        user.ProfilePicture = memoryStream.ToArray();
+                    }
+
+                    await _context.SaveChangesAsync();
+
+                }
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         #region Helpers
