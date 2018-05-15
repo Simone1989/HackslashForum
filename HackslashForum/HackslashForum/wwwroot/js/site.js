@@ -1,13 +1,13 @@
 ﻿window.addEventListener('load', function (event) {
 
 	let outputGroupsDiv = document.getElementById('outputGroups');
-	let userListDiv = document.getElementById('userList');
-	let btn = document.getElementById('getUserList');
+	//let userListDiv = document.getElementById('userList');
+	//let btn = document.getElementById('getUserList');
 
 	getGroups();
 	//getProlificUsers();
 
-	btn.addEventListener('click', getProlificUsers);
+	/*btn.addEventListener('click', getProlificUsers);
 	function getProlificUsers() {
 		let userAPI = '/api/GetApplicationUser';
 		fetch(userAPI)
@@ -20,8 +20,7 @@
 				});
 				userListDiv.innerHTML = userList;
 			});
-
-	}
+	}*/
 
 	function getGroups() {
 		let proxy = 'https://cors-anywhere.herokuapp.com/';
