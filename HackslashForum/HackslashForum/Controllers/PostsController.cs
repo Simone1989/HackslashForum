@@ -10,6 +10,9 @@ using HackslashForum.Data;
 using System.Collections;
 using Microsoft.AspNetCore.Identity;
 using HackslashForum.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using HackslashForum.Models.ManageViewModels;
 
 namespace HackslashForum.Controllers
 {
@@ -29,7 +32,7 @@ namespace HackslashForum.Controllers
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-
+         
             return View(await _context.Post.ToListAsync());
         }
 
@@ -52,7 +55,7 @@ namespace HackslashForum.Controllers
             return View(post);
         }
 
-
+        
         public async Task<IActionResult> Post(int? id)
         {
             if (id == null)
@@ -67,12 +70,25 @@ namespace HackslashForum.Controllers
             {
                 return NotFound();
             }
+            var user = await _manager.GetUserAsync(User);
+
+            string base64 = "";
+            string imgSrc = "";
+            if (user.ProfilePicture != null)
+            {
+                base64 = Convert.ToBase64String(user.ProfilePicture);
+                imgSrc = String.Format("data:image/png;base64,{0}", base64);
+            }
+            var model = new IndexViewModel
+            {
+
+                ImgSrc = imgSrc,
+            };
+
+            ViewBag.ProfilePicture = model.ImgSrc;
+
 
             ViewBag.TotalScore = post.UpVotes - post.DownVotes;
-
-            //var author = _context.User.Where(u => u.Id == post.User.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefault();
-
-            //ViewBag.Author = author.UserName;
 
             ViewBag.Comments = (from x in _context.Comment
                                 where x.Post.Id == id
@@ -86,7 +102,6 @@ namespace HackslashForum.Controllers
                                      join y in _context.Comment on x.Id equals y.User.Id
                                      select x.UserName).Take(1).SingleOrDefault();
 
-
             return View(post);
         }
 
@@ -98,7 +113,6 @@ namespace HackslashForum.Controllers
             var post = (from p in _context.Post
                        where p.Id == id
                        select p).Take(1).SingleOrDefault();
-
 
             Comment comment = new Comment
             {
@@ -113,13 +127,6 @@ namespace HackslashForum.Controllers
 
             return RedirectToAction($"Post/{id}");
         }
-
-        //// GET: Posts/Create
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
 
 
         // Shows Enum Discussion / Question
@@ -249,6 +256,53 @@ namespace HackslashForum.Controllers
         private bool PostExists(int id)
         {
             return _context.Post.Any(e => e.Id == id);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> UploadPicture()
+        {
+            var user = await _manager.GetUserAsync(User);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{_manager.GetUserId(User)}'.");
+            }
+
+            var model = new UploadPictureViewModel
+            {
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UploadPicture(UploadPictureViewModel model, List<IFormFile> files)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await _manager.GetUserAsync(User);
+            // var profile = _context.User.Where(s => s.Id == user.Id).SingleOrDefault();
+            foreach (var formFile in files)
+            {
+                model.ProfilePicture.Add(formFile);
+                if (formFile.Length > 0)
+                {
+
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        var file = model.ProfilePicture[0];
+                        await file.CopyToAsync(memoryStream);
+                        user.ProfilePicture = memoryStream.ToArray();
+                    }
+
+                    await _context.SaveChangesAsync();
+
+                }
+            }
+
+            return RedirectToAction(nameof(Post));
         }
     }
 }
