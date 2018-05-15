@@ -36,8 +36,8 @@ namespace HackslashForum
 
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
-                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                googleOptions.ClientId = Environment.GetEnvironmentVariable("ClientIdGoogle");
+                googleOptions.ClientSecret = Environment.GetEnvironmentVariable("ClientSecretGoogle");
             });
 
             // Add application services.

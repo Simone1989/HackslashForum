@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:52314/",
+      "applicationUrl": "https://localhost:44369/",
       "sslPort": 44369
     }
   },
@@ -13,6 +13,8 @@
       "launchBrowser": true,
       "launchUrl": "https://localhost:44369/",
       "environmentVariables": {
+        "ClientSecretGoogle": "\"KaF9W3JAhcI3FSOmI8IPcF3k",
+        "ClientIdGoogle": "431642630157-9pmdiugnvhsev5sovdttqf0tjabfpan7.apps.googleusercontent.com",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
