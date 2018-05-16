@@ -240,6 +240,26 @@ namespace HackslashForum.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ProfilePicture = model.ProfilePicture, Role = model.Role, AccountCreationDate = DateTime.Now };
+
+                if (_userManager.Users.Any())
+                {
+                    var role = new IdentityUserRole<string>
+                    {
+                        UserId = user.Id,
+                        RoleId = _context.Roles.Where(r => r.Name == "Member").First().Id
+                    };
+                    _context.Add(role);
+                }
+                else
+                {
+                    var role = new IdentityUserRole<string>
+                    {
+                        UserId = user.Id,
+                        RoleId = _context.Roles.Where(r => r.Name == "Admin").First().Id
+                    };
+                    _context.Add(role);
+                }
+                       
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

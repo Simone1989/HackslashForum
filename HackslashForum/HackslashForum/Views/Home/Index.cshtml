@@ -9,38 +9,51 @@
         <div class="top-post-header">
             <h5>Most Upvoted Post</h5>
         </div>
-        <div class="top-post">
-            <a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
-        </div>
+        @if (@ViewBag.MosteUpvotedPost != null)
+        {
+            <div class="top-post">
+                <a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
+            </div>
 
+        }
         <div class="top-post-header">
             <h5>Most Commented Post</h5>
         </div>
-        <div class="top-post">
-            <a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
-        </div>
+        @if (@ViewBag.MostCommentedPost != null)
+        {
+            <div class="top-post">
+                <a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
+            </div>
+
+        }
     </div>
 
     <div style="position:absolute; right: 0px;">
         <div class="top-post-header">
             <h5>Populärast inlägg</h5>
         </div>
-        <div class="top-post">
-            @if (ViewBag.MostUpvotedPost != null)
-            {
-                <a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
-            }
-        </div>
+        @if (ViewBag.MostUpvotedPost != null)
+        {
 
+            <div class="top-post">
+                @if (ViewBag.MostUpvotedPost != null)
+                {
+                    <a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
+                }
+            </div>
+        }
         <div class="top-post-header">
             <h5>Toppdiskuterat inlägg</h5>
         </div>
-        <div class="top-post">
-            @if (ViewBag.MostCommentedPost != null)
-            {
-                <a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
-            }
-        </div>
+        @if (ViewBag.MostCommentedPost != null)
+        {
+            <div class="top-post">
+                @if (ViewBag.MostCommentedPost != null)
+                {
+                    <a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
+                }
+            </div>
+        }
     </div>
 
     <div id="posts">

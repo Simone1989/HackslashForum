@@ -1,22 +1,43 @@
 ﻿window.addEventListener('load', function (event) {
 
     let outputGroupsDiv = document.getElementById('outputGroups');
-    let userListDiv = document.getElementById('userList');
+	let userListDiv = document.getElementById('prolificUserList');
+	let helpfulUserListDiv = document.getElementById('helpfulUserList');
 
     getGroups();
-    getProlificUsers();
+	getProlificUsers();
+	getHelpfulUsers();
 
+	function getHelpfulUsers() {
+		let helpfulUsersAPI = '/api/HelpfulUsersAPI';
+		fetch(helpfulUsersAPI)
+			.then(response => { return response.json() })
+			.then(data => {
+				let helpfulUsersList = '';
+				data.forEach(function (list) {
+					helpfulUsersList += `
+						<div>
+							<p span style="font-weight: bold";>${list.userName}</p>
+							<p>Mail: ${list.email}</p>
+							
+						</div>`;
+				});
+				helpfulUserListDiv.innerHTML = helpfulUsersList;
+			});
+	}
   
     function getProlificUsers() {
-        let userAPI = '/api/UsersAPI';
+		let userAPI = '/api/UsersAPI';
         fetch(userAPI)
-
             .then(response => { return response.json() })
             .then(data => {
                 let userList = '';
                 data.forEach(function (list) {
                     userList += `
-                        <div>Name: ${list.userName} Role: ${list.role}</div>`;
+                        <div>
+							<p span style="font-weight: bold";>${list.userName}</p>
+							<p>Mail: ${list.email}</p>
+						</div>`;
                 });
                 userListDiv.innerHTML = userList;
             });
