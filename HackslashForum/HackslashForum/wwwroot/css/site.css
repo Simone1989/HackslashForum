@@ -18,8 +18,14 @@
     background-color: #222;
 }
 
-footer {
-    clear: both;
+#footer-nav {
+    position: fixed;
+    bottom: 0px;
+    background-color: #222;
+    color: white;
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 /*footer {
@@ -203,6 +209,8 @@ footer p {
     top: 125px;
     padding-left: 15px;
     padding-right: 15px;
+    background-color: white;
+    padding-bottom: 90px;
 }
 
 #skapaInläggBtn {
