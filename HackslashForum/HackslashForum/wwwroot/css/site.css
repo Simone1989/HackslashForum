@@ -18,8 +18,14 @@
     background-color: #222;
 }
 
-footer {
-    clear: both;
+#footer-nav {
+    position: fixed;
+    bottom: 0px;
+    background-color: #222;
+    color: gray;
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 /*footer {
@@ -36,7 +42,6 @@ footer {
 footer p {
     float: right;
 }*/
-
 .wrapper {
     width: 100%;
     height: auto;
@@ -173,9 +178,11 @@ footer p {
 }
 
 .post {
-	height: 10px;
-	width: 75%;
+	height: 35px;
+	width: 83%;
 	clear: left;
+    background-color: white;
+    border-bottom: solid black 0.5px;
 }
 
 .body-content hr {
@@ -192,13 +199,27 @@ footer p {
     content: "...";
 }
 
-.post a:hover {
-    text-decoration: underline;
+.post:hover {
+    background-color: #a6a6a6;
 }
 
 .post p {
     float: right;
     margin-right: 10px;
+}
+
+.post img {
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 5px;
+}
+
+.post > a {
+    margin-top: 7px;
+}
+.post > p {
+    margin-top: 5px;
+    margin-right: 3px;
 }
 
 /* Wrapping element */
@@ -208,6 +229,8 @@ footer p {
     top: 125px;
     padding-left: 15px;
     padding-right: 15px;
+    background-color: white;
+    padding-bottom: 90px;
 }
 
 #skapaInläggBtn {
