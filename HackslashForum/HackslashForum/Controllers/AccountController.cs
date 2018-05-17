@@ -13,6 +13,8 @@ using Microsoft.Extensions.Options;
 using HackslashForum.Models;
 using HackslashForum.Models.AccountViewModels;
 using HackslashForum.Services;
+using HackslashForum.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace HackslashForum.Controllers
 {
@@ -20,6 +22,7 @@ namespace HackslashForum.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -29,12 +32,14 @@ namespace HackslashForum.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            ApplicationDbContext Context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _context = Context;
         }
 
         [TempData]
@@ -59,14 +64,24 @@ namespace HackslashForum.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+
+                user.LastLogin = DateTime.Now;
+                _context.Update(user);
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+
                 if (result.Succeeded)
                 {
+                    await _context.SaveChangesAsync();
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
+
                 }
+
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
@@ -127,6 +142,7 @@ namespace HackslashForum.Controllers
 
             if (result.Succeeded)
             {
+                user.LastLogin = DateTime.Now;
                 _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
                 return RedirectToLocal(returnUrl);
             }
@@ -212,20 +228,42 @@ namespace HackslashForum.Controllers
             return View();
         }
 
+      
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
+           
+
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ProfilePicture = model.ProfilePicture, AccountCreationDate = DateTime.Now };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ProfilePicture = model.ProfilePicture, Role = model.Role, AccountCreationDate = DateTime.Now };
+
+                if (_userManager.Users.Any())
+                {
+                    var role = new IdentityUserRole<string>
+                    {
+                        UserId = user.Id,
+                        RoleId = _context.Roles.Where(r => r.Name == "Member").First().Id
+                    };
+                    _context.Add(role);
+                }
+                else
+                {
+                    var role = new IdentityUserRole<string>
+                    {
+                        UserId = user.Id,
+                        RoleId = _context.Roles.Where(r => r.Name == "Admin").First().Id
+                    };
+                    _context.Add(role);
+                }
+                       
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
@@ -317,6 +355,7 @@ namespace HackslashForum.Controllers
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
+                        user.LastLogin = DateTime.Now;
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
                         return RedirectToLocal(returnUrl);

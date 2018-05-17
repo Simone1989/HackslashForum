@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,12 +14,11 @@ namespace HackslashForum.Models.AccountViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Display(Name = "Username"), Required]
+        [Display(Name = "Användarnamn"), Required]
         public string UserName { get; set; }
 
-        [Display(Name = "Profile picture")]
-        public string ProfilePicture { get; set; }
-
+        [Display(Name = "Profilbild")]
+        public byte[] ProfilePicture { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -30,5 +30,8 @@ namespace HackslashForum.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Role")]
+        public string Role { get; set; }
     }
 }

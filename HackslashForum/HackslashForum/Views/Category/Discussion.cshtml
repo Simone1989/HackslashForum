@@ -1,0 +1,9 @@
+﻿@model IEnumerable<HackslashForum.Post>
+
+
+@foreach (var item in Model)
+{
+    int cid = item.Id;
+
+    <a href="https://localhost:44369/Posts/Details/@cid"><h3>@item.Title</h3></a>
+}

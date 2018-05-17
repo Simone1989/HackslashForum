@@ -1,6 +1,15 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+	padding-top: 50px;
+	padding-bottom: 20px;
+	background-color: #a6a6a6;
+}
+
+.content {
+	background-color: white;
+	width: 1200px;
+	padding: 20px;
+	height: 100%;
+	margin-top: -13px;
 }
 
 .header {
@@ -9,33 +18,219 @@
     background-color: #222;
 }
 
+footer {
+    clear: both;
+}
+
+/*footer {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    background-color: #222;
+    height: 50px;
+    color: white;
+    padding: 15px;
+}
+
+footer p {
+    float: right;
+}*/
+
+.wrapper {
+    width: 100%;
+    height: auto;
+}
+
+.post-wrapper {
+    width: 48%;
+    height: auto;
+    float: left;
+}
+
+.comment-wrapper {
+    width: 48%;
+    height: auto;
+    float: right;
+}
+
+.post-header {
+    width: 100%;
+    height: auto;
+    float: left;
+    background-color: #222;
+    border-radius: 10px 10px 0px 0px;
+    text-align: left;
+    color: white;
+    clear:left;
+}
+
+.post-content {
+<<<<<<< HEAD
+	width: 500px;
+	height: auto;
+	float: left;
+	clear: left;
+	overflow: hidden;
+	border: 1px solid #222;
+	padding: 5px;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.comment-form {
+	margin-top: 10px;
+	float: left;
+	clear: left;
+=======
+    width: 100%;
+    height: auto;
+    float: left;
+    clear: left;
+    overflow: hidden;
+    border: 1px solid #222;
+    padding: 5px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.comment-form {
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+    clear: left;
+>>>>>>> FixxxarN
+}
+
+.comments-header {
+    width: 100%;
+    height: auto;
+    float: right;
+    background-color: #222;
+    border-radius: 10px 10px 0px 0px;
+    text-align: left;
+    color: white;
+    clear: right;
+}
+
+.comments-header h3 {
+    margin-left: 10px;
+}
+
+.comments-content {
+    width: 100%;
+    height: auto;
+    float: right;
+    overflow: hidden;
+    border: 1px solid #222;
+    padding: 5px;
+    clear: right;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.comments-content p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.top-post {
+    width: 200px;
+    height: auto;
+    float: right;
+    overflow: hidden;
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid #222;
+    padding: 5px;
+    clear: right;
+    margin-bottom: 10px;
+}
+
+.top-post a {
+    float: left;
+    color: green;
+    text-decoration: none;
+    text-align:center;
+}
+
+.top-post a:hover {
+    text-decoration: underline;
+}
+
+
+
+.top-post-header {
+    width: 200px;
+    height: 30px;
+    float: right;
+    background-color: #222;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+    color: white;
+    clear: right;
+}
+
+.post {
+	height: 10px;
+	width: 75%;
+	clear: left;
+}
+
+.body-content hr {
+	width: 75%;
+}
+
+.post a {
+    float: left;
+    color: green;
+    text-decoration: none;
+}
+
+.post a::after(2) {
+    content: "...";
+}
+
+.post a:hover {
+    text-decoration: underline;
+}
+
+.post p {
+    float: right;
+    margin-right: 10px;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
+    position: relative;
+    top: 125px;
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+#skapaInläggBtn {
+    padding-left: 15px;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
+.minaSidorInfoLista p {
+	font-weight: bold;
 }
 
+.minaSidorInfoDiv {
+	float: right;
+	position: absolute;
+	top: 10px;
+	right: 160px;
+}
+
+.
 /* QR code generator */
 #qrCode {
-    margin: 15px;
+	margin: 15px;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
+
+/*@media only screen and (max-width: 767px) {
+	.minaSidorInfoDiv{
+		float: none;
+		top: 0px;
+		right: 0px;
     }
-}
+}*/
