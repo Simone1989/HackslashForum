@@ -20,14 +20,14 @@ namespace HackslashForum.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Kontakt";
 
             return View();
         }
 
         public IActionResult TopList()
         {
-            ViewData["ToppLista"] = "Topp Fem";
+            ViewData["ToppLista"] = "Topp Tre";
 
             return View();
         }

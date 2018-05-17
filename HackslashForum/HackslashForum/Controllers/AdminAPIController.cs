@@ -2,43 +2,46 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HackslashForum.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using HackslashForum.Data;
-using HackslashForum.Models;
 
 namespace HackslashForum.Controllers
 {
     [Produces("application/json")]
-    [Route("api/UsersAPI")]
-    public class UsersAPIController : Controller
+    [Route("api/AdminAPI")]
+    public class AdminAPIController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public UsersAPIController(ApplicationDbContext context)
+        public AdminAPIController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        [HttpGet]
-        public IActionResult GetApplicationUser()
+        public IActionResult GetAdmins()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var mostProlificUsers = (from u in _context.User
-                                     orderby u.Posts.Count descending
-                                     select new { userName = u.UserName, email = u.Email }).Take(3);
+            var hej = _context.Users
+                .Include(u => u.);
 
-            if (mostProlificUsers == null)
+            var adminList = from ur in _context.UserRoles
+                            where ur.RoleId == "2e87cb3b-2f8c-457e-a201-df159dc95b4b"
+                            select ur;
+
+            if (adminList == null)
             {
                 return NotFound();
             }
 
-            return Ok(mostProlificUsers);
+            return Ok(adminList);
         }
+
+
     }
 }
