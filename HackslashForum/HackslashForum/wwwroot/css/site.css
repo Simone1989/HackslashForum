@@ -48,6 +48,11 @@ footer p {
     float: left;
 }
 
+.spaceFont {
+	font-family: Orbitron;
+	font-size: 16px;
+}
+
 .comment-wrapper {
     width: 48%;
     height: auto;

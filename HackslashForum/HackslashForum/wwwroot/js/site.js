@@ -18,10 +18,17 @@
 				let adminList = '';
 				data.forEach(function (list) {
 					adminList += `
-					<div>${list.userId}</div>
+					<div>
+						<p span style="font-weight: bold";>${list.name}</p>
+						<p>Mail: ${list.email}</p>
+					</div>
 					`
 				});
 				adminListDiv.innerHTML = adminList;
+			})
+			.catch(function (error) {
+				console.log(JSON.stringify(error));
+				adminList.innerHTML = JSON.stringify(error);
 			});
 	}
 
@@ -41,6 +48,10 @@
 						</div>`;
 				});
 				helpfulUserListDiv.innerHTML = helpfulUsersList;
+			})
+			.catch(function (error) {
+				console.log(JSON.stringify(error));
+				helpfulUserListDiv.innerHTML = JSON.stringify(error);
 			});
 	}
 
@@ -58,6 +69,10 @@
 						</div>`;
 				});
 				userListDiv.innerHTML = userList;
+			})
+			.catch(function (error) {
+				console.log(JSON.stringify(error));
+				userListDiv.innerHTML = JSON.stringify(error);
 			});
 	}
 
@@ -92,9 +107,6 @@
 				outputGroupsDiv.innerHTML = JSON.stringify(error);
 			});
 	}
-
-
-
 
 	// Window
 });

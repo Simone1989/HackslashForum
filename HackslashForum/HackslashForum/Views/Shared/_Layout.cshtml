@@ -1,28 +1,30 @@
 ﻿<!DOCTYPE html>
 <html lang="sv">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HackslashForum</title>
-    <link rel="icon" type="images/png" href="~/images/hackSlashLogo.png" sizes="16x16" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - HackslashForum</title>
+	<link rel="icon" type="images/png" href="~/images/hackSlashLogo.png" sizes="16x16" />
+	<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+	<environment include="Development">
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="~/css/site.css" />
+	</environment>
+	<environment exclude="Development">
+		<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+	</environment>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="header" style="margin-top:10px;">
                 <a style="float:left;" href="/Home/Index/"><img src="~/images/hackSlashLogo.png" style="width:100px;height:100px;"></a>
-                <h1 style="margin-left: 20px;margin-top: 25px;float: left;color:white;">HackSlash</h1>
+                <h1 style="margin-left: 20px;margin-top: 25px;float: left;color:white; font-family:Audiowide">HackSlash</h1>
             </div>
             <div class="navbar-collapse collapse">
                 @await Html.PartialAsync("_LoginPartial")

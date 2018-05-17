@@ -66,7 +66,10 @@ namespace HackslashForum.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var getUser = await _context.User.Where(u => u.Id == user.Id).Include(u => u.Posts).Include(u => u.Comments).SingleOrDefaultAsync();
+            var getUser = await _context.User
+                .Where(u => u.Id == user.Id)
+                .Include(u => u.Posts).Include(u => u.Comments)
+                .SingleOrDefaultAsync();
 
             string base64 = "";
             string imgSrc = "";
