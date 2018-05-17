@@ -15,15 +15,11 @@
 		<div class="post-wrapper">
 			<div class="post-header">
 				<h3 style="margin-left: 10px;">@Model.Title</h3>
-				<span style="float: right; clear: both;">
-					<img src="~/images/Upvote.png" width="20" height="20" />
-				</span>
-
-				<p style="float: right; clear: both;">@ViewBag.TotalScore</p>
-
-				<span style="float: right; clear: both;">
-					<img src="~/images/Downvote.png" width="20" height="20" />
-				</span>
+                <span style="float: right; clear: both;">
+                    @await Html.PartialAsync("_LoginUpvote")
+                    <p style="float: right; clear: both;">@ViewBag.TotalScore</p>
+                    @await Html.PartialAsync("_LoginDownvote", Model)
+                </span>
 			</div>
 			<div class="post-content">
 				<p>Användare: @ViewBag.PostAuthor</p>
@@ -41,7 +37,7 @@
 			<div class="comments-content">
 				@foreach (var comment in ViewBag.Comments)
 				{
-					<p style="color:green;">@ViewBag.CommentAuthor:</p>
+					<p style="color:green;">@comment.Author:</p>
 					<p>@comment.Content</p>
 					<br />
 					<p style="color:gray">@comment.DateTimeCommentMade</p>
