@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HackslashForum.Data;
 using HackslashForum.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HackslashForum.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ApplicationUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
