@@ -21,7 +21,6 @@ namespace HackslashForum.Controllers
             _context = context;
         }
 
-        // GET: api/UsersAPI/5
         [HttpGet]
         public IActionResult GetApplicationUser()
         {
@@ -32,13 +31,12 @@ namespace HackslashForum.Controllers
 
             var mostProlificUsers = (from u in _context.User
                                      orderby u.Posts.Count descending
-                                     select u).Take(3);
+                                     select new { userName = u.UserName, email = u.Email }).Take(3);
 
             if (mostProlificUsers == null)
             {
                 return NotFound();
             }
-
 
             return Ok(mostProlificUsers);
         }

@@ -11,3 +11,7 @@ HackslashForum/\.vs/HackslashForum/v15/Server/sqlite3/storage\.ide-wal
 HackslashForum/\.vs/HackslashForum/v15/
 
 HackslashForum/\.vs/config/
+
+HackslashForum/HackslashForum/Migrations/20180517112309_Initial\.cs
+
+HackslashForum/HackslashForum/Migrations/20180517112309_Initial\.Designer\.cs

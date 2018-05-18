@@ -1,0 +1,20 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <h2>Admin</h2>
+
+    <a href="https://localhost:44369/Posts/Index"><h3>Posts</h3></a>
+
+    <a href=""><h3>Users</h3></a>
+}
+else
+{
+    <h2> No Access</h2>
+}
+

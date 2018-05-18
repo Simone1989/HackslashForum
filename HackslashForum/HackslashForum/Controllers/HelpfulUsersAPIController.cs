@@ -29,7 +29,7 @@ namespace HackslashForum.Controllers
 
             var mostHelpfulUsers = (from u in _context.User
                                     orderby u.Comments.Count descending
-                                    select u).Take(3);
+                                    select new { userName = u.UserName, email = u.Email }).Take(3);
 
             if (mostHelpfulUsers == null)
             {

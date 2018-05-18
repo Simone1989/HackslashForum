@@ -31,8 +31,8 @@
                 <span asp-validation-for="DateTimePostCreated" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <select asp-for="Category" class="form-control"></select>
+                <label asp-for="Category" class="control-label">Kategori</label>
+                <select asp-for="Category" asp-items="Html.GetEnumSelectList<Category>()" class="form-control"></select>
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
