@@ -76,22 +76,6 @@ footer p {
 }
 
 .post-content {
-<<<<<<< HEAD
-	width: 500px;
-	height: auto;
-	float: left;
-	clear: left;
-	overflow: hidden;
-	border: 1px solid #222;
-	padding: 5px;
-	border-radius: 0px 0px 10px 10px;
-}
-
-.comment-form {
-	margin-top: 10px;
-	float: left;
-	clear: left;
-=======
     width: 100%;
     height: auto;
     float: left;
@@ -107,7 +91,6 @@ footer p {
     margin-top: 10px;
     float: left;
     clear: left;
->>>>>>> FixxxarN
 }
 
 .comments-header {

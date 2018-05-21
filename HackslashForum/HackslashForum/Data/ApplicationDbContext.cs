@@ -18,8 +18,7 @@ namespace HackslashForum.Data
         public DbSet<ApplicationUser> User { get; set; }
         public DbSet<Comment> Comment { get; set; }
         public DbSet<Post> Post { get; set; }
-
-
+        public DbSet<UserVoteModel> VotedUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

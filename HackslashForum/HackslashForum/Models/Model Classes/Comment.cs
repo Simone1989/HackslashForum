@@ -11,6 +11,7 @@ namespace HackslashForum
         public int Upvotes { get; set; }
         public int Downvotes { get; set; }
 
+        public string Author { get; set; }
         public ApplicationUser User { get; set; }
         public Post Post { get; set; }
 

@@ -12,6 +12,7 @@
     <title>Post</title>
 </head>
 <body>
+<<<<<<< HEAD
     <div class="wrapper">
         <div class="post-wrapper">
             <div class="post-header">
@@ -63,5 +64,42 @@
             </div>
         </div>
     </div>
+=======
+	<div class="wrapper">
+		<div class="post-wrapper">
+			<div class="post-header">
+				<h3 style="margin-left: 10px;">@Model.Title</h3>
+                <span style="float: right; clear: both;">
+                    @await Html.PartialAsync("_LoginUpvote")
+                    <p style="float: right; clear: both;">@ViewBag.TotalScore</p>
+                    @await Html.PartialAsync("_LoginDownvote", Model)
+                </span>
+			</div>
+			<div class="post-content">
+				<p>Användare: @ViewBag.PostAuthor</p>
+				<p>Kategori: @Model.Category</p>
+				<p>@Model.Content</p>
+			</div>
+			<div class="comment-form">
+				@await Html.PartialAsync("_LoginComment")
+			</div>
+		</div>
+		<div class="comment-wrapper">
+			<div class="comments-header">
+				<h3 style="margin-left: 10px;">Kommentarer</h3>
+			</div>
+			<div class="comments-content">
+				@foreach (var comment in ViewBag.Comments)
+				{
+					<p style="color:green;">@comment.Author:</p>
+					<p>@comment.Content</p>
+					<br />
+					<p style="color:gray">@comment.DateTimeCommentMade</p>
+					<hr style="width:100%;margin:0px 0px 10px 0px;padding:0px;" />
+				}
+			</div>
+		</div>
+	</div>
+>>>>>>> origin/FixxxarN
 </body>
 </html>

@@ -4,6 +4,7 @@
 	ViewData["Title"] = "Home Page";
 }
 
+<<<<<<< HEAD
 <div style="position:absolute; right: 0px;">
 	<div class="top-post-header" style="margin-right: 50px;">
 		<h5>Populärast inlägg</h5>
@@ -16,6 +17,25 @@
 				@*<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>*@
 				<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/"><p id="mostUpvotedPost"></p></a>
 			@*}*@
+=======
+@*<button id="getUserList">Testa topplista!</button>
+<div id="userList"></div>*@
+
+<div>
+	<div style="position:absolute; right: 0px;">
+		<div class="top-post-header">
+			<h5>Populärast inlägg</h5>
+		</div>
+		<div class="top-post">
+			@if (ViewBag.MostUpvotedPost != null)
+			{
+				<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
+			}
+		</div>
+
+		<div class="top-post-header">
+			<h5>Toppdiskuterat inlägg</h5>
+>>>>>>> origin/FixxxarN
 		</div>
 	@*}*@
 	<div class="top-post-header" style="margin-right: 50px;">
@@ -62,6 +82,7 @@
 	</ul>
 
 
+<<<<<<< HEAD
 	@foreach (var item in Model)
 	{
 		<div class="post">
@@ -72,5 +93,22 @@
 		</div>
 	}
 </div>
+=======
+		@foreach (var item in Model)
+		{
+        <div class="post">
+            <a href="https://localhost:44369/Posts/Post/@item.Id">@Html.DisplayFor(modelitem => item.Title)</a>
+            <span >
+                <img src="~/images/Downvote.png" style="float:right;" width="20" height="20" />
+            </span>
+            <p>@(item.UpVotes - item.DownVotes)</p>
+            <span>
+                <img src="~/images/Upvote.png" style="float:right;" width="20" height="20" />
+            </span>
+        </div>
+			<br />
+		}
+	</div>
+>>>>>>> origin/FixxxarN
 
 </div>
