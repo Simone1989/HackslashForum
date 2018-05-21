@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HackslashForum.Data;
 using HackslashForum.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace HackslashForum.Controllers
 {
@@ -15,6 +16,8 @@ namespace HackslashForum.Controllers
     public class ApplicationUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly RoleManager<ApplicationUser> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public ApplicationUsersController(ApplicationDbContext context)
         {
@@ -99,6 +102,7 @@ namespace HackslashForum.Controllers
             {
                 try
                 {
+                    
                     _context.Update(applicationUser);
                     await _context.SaveChangesAsync();
                 }

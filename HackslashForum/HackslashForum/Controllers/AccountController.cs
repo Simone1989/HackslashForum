@@ -228,13 +228,12 @@ namespace HackslashForum.Controllers
             return View();
         }
 
-      
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-           
 
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -259,7 +258,7 @@ namespace HackslashForum.Controllers
                     };
                     _context.Add(role);
                 }
-                       
+
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -277,6 +276,27 @@ namespace HackslashForum.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public IActionResult RegisterRole()
+        {
+            ViewBag.RoleName = new SelectList(_context.Roles.ToList(), "Name", "Name");
+            ViewBag.UserName = new SelectList(_context.Users.ToList(), "UserName", "UserName");
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterRole(RegisterViewModel model, string userId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            userId = user.Id;
+            var userToPromote = _context.Users.FirstOrDefault(u => u.Id == user.Id);
+            await _userManager.AddToRoleAsync(userToPromote, model.Role);
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
