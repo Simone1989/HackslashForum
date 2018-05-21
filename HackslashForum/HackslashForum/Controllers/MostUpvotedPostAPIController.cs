@@ -30,6 +30,7 @@ namespace HackslashForum.Controllers
             var mostUpvotedPost = (from p in _context.Post
                                    orderby p.UpVotes descending
                                    select p).Take(1).SingleOrDefault();
+            ViewBag.mostUpvotedPost = mostUpvotedPost;
 
             if (mostUpvotedPost == null)
             {

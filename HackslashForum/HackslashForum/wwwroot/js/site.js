@@ -19,7 +19,9 @@
 			.then(data => {
 				let mostUpvotedPost = '';
 				mostUpvotedPost += `
-					${data.title}`;
+					<p span style="font-weight: bold";>${data.title}</p>
+					<p>Antal uppröstningar: ${data.upVotes}</p>
+					`;
 				mostUpvotedPostParagraph.innerHTML = mostUpvotedPost;
 			})
 			.catch(function (error) {

@@ -8,29 +8,36 @@
 	<div class="top-post-header" style="margin-right: 50px;">
 		<h5>Populärast inlägg</h5>
 	</div>
-	@*@if (ViewBag.MostUpvotedPost != null)
-		{*@
-	<div class="top-post" style="margin-right: 50px">
-		@*@if (ViewBag.MostUpvotedPost != null)
-			{*@
-		@*<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>*@
-		<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/"><p id="mostUpvotedPost"></p></a>
-		@*}*@
-	</div>
+
+	@*FIXAT SÅ MAN HÄMTAR DATA MED API, MEN VET INTE VAD MAN SKA SÄTTA I IF-SATSEN ISTÄLLET*@
+	<div>
+		@if (ViewBag.MostUpvotedPost != null)
+		{
+
+			<div class="top-post" style="margin-right: 50px">
+				@if (ViewBag.MostUpvotedPost != null)
+				{
+					<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
+					@*<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/"><p id="mostUpvotedPost"></p></a>*@
+				}
+			</div>
 
 
-	<div class="top-post-header" style="margin-right: 50px;">
-		<h5>Toppdiskuterat inlägg</h5>
-	</div>
-	@if (ViewBag.MostCommentedPost != null)
-	{
-		<div class="top-post" style="margin-right: 50px">
+			<div class="top-post-header" style="margin-right: 50px;">
+				<h5>Toppdiskuterat inlägg</h5>
+			</div>
 			@if (ViewBag.MostCommentedPost != null)
 			{
-				<a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
+				<div class="top-post" style="margin-right: 50px">
+					@if (ViewBag.MostCommentedPost != null)
+					{
+						<a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
+					}
+				</div>
 			}
-		</div>
-	}
+
+		}
+	</div>
 </div>
 
 <div id="posts">
