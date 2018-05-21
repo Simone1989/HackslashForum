@@ -55,10 +55,6 @@ namespace HackslashForum.Controllers
             return View(post);
         }
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> origin/FixxxarN
         public async Task<IActionResult> Post(int? id)
         {
             if (id == null)
@@ -101,13 +97,10 @@ namespace HackslashForum.Controllers
                                  join y in _context.Post on x.Id equals y.User.Id
                                  select x.UserName).Take(1).SingleOrDefault();
 
-<<<<<<< HEAD
             ViewBag.CommentAuthor = (from x in _context.User
                                      join y in _context.Comment on x.Id equals y.User.Id
                                      select x.UserName).Take(1).SingleOrDefault();
 
-=======
->>>>>>> origin/FixxxarN
             return View(post);
         }
 
@@ -120,11 +113,8 @@ namespace HackslashForum.Controllers
                        where p.Id == id
                        select p).Take(1).SingleOrDefault();
 
-<<<<<<< HEAD
-=======
             var user = await _signInManager.UserManager.GetUserAsync(User);
 
->>>>>>> origin/FixxxarN
             Comment comment = new Comment
             {
                 User = user,
@@ -140,8 +130,6 @@ namespace HackslashForum.Controllers
             return RedirectToAction($"Post/{id}");
         }
 
-<<<<<<< HEAD
-=======
         public async Task<IActionResult> Upvote(int? id)
         {
             if (id == null)
@@ -225,7 +213,6 @@ namespace HackslashForum.Controllers
         //{
         //    return View();
         //}
->>>>>>> origin/FixxxarN
 
         // Shows Enum Discussion / Question
         public IActionResult Category()
