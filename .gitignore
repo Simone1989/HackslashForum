@@ -15,3 +15,9 @@ HackslashForum/\.vs/config/
 HackslashForum/HackslashForum/Migrations/20180517112309_Initial\.cs
 
 HackslashForum/HackslashForum/Migrations/20180517112309_Initial\.Designer\.cs
+
+HackslashForum/HackslashForum/Migrations/20180522064210_init\.cs
+
+HackslashForum/HackslashForum/Migrations/20180522064210_init\.Designer\.cs
+
+HackslashForum/HackslashForum/Migrations/ApplicationDbContextModelSnapshot\.cs
