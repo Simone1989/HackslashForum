@@ -76,23 +76,7 @@
 			<a href="https://localhost:44369/Posts/Post/@item.Id">@Html.DisplayFor(modelitem => item.Title)</a>
 			<img src="~/images/Downvote.png" style="float:right;" width="20" height="20" /><p> @Html.DisplayFor(modelItem => item.DownVotes)</p>
 			<img src="~/images/Upvote.png" style="float:right;" width="20" height="20" /><p> @Html.DisplayFor(modelItem => item.UpVotes)</p>
-			@*<br />*@
+			<br />
 		</div>
 	}
 </div>
-
-@foreach (var item in Model)
-{
-	<div class="post">
-		<a href="https://localhost:44369/Posts/Post/@item.Id">@Html.DisplayFor(modelitem => item.Title)</a>
-		<span>
-			<img src="~/images/Downvote.png" style="float:right;" width="20" height="20" />
-		</span>
-		<p>@(item.UpVotes - item.DownVotes)</p>
-		<span>
-			<img src="~/images/Upvote.png" style="float:right;" width="20" height="20" />
-		</span>
-	</div>
-	<br />
-}
-
