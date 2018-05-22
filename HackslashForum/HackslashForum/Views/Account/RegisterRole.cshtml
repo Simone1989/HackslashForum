@@ -17,7 +17,7 @@
     <div class="form-group">
         @Html.Label("ApplicationUsers", "Select User", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.ApplicationUsers, new SelectList(Model.ApplicationUsers))
+            @Html.DropDownListFor(m => m.ApplicationUsers, new SelectList(Model.ApplicationUsers, "Id"))
         </div>
     </div>
     <div class="form-group">

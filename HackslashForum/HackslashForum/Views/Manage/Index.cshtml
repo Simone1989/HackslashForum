@@ -11,7 +11,7 @@
         <div>
             @if (Model.ImgSrc != null)
             {
-                <img class="ProfilePic" src="@Model.ImgSrc" />
+                <img class="ProfilePic" style="height: 200px; width: 250px;" src="@Model.ImgSrc" />
             }
         </div>
         <form method="post" enctype="multipart/form-data" asp-controller="Manage" asp-action="UploadPicture">
