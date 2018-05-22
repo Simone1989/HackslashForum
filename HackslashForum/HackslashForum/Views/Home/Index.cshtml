@@ -50,21 +50,23 @@
 		</div>
 	</form>
 
-	<ul class="nav nav-tabs">
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Datum</a>
-		</li>
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">Titel</a>
-		</li>
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Antal uppröstningar</a>
-		</li>
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByComments"]">Antal kommentarer</a>
-		</li>
+    <div id="FuckBS">
+	    <ul class="nav nav-tabs">
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Datum</a>
+		    </li>
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">Titel</a>
+		    </li>
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Antal uppröstningar</a>
+		    </li>
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByComments"]">Antal kommentarer</a>
+		    </li>
 
-	</ul>
+	    </ul>
+    </div>
 
 
 	@foreach (var item in Model)
