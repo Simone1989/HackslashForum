@@ -297,15 +297,19 @@ namespace HackslashForum.Controllers
             model.ApplicationUsers = _context.Users.ToList();
 
             var getUser = model.ApplicationUsers;
-            var userToPromote = getUser.FirstOrDefault(u => u.Id == userId);
 
             foreach (var i in getUser)
             {
                 userId = i.Id;
             }
 
-            await _userManager.AddToRoleAsync(userToPromote, "Admin");
-            await _userManager.RemoveFromRoleAsync(userToPromote, "Member");
+            var userToPromote = getUser.FirstOrDefault(u => u.Id == userId);
+            if (User.IsInRole("Admin"))
+            {
+                await _userManager.AddToRoleAsync(userToPromote, "Admin");
+                await _userManager.RemoveFromRoleAsync(userToPromote, "Member");
+
+            }
 
 
             return RedirectToAction("Index", "Home");
