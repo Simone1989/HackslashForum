@@ -17,13 +17,10 @@ namespace HackslashForum.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly RoleManager<ApplicationUser> _roleManager;
 
-        public AdminAPIController(UserManager<ApplicationUser> userManager, /*RoleManager<ApplicationUser> roleManager,*/
-            ApplicationDbContext context)
+        public AdminAPIController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
-            //_roleManager = roleManager;
             _context = context;
         }
 
@@ -34,14 +31,21 @@ namespace HackslashForum.Controllers
                 return BadRequest(ModelState);
             }
 
-            //var user3= _userManager.GetUserAsync(User);
-            //var user = _context.UserRoles.Include().Where(u => u.RoleId == "2e87cb3b-2f8c-457e-a201-df159dc95b4b")
-            const string adminRole = "2e87cb3b-2f8c-457e-a201-df159dc95b4b";
+            // DENNA FUNGERAR MEN ÄR INTE OPTIMAL
+           /*const string adminRole = "d12c4240-e49c-49cd-a8c3-6267b710d8a1";
             var adminList = from ur in _context.UserRoles
                             where ur.RoleId == adminRole
                             let found = _userManager.Users.Where(u => u.Id == ur.UserId).Single()
-                            select new { Name = found.UserName, Email = found.Email };
-            // [ {name, email}, ... ]
+                            select new { Name = found.UserName, Email = found.Email };*/
+
+            // FUNGRAR JUST NU BARA FÖR EN ADMIN, SKA FÖRÖSKA FIXA
+            const string adminRole = "Admin";
+            var adminList = from r in _context.Roles
+                            where r.Name == adminRole
+                            let foundRole = _context.UserRoles.Where(ur => ur.RoleId == r.Id).Single()
+                            let foundUser = _userManager.Users.Where(u => u.Id == foundRole.UserId).Single()
+                            select new { Name = foundUser.UserName, Email = foundUser.Email };
+
             if (adminList == null)
             {
                 return NotFound();

@@ -55,7 +55,6 @@ namespace HackslashForum.Controllers
             return View(post);
         }
 
-        
         public async Task<IActionResult> Post(int? id)
         {
             if (id == null)
@@ -63,7 +62,7 @@ namespace HackslashForum.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Post
+            var post = await _context.Post.Include(p => p.UsersWhoVoted)
                 .SingleOrDefaultAsync(m => m.Id == id);
 
             if (post == null)
@@ -114,9 +113,12 @@ namespace HackslashForum.Controllers
                        where p.Id == id
                        select p).Take(1).SingleOrDefault();
 
+            var user = await _signInManager.UserManager.GetUserAsync(User);
+
             Comment comment = new Comment
             {
-                User = await _manager.GetUserAsync(User),
+                User = user,
+                Author = user.UserName,
                 Post = post,
                 DateTimeCommentMade = DateTime.Now,
                 Content = content
@@ -128,6 +130,89 @@ namespace HackslashForum.Controllers
             return RedirectToAction($"Post/{id}");
         }
 
+        public async Task<IActionResult> Upvote(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var post = _context.Post.Include(p => p.UsersWhoVoted).SingleOrDefault(p => p.Id == id);
+
+            var user = await _signInManager.UserManager.GetUserAsync(User);
+
+            var UserVoteModel = _context.VotedUsers.Where(p => p.PostId == id).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
+
+            UserVoteModel VotedUser = null;
+
+            if(UserVoteModel == null)
+            {
+                VotedUser = new UserVoteModel
+                {
+                    Post = post,
+                    PostId = post.Id,
+                    User = user,
+                    UserId = user.Id,
+                    Vote = Vote.Up
+                };
+                post.UpVotes++;
+                _context.Update(post);
+                _context.VotedUsers.Add(VotedUser);
+            }
+            else
+            {
+                UserVoteModel.Vote = Vote.Up;
+                post.UpVotes += 2;
+                _context.Update(post);
+                _context.VotedUsers.Update(UserVoteModel);
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction($"Post/{id}");
+        }
+
+        public async Task<IActionResult> Downvote(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var post = _context.Post.Include(p => p.UsersWhoVoted).SingleOrDefault(p => p.Id == id);
+
+            var user = await _signInManager.UserManager.GetUserAsync(User);
+
+            var UserVoteModel = _context.VotedUsers.Where(p => p.PostId == id).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
+
+            UserVoteModel VotedUser = null;
+
+            if (UserVoteModel == null)
+            {
+                VotedUser = new UserVoteModel
+                {
+                    Post = post,
+                    PostId = post.Id,
+                    User = user,
+                    UserId = user.Id,
+                    Vote = Vote.Down
+                };
+                post.UpVotes--;
+                _context.Update(post);
+                _context.VotedUsers.Add(VotedUser);
+            }
+            else
+            {
+                UserVoteModel.Vote = Vote.Down;
+                post.UpVotes -= 2;
+                _context.Update(post);
+                _context.VotedUsers.Update(UserVoteModel);
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction($"Post/{id}");
+        }
+
+        //// GET: Posts/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // Shows Enum Discussion / Question
         public IActionResult Category()

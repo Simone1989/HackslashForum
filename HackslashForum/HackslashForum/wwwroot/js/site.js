@@ -4,11 +4,31 @@
 	let userListDiv = document.getElementById('prolificUserList');
 	let helpfulUserListDiv = document.getElementById('helpfulUserList');
 	let adminListDiv = document.getElementById('adminList');
+	let mostUpvotedPostParagraph = document.getElementById('mostUpvotedPost');
 
 	getGroups();
 	getProlificUsers();
 	getHelpfulUsers();
 	getAdminList();
+	getMostUpvotedPost();
+
+	function getMostUpvotedPost() {
+		let mostUpvotedPostAPI = '/api/MostUpvotedPostAPI';
+		fetch(mostUpvotedPostAPI)
+			.then(response => { return response.json() })
+			.then(data => {
+				let mostUpvotedPost = '';
+				mostUpvotedPost += `
+					<p span style="font-weight: bold";>${data.title}</p>
+					<p>Antal uppröstningar: ${data.upVotes}</p>
+					`;
+				mostUpvotedPostParagraph.innerHTML = mostUpvotedPost;
+			})
+			.catch(function (error) {
+				console.log(JSON.stringify(error));
+				mostUpvotedPostParagraph.innerHTML = JSON.stringify(error);
+			});
+	}
 
 	function getAdminList() {
 		let adminListAPI = '/api/AdminAPI';
