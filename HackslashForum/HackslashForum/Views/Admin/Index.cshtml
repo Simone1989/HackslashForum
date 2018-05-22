@@ -8,10 +8,13 @@
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 {
     <h2>Admin</h2>
+    <br />
+    <hr />
+    <a href="https://localhost:44369/Posts/Index"><h4>Posts</h4></a>
 
-    <a href="https://localhost:44369/Posts/Index"><h3>Posts</h3></a>
+    <a href="https://localhost:44369/ApplicationUsers/Index"><h4>Users</h4></a>
 
-    <a href="https://localhost:44369/ApplicationUsers/Index"><h3>Users</h3></a>
+    <a href="https://localhost:44369/account/RegisterRole"><h4>Manage Roles</h4></a>
 }
 else
 {

@@ -228,13 +228,12 @@ namespace HackslashForum.Controllers
             return View();
         }
 
-      
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-           
 
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -259,7 +258,7 @@ namespace HackslashForum.Controllers
                     };
                     _context.Add(role);
                 }
-                       
+
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -277,6 +276,45 @@ namespace HackslashForum.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public IActionResult RegisterRole(RoleViewModel model)
+        {
+            model.Roles = _context.Roles.ToList();
+            model.ApplicationUsers = _context.Users.ToList();
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterRole(RoleViewModel model, string userId)
+        {
+            model.Roles = _context.Roles.ToList();
+            model.ApplicationUsers = _context.Users.ToList();
+
+            var getUser = model.ApplicationUsers;
+            foreach(var i in getUser)
+            {
+                userId = i.Id;
+            }
+
+            var userToPromote = getUser.FirstOrDefault(u => u.Id == userId);
+
+            if(User.IsInRole("Member"))
+            {
+            await _userManager.AddToRoleAsync(userToPromote, "Admin");
+            await _userManager.RemoveFromRoleAsync(userToPromote, "Member");
+            }
+            if(User.IsInRole("Admin"))
+            {
+                await _userManager.AddToRoleAsync(userToPromote, "Member");
+                await _userManager.RemoveFromRoleAsync(userToPromote, "Admin");
+            }
+
+           return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

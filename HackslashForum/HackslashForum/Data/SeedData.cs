@@ -18,11 +18,14 @@ namespace HackslashForum.Data
             seedContext.Roles.AddRange(
                 new IdentityRole
                 {
-                    Name = "Admin"
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                   
                 },
                 new IdentityRole
                 {
-                    Name = "Member"
+                    Name = "Member",
+                    NormalizedName = "MEMBER"
                 });
 
             seedContext.SaveChanges();
