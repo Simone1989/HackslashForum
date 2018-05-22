@@ -32,20 +32,33 @@
 <div id="posts">
 	<h2 style="font-family: Orbitron">Inlägg</h2>
 
-	<ul class="nav nav-tabs">
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Datum</a>
-		</li>
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">Titel</a>
-		</li>
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Antal uppröstningar</a>
-		</li>
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByComments"]">Antal kommentarer</a>
-		</li>
-	</ul>
+	<form asp-action="Index" method="get">
+		<div class="form-actions no-color">
+			<p>
+				Sök på titel: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+				<input type="submit" value="Sök" class="btn btn-default" /> |
+				<a asp-action="Index">Visa alla inlägg</a>
+			</p>
+		</div>
+	</form>
+
+    <div id="FuckBS">
+	    <ul class="nav nav-tabs">
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Datum</a>
+		    </li>
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">Titel</a>
+		    </li>
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Antal uppröstningar</a>
+		    </li>
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByComments"]">Antal kommentarer</a>
+		    </li>
+
+	    </ul>
+    </div>
 
 
 	@foreach (var item in Model)
