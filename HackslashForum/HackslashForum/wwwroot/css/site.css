@@ -184,10 +184,10 @@ footer p {
 
 .post {
 	height: 35px;
-	width: 83%;
+	width: 78%;
 	clear: left;
     background-color: white;
-    border-bottom: solid black 0.5px;
+    border-bottom: solid grey 0.5px;
 }
 
 .body-content hr {

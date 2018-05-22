@@ -20,15 +20,11 @@
 				let mostUpvotedPost = '';
 				if (data != null) {
 					mostUpvotedPost += `
-					<p span style="font-weight: bold";>${data.title}</p>
+					${data.title}
 					`;
 					mostUpvotedPostParagraph.innerHTML = mostUpvotedPost;
 				}
-			})
-			//.catch(function (error) {
-			//	console.log(JSON.stringify(error));
-			//	mostUpvotedPostParagraph.innerHTML = JSON.stringify(error);
-			//});
+			});
 	}
 
 	function getAdminList() {
