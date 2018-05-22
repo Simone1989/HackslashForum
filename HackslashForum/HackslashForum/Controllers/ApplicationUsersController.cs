@@ -102,7 +102,13 @@ namespace HackslashForum.Controllers
             {
                 try
                 {
-                    
+                    _context.Update(applicationUser);
+                    await _context.SaveChangesAsync();
+
+                    //Username
+                    applicationUser.NormalizedUserName = applicationUser.UserName.ToUpper();
+                    //Email
+                    applicationUser.NormalizedEmail = applicationUser.Email.ToUpper();
                     _context.Update(applicationUser);
                     await _context.SaveChangesAsync();
                 }

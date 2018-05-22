@@ -28,6 +28,28 @@
     width: 100%;
 }
 
+#TopListWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#TopList1 {
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+#TopList2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+#FuckBS {
+    width: 78%;
+}
 /*footer {
     position: absolute;
     left: 0px;
@@ -162,10 +184,10 @@ footer p {
 
 .post {
 	height: 35px;
-	width: 83%;
+	width: 78%;
 	clear: left;
     background-color: white;
-    border-bottom: solid black 0.5px;
+    border-bottom: solid grey 0.5px;
 }
 
 .body-content hr {
@@ -237,11 +259,17 @@ footer p {
 	margin: 15px;
 }
 
-
-/*@media only screen and (max-width: 767px) {
+/* Media Queries */
+@media only screen and (max-width: 767px) {
 	.minaSidorInfoDiv{
 		float: none;
 		top: 0px;
 		right: 0px;
     }
-}*/
+
+    #TopListWrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}

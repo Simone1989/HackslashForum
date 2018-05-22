@@ -8,67 +8,45 @@
 	<div class="top-post-header" style="margin-right: 50px;">
 		<h5>Populärast inlägg</h5>
 	</div>
-
-	@*FIXAT SÅ MAN HÄMTAR DATA MED API, MEN VET INTE VAD MAN SKA SÄTTA I IF-SATSEN ISTÄLLET*@
 	<div>
-		@if (ViewBag.MostUpvotedPost != null)
-		{
+		<div class="top-post" style="margin-right: 50px">
+			<p id="mostUpvotedPost"></p>
+		</div>
 
-			<div class="top-post" style="margin-right: 50px">
-				@if (ViewBag.MostUpvotedPost != null)
-				{
-					<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/">@ViewBag.MostUpvotedPost.Title</a>
-					@*<a href="/Posts/Post/@ViewBag.MostUpvotedPost.Id/"><p id="mostUpvotedPost"></p></a>*@
-				}
-			</div>
-
-
-			<div class="top-post-header" style="margin-right: 50px;">
-				<h5>Toppdiskuterat inlägg</h5>
-			</div>
+		<div class="top-post-header" style="margin-right: 50px;">
+			<h5>Toppdiskuterat inlägg</h5>
+		</div>
+		<div class="top-post" style="margin-right: 50px">
 			@if (ViewBag.MostCommentedPost != null)
 			{
-				<div class="top-post" style="margin-right: 50px">
-					@if (ViewBag.MostCommentedPost != null)
-					{
-						<a href="/Posts/Post/@ViewBag.MostCommentedPost.Id/">@ViewBag.MostCommentedPost.Title</a>
-					}
-				</div>
+				@if (ViewBag.MostCommentedPost != null)
+				{
+					@ViewBag.MostCommentedPost.Title
+				}
 			}
-
-		}
+		</div>
 	</div>
 </div>
 
 <div id="posts">
-	<h2>Inlägg</h2>
+	<h2 style="font-family: Orbitron">Inlägg</h2>
+    <div id="FuckBS">
+	    <ul class="nav nav-tabs">
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Datum</a>
+		    </li>
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">Titel</a>
+		    </li>
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Antal uppröstningar</a>
+		    </li>
+		    <li class="nav-item">
+			    <a asp-action="Index" asp-route-sortOrder="@ViewData["SortByComments"]">Antal kommentarer</a>
+		    </li>
 
-	<form asp-action="Index" method="get">
-		<div class="form-actions no-color">
-			<p>
-				Sök på titel: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-				<input type="submit" value="Sök" class="btn btn-default" /> |
-				<a asp-action="Index">Visa alla inlägg</a>
-			</p>
-		</div>
-	</form>
-
-	<ul class="nav nav-tabs">
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByDatePosted"]">Datum</a>
-		</li>
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByTitle"]">Titel</a>
-		</li>
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByUpvotes"]">Antal uppröstningar</a>
-		</li>
-		<li class="nav-item">
-			<a asp-action="Index" asp-route-sortOrder="@ViewData["SortByComments"]">Antal kommentarer</a>
-		</li>
-
-	</ul>
-
+	    </ul>
+    </div>
 
 	@foreach (var item in Model)
 	{
@@ -76,23 +54,20 @@
 			<a href="https://localhost:44369/Posts/Post/@item.Id">@Html.DisplayFor(modelitem => item.Title)</a>
 			<img src="~/images/Downvote.png" style="float:right;" width="20" height="20" /><p> @Html.DisplayFor(modelItem => item.DownVotes)</p>
 			<img src="~/images/Upvote.png" style="float:right;" width="20" height="20" /><p> @Html.DisplayFor(modelItem => item.UpVotes)</p>
-			@*<br />*@
 		</div>
 	}
-</div>
 
-@foreach (var item in Model)
-{
-	<div class="post">
-		<a href="https://localhost:44369/Posts/Post/@item.Id">@Html.DisplayFor(modelitem => item.Title)</a>
-		<span>
-			<img src="~/images/Downvote.png" style="float:right;" width="20" height="20" />
-		</span>
-		<p>@(item.UpVotes - item.DownVotes)</p>
-		<span>
-			<img src="~/images/Upvote.png" style="float:right;" width="20" height="20" />
-		</span>
+	<div style="margin-top: 20px;">
+		<form asp-action="Index" method="get">
+			<div class="form-group">
+				<div class="form-actions">
+					<p style="width: 30%">
+						<input type="text" style="margin-bottom: 7px;" class="form-control" name="SearchString" value="@ViewData["currentFilter"]" />
+						<input type="submit" value="Sök" class="btn btn-default" />
+						<a asp-action="Index" class="btn btn-default">Visa alla inlägg</a>
+					</p>
+				</div>
+			</div>
+		</form>
 	</div>
-	<br />
-}
-
+</div>

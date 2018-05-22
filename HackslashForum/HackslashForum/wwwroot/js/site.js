@@ -18,15 +18,12 @@
 			.then(response => { return response.json() })
 			.then(data => {
 				let mostUpvotedPost = '';
-				mostUpvotedPost += `
-					<p span style="font-weight: bold";>${data.title}</p>
-					<p>Antal uppröstningar: ${data.upVotes}</p>
+				if (data != null) {
+					mostUpvotedPost += `
+					${data.title}
 					`;
-				mostUpvotedPostParagraph.innerHTML = mostUpvotedPost;
-			})
-			.catch(function (error) {
-				console.log(JSON.stringify(error));
-				mostUpvotedPostParagraph.innerHTML = JSON.stringify(error);
+					mostUpvotedPostParagraph.innerHTML = mostUpvotedPost;
+				}
 			});
 	}
 
@@ -39,7 +36,7 @@
 				data.forEach(function (list) {
 					adminList += `
 					<div>
-						<p span style="font-weight: bold";>${list.name}</p>
+						<p span style="font-weight: bold";>${list.userName}</p>
 						<p>Mail: ${list.email}</p>
 					</div>
 					`
