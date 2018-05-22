@@ -8,7 +8,6 @@
 	<div class="top-post-header" style="margin-right: 50px;">
 		<h5>Populärast inlägg</h5>
 	</div>
-
 	<div>
 		<div class="top-post" style="margin-right: 50px">
 			<p id="mostUpvotedPost"></p>
@@ -31,17 +30,6 @@
 
 <div id="posts">
 	<h2 style="font-family: Orbitron">Inlägg</h2>
-
-	<form asp-action="Index" method="get">
-		<div class="form-actions no-color">
-			<p>
-				Sök på titel: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-				<input type="submit" value="Sök" class="btn btn-default" /> |
-				<a asp-action="Index">Visa alla inlägg</a>
-			</p>
-		</div>
-	</form>
-
     <div id="FuckBS">
 	    <ul class="nav nav-tabs">
 		    <li class="nav-item">
@@ -59,7 +47,6 @@
 
 	    </ul>
     </div>
-
 
 	@foreach (var item in Model)
 	{
