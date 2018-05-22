@@ -56,14 +56,18 @@
 			<img src="~/images/Upvote.png" style="float:right;" width="20" height="20" /><p> @Html.DisplayFor(modelItem => item.UpVotes)</p>
 		</div>
 	}
-	<hr />
-	<form asp-action="Index" method="get">
-		<div class="form-actions no-color">
-			<p>
-				Sök på titel: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-				<input type="submit" value="Sök" class="btn btn-default" /> |
-				<a asp-action="Index">Visa alla inlägg</a>
-			</p>
-		</div>
-	</form>
+
+	<div style="margin-top: 20px;">
+		<form asp-action="Index" method="get">
+			<div class="form-group">
+				<div class="form-actions">
+					<p style="width: 30%">
+						<input type="text" style="margin-bottom: 7px;" class="form-control" name="SearchString" value="@ViewData["currentFilter"]" />
+						<input type="submit" value="Sök" class="btn btn-default" />
+						<a asp-action="Index" class="btn btn-default">Visa alla inlägg</a>
+					</p>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
