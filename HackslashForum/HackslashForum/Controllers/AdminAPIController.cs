@@ -31,27 +31,27 @@ namespace HackslashForum.Controllers
                 return BadRequest(ModelState);
             }
 
-            // DENNA FUNGERAR MEN ÄR INTE OPTIMAL
-           /*const string adminRole = "d12c4240-e49c-49cd-a8c3-6267b710d8a1";
-            var adminList = from ur in _context.UserRoles
-                            where ur.RoleId == adminRole
-                            let found = _userManager.Users.Where(u => u.Id == ur.UserId).Single()
-                            select new { Name = found.UserName, Email = found.Email };*/
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            List<IdentityUserRole<string>> userRoles = new List<IdentityUserRole<string>>();
+            foreach (var role in _context.Roles)
+            {
+                foreach (var userRole in _context.UserRoles)
+                    if (userRole.RoleId == role.Id)
+                        userRoles.Add(userRole);
+            }
+            foreach(var userRole in userRoles)
+            {
+                foreach (var user in _userManager.Users)
+                    if (user.Id == userRole.UserId)
+                        users.Add(user);
+            }
+            
 
-            // FUNGRAR JUST NU BARA FÖR EN ADMIN, SKA FÖRÖSKA FIXA
-            const string adminRole = "Admin";
-            var adminList = from r in _context.Roles
-                            where r.Name == adminRole
-                            let foundRole = _context.UserRoles.Where(ur => ur.RoleId == r.Id).Single()
-                            let foundUser = _userManager.Users.Where(u => u.Id == foundRole.UserId).Single()
-                            select new { Name = foundUser.UserName, Email = foundUser.Email };
-
-            if (adminList == null)
+            if (users == null)
             {
                 return NotFound();
             }
-
-            return Ok(adminList);
+            return Ok(users);
         }
     }
 }

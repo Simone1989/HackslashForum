@@ -18,16 +18,17 @@
 			.then(response => { return response.json() })
 			.then(data => {
 				let mostUpvotedPost = '';
-				mostUpvotedPost += `
+				if (data != null) {
+					mostUpvotedPost += `
 					<p span style="font-weight: bold";>${data.title}</p>
-					<p>Antal uppröstningar: ${data.upVotes}</p>
 					`;
-				mostUpvotedPostParagraph.innerHTML = mostUpvotedPost;
+					mostUpvotedPostParagraph.innerHTML = mostUpvotedPost;
+				}
 			})
-			.catch(function (error) {
-				console.log(JSON.stringify(error));
-				mostUpvotedPostParagraph.innerHTML = JSON.stringify(error);
-			});
+			//.catch(function (error) {
+			//	console.log(JSON.stringify(error));
+			//	mostUpvotedPostParagraph.innerHTML = JSON.stringify(error);
+			//});
 	}
 
 	function getAdminList() {
@@ -39,7 +40,7 @@
 				data.forEach(function (list) {
 					adminList += `
 					<div>
-						<p span style="font-weight: bold";>${list.name}</p>
+						<p span style="font-weight: bold";>${list.userName}</p>
 						<p>Mail: ${list.email}</p>
 					</div>
 					`
