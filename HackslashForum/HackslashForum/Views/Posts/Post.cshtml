@@ -31,10 +31,7 @@
             </div>
             <div class="post-content">
                 <div>
-                    @if (ViewBag.ProfilePicture != null)
-                    {
-                        <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.ProfilePicture" />
-                    }
+                    <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.PostAuthorProfilePicture" />
                 </div>
                 <p>Användare: @ViewBag.PostAuthor</p>
                 <p>Kategori: @Model.Category</p>
@@ -51,12 +48,18 @@
             <div class="comments-content">
                 @foreach (var comment in Model.Comments)
                 {
-                    <div>
-                        @if (ViewBag.ProfilePicture != null)
+                <div>
+                    @{
+                        var commentAuthor = _context.User.Where(p => p.Id == comment.UserId).Take(1).SingleOrDefault();
+                        string base64 = Convert.ToBase64String(commentAuthor.ProfilePicture);
+                        string imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                        var img = new IndexViewModel
                         {
-                            <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.ProfilePicture" />
-                        }
-                    </div>
+                            ImgSrc = imgSrc,
+                        };
+                        <img class="ProfilePic" style="height: 70px; width: 70px;" src="@img.ImgSrc" />
+                    }
+                </div>
                     <p style="color:green;">@comment.Author:</p>
                     <p>@comment.Content</p>
                     <br />
@@ -66,9 +69,7 @@
                     {
                         var user = await SignInManager.UserManager.GetUserAsync(User);
 
-                        var id = comment.ID;
-
-                        var VotedComment = _context.VotedComments.Where(p => p.CommentId == id).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
+                        var VotedComment = _context.VotedComments.Where(p => p.CommentId == comment.ID).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
 
                         if (VotedComment != null && VotedComment.Vote == Vote.Up)
                         {

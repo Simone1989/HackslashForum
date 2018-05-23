@@ -69,22 +69,36 @@ namespace HackslashForum.Controllers
             {
                 return NotFound();
             }
-            var user = await _manager.GetUserAsync(User);
 
-            string base64 = "";
-            string imgSrc = "";
-            if (user.ProfilePicture != null)
-            {
-                base64 = Convert.ToBase64String(user.ProfilePicture);
-                imgSrc = String.Format("data:image/png;base64,{0}", base64);
-            }
+            var postAuthor = _context.User.Where(p => p.Id == post.UserId).Take(1).SingleOrDefault();
+            string base64 = Convert.ToBase64String(postAuthor.ProfilePicture);
+            string imgSrc = String.Format("data:image/png;base64,{0}", base64);
             var model = new IndexViewModel
             {
-
                 ImgSrc = imgSrc,
             };
 
-            ViewBag.ProfilePicture = model.ImgSrc;
+            //                  I
+            //Detta funkar inte v
+
+            //var user = await _manager.GetUserAsync(User);
+
+            //string base64 = "";
+            //string imgSrc = "";
+            //if (user.ProfilePicture != null)
+            //{
+            //    base64 = Convert.ToBase64String(user.ProfilePicture);
+            //    imgSrc = String.Format("data:image/png;base64,{0}", base64);
+            //}
+            //var model = new IndexViewModel
+            //{
+
+            //    ImgSrc = imgSrc,
+            //};
+
+            //ViewBag.ProfilePicture = model.ImgSrc;
+
+            ViewBag.PostAuthorProfilePicture = model.ImgSrc;
 
 
             ViewBag.TotalScore = post.UpVotes - post.DownVotes;
@@ -118,6 +132,7 @@ namespace HackslashForum.Controllers
             Comment comment = new Comment
             {
                 User = user,
+                UserId = user.Id,
                 Author = user.UserName,
                 Post = post,
                 PostId = post.Id,
@@ -333,6 +348,7 @@ namespace HackslashForum.Controllers
             {
                 var user = await _manager.GetUserAsync(User);
                 post.User = user;
+                post.UserId = user.Id;
 
                 _context.Add(post);
                 await _context.SaveChangesAsync();
