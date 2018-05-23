@@ -41,6 +41,7 @@ namespace HackslashForum
 
         public IList<Comment> Comments { get; set; } = new List<Comment>();
         public IList<ApplicationUser> UsersWhoVoted { get; set; }
+        public string UserId { get; set; }
         public ApplicationUser User { get; set; }
     }
 }
