@@ -33,6 +33,12 @@ namespace HackslashForum
         public int UpVotes { get; set; }
         public int DownVotes { get; set; }
 
+        public int TotalVotes
+        {
+            get { return (UpVotes - DownVotes); }
+            set { }
+        }
+
         public IList<Comment> Comments { get; set; } = new List<Comment>();
         public IList<ApplicationUser> UsersWhoVoted { get; set; }
         public ApplicationUser User { get; set; }

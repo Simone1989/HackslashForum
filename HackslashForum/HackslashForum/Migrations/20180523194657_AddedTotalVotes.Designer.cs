@@ -13,8 +13,8 @@ using System;
 namespace HackslashForum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180522142159_init")]
-    partial class init
+    [Migration("20180523194657_AddedTotalVotes")]
+    partial class AddedTotalVotes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,7 +36,9 @@ namespace HackslashForum.Migrations
 
                     b.Property<int>("Downvotes");
 
-                    b.Property<int?>("PostId");
+                    b.Property<int>("PostId");
+
+                    b.Property<int>("TotalVotes");
 
                     b.Property<int>("Upvotes");
 
@@ -134,6 +136,26 @@ namespace HackslashForum.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("VotedUsers");
+                });
+
+            modelBuilder.Entity("HackslashForum.Models.VoteOnCommentModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CommentId");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<int>("Vote");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("VotedComments");
                 });
 
             modelBuilder.Entity("HackslashForum.Post", b =>
@@ -276,7 +298,8 @@ namespace HackslashForum.Migrations
                 {
                     b.HasOne("HackslashForum.Post", "Post")
                         .WithMany("Comments")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("HackslashForum.Models.ApplicationUser", "User")
                         .WithMany("Comments")
@@ -295,6 +318,18 @@ namespace HackslashForum.Migrations
                     b.HasOne("HackslashForum.Post", "Post")
                         .WithMany()
                         .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HackslashForum.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("HackslashForum.Models.VoteOnCommentModel", b =>
+                {
+                    b.HasOne("HackslashForum.Comment", "Comment")
+                        .WithMany()
+                        .HasForeignKey("CommentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("HackslashForum.Models.ApplicationUser", "User")
