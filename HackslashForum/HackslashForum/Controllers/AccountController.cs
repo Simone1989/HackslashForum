@@ -23,6 +23,7 @@ namespace HackslashForum.Controllers
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly RoleManager<ApplicationUser> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -290,31 +291,19 @@ namespace HackslashForum.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterRole(RoleViewModel model, string userId)
+        public async Task<IActionResult> RegisterRole(RoleViewModel model, string userName)
         {
             model.Roles = _context.Roles.ToList();
             model.ApplicationUsers = _context.Users.ToList();
 
-            var getUser = model.ApplicationUsers;
-            foreach(var i in getUser)
-            {
-                userId = i.Id;
-            }
+            userName = model.SelectedUserId;
+            var userToPromote = model.ApplicationUsers.FirstOrDefault(u => u.UserName == userName);
 
-            var userToPromote = getUser.FirstOrDefault(u => u.Id == userId);
-
-            if(User.IsInRole("Member"))
-            {
             await _userManager.AddToRoleAsync(userToPromote, "Admin");
             await _userManager.RemoveFromRoleAsync(userToPromote, "Member");
-            }
-            if(User.IsInRole("Admin"))
-            {
-                await _userManager.AddToRoleAsync(userToPromote, "Member");
-                await _userManager.RemoveFromRoleAsync(userToPromote, "Admin");
-            }
 
-           return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index","Home");
         }
 
         [HttpPost]

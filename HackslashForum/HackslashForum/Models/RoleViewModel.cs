@@ -11,5 +11,6 @@ namespace HackslashForum.Models
 
         public IList<IdentityRole> Roles { get; set; }
         public IList<ApplicationUser> ApplicationUsers { get; set; }
+        public string SelectedUserId { get; set; }
     }
 }

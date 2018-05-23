@@ -5,9 +5,20 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{ 
+    var user = await UserManager.GetUserAsync(User);
 
-if(SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-{
+    string base64 = "";
+    string imgSrc = "";
+    if (user != null && user.ProfilePicture != null)
+    {
+        base64 = Convert.ToBase64String(user.ProfilePicture);
+        imgSrc = String.Format("data:image/png;base64,{0}", base64);
+    }
+}
+@{ 
+
+    if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
 <ul class="nav navbar-nav spaceFont">
     <li><a asp-area="" asp-controller="Posts" asp-action="Create">Skapa inl&#228gg</a></li>
     <li><a href="https://localhost:44369/Category/Index">Kategorier</a></li>
@@ -19,6 +30,9 @@ if(SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right spaceFont">
+            <li>
+                <img class="ProfilePic" style="height: 70px; width: 70px;" src="@imgSrc" />
+            </li>
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
             </li>
@@ -41,6 +55,9 @@ else if (SignInManager.IsSignedIn(User))
     </ul>
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right spaceFont">
+            <li>
+                <img class="ProfilePic" style="height: 70px; width: 70px;" src="@imgSrc" />
+            </li>
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
             </li>
