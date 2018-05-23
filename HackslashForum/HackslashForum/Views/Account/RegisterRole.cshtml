@@ -11,13 +11,13 @@
     <div class="form-group">
         @Html.Label("Roles", "Select Role", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Roles, new SelectList(Model.Roles, "Name"))
+            @Html.DropDownListFor(model => model.Roles, new SelectList(Model.Roles, "Roles"))
         </div>
     </div>
     <div class="form-group">
         @Html.Label("ApplicationUsers", "Select User", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.ApplicationUsers, new SelectList(Model.ApplicationUsers, "Id"))
+            @Html.DropDownListFor(m => m.SelectedUserId, new SelectList(Model.ApplicationUsers))
         </div>
     </div>
     <div class="form-group">
