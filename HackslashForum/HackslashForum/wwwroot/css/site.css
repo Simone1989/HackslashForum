@@ -325,6 +325,8 @@ footer p {
     border-bottom: solid grey 0.5px;
 }
 
+
+
 .body-content hr {
 	width: 75%;
 }
@@ -396,12 +398,18 @@ footer p {
 	margin: 15px;
 }
 
-/* Media Queries */
+@media only screen and (max-width: 990px) {
+    .post {
+        width: 70%;
+    }
+}
+
+    /* Media Queries */
 @media only screen and (max-width: 767px) {
-	.minaSidorInfoDiv{
-		float: none;
-		top: 0px;
-		right: 0px;
+    .minaSidorInfoDiv {
+        float: none;
+        top: 0px;
+        right: 0px;
     }
 
     #TopListWrapper {
@@ -429,7 +437,6 @@ footer p {
     }
 
     .comment-wrapper {
-        margin-top: 30px;   
+        margin-top: 30px;
     }
-
 }
