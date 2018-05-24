@@ -295,10 +295,7 @@ namespace HackslashForum.Controllers
         {
             // model.Roles = _context.Roles.ToList();
             model.ApplicationUsers = _context.Users.ToList();
-
-
             var user = await _userManager.GetUserAsync(User);
-
 
             userName = model.SelectedUserId;
             var userToPromote = model.ApplicationUsers.FirstOrDefault(u => u.UserName == userName);
