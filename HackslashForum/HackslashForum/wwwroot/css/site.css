@@ -94,6 +94,7 @@ footer p {
 .wrapper {
     width: 100%;
     height: auto;
+    padding-top: 10px;
 }
 
 .post-wrapper {
@@ -124,6 +125,17 @@ footer p {
     clear:left;
 }
 
+.post-header-bottom {
+    width: 100%;
+    height: auto;
+    float: left;
+    background-color: #222;
+    border-radius: 0px 0px 10px 10px;
+    text-align: left;
+    color: white;
+    clear: left;
+}
+
 .post-content {
     width: 100%;
     height: auto;
@@ -132,7 +144,7 @@ footer p {
     overflow: hidden;
     border: 1px solid #222;
     padding: 5px;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 0px 0px;
 }
 
 .comment-form {
@@ -153,6 +165,14 @@ footer p {
     clear: right;
 }
 
+.comments-footer {
+    width: 100%;
+    height: 20px;
+    float: right;
+    background-color: #222;
+    border-radius: 0px 0px 10px 10px;
+}
+
 .comments-header h3 {
     margin-left: 10px;
 }
@@ -163,15 +183,103 @@ footer p {
     float: right;
     overflow: hidden;
     border: 1px solid #222;
-    padding: 5px;
+    padding: 0px;
     clear: right;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 0px 0px;
+    margin-top: 0px;
 }
 
 .comments-content p {
     margin: 0px;
     padding: 0px;
 }
+
+#comment-style {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+#comment-block1 {
+    border: solid black 1px;
+    background-color: #222;
+    width: 20%;
+    padding: 10px;
+    padding-right: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#comment-block2 {
+    border: solid black 1px;
+    background-color: white;
+    width: 81%;
+    padding: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.comment-text {
+    height: 85%;
+    word-wrap: break-word;
+}
+
+.comment-date {
+    height: 5%;
+}
+
+.comment-author {
+    /*text-transform: capitalize;*/
+}
+
+.post-content {
+    border: solid black 1px;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin: 0px;
+}
+
+.post-content-text p{
+    padding: 0px;
+    margin: 0px;
+}
+
+#post-content-block1 {
+    
+    background-color: #222;
+    color: white;
+    width: 20%;
+    padding: 10px;
+    padding-right: 100px;
+}
+
+#post-content-block2 {
+    
+    background-color: white;
+    width: 80%;
+    padding: 0px;
+}
+
+#post-content-category {
+    border-bottom: solid black 1px;
+    background-color: #a6a6a6;
+    height: 30px;
+}
+
+#post-content-category p, #post-content-content p{
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+#post-content-content {
+    background-color: white;
+    min-height: 90px;
+}
+
 
 .top-post {
     width: 200px;
@@ -259,10 +367,12 @@ footer p {
 .body-content {
     position: relative;
     top: 125px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-top: 40px;
+    padding-bottom: 100px;
+    padding-left: 60px;
+    padding-right: 60px;
     background-color: white;
-    padding-bottom: 90px;
+    min-height: 1000px;
 }
 
 #skapaInläggBtn {
@@ -310,6 +420,16 @@ footer p {
 
     .body-content {
         width: 767px;
+    }
+
+    .wrapper {
+        width: 1300px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .comment-wrapper {
+        margin-top: 30px;   
     }
 
 }
