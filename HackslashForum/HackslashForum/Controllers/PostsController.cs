@@ -176,7 +176,8 @@ namespace HackslashForum.Controllers
             else
             {
                 UserVoteModel.Vote = Vote.Up;
-                post.UpVotes += 2;
+                post.UpVotes++;
+                post.DownVotes--;
                 _context.Update(post);
                 _context.VotedUsers.Update(UserVoteModel);
             }
@@ -215,7 +216,8 @@ namespace HackslashForum.Controllers
             else
             {
                 UserVoteModel.Vote = Vote.Down;
-                post.DownVotes += 2;
+                post.DownVotes++;
+                post.UpVotes--;
                 _context.Update(post);
                 _context.VotedUsers.Update(UserVoteModel);
             }
@@ -256,7 +258,8 @@ namespace HackslashForum.Controllers
             else
             {
                 VotedCommentModel.Vote = Vote.Up;
-                comment.Upvotes += 2;
+                comment.Upvotes++;
+                comment.Downvotes--;
                 _context.Update(comment);
                 _context.VotedComments.Update(VotedCommentModel);
             }
@@ -297,7 +300,8 @@ namespace HackslashForum.Controllers
             else
             {
                 VotedCommentModel.Vote = Vote.Down;
-                comment.Downvotes += 2;
+                comment.Downvotes++;
+                comment.Upvotes--;
                 _context.Update(comment);
                 _context.VotedComments.Update(VotedCommentModel);
             }
