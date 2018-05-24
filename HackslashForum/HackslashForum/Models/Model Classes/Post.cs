@@ -16,7 +16,7 @@ namespace HackslashForum
         Question,
         [Display(Name = "Java")]
         Java,
-        [Display(Name = "Csharp")]
+        [Display(Name = "C#")]
         Csharp
     }
 
