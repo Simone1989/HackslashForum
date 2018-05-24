@@ -293,17 +293,32 @@ namespace HackslashForum.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterRole(RoleViewModel model, string userName)
         {
-            model.Roles = _context.Roles.ToList();
+            // model.Roles = _context.Roles.ToList();
             model.ApplicationUsers = _context.Users.ToList();
+            var user = await _userManager.GetUserAsync(User);
 
             userName = model.SelectedUserId;
             var userToPromote = model.ApplicationUsers.FirstOrDefault(u => u.UserName == userName);
 
-            await _userManager.AddToRoleAsync(userToPromote, "Admin");
-            await _userManager.RemoveFromRoleAsync(userToPromote, "Member");
+            if (userToPromote.Role == null || userToPromote.Role == "Member" || userToPromote.Role == "Admin")
+            {
+                if (userToPromote.Role == "Admin")
+                {
+                    await _userManager.AddToRoleAsync(userToPromote, "Member");
+                    await _userManager.RemoveFromRoleAsync(userToPromote, "Admin");
+                    userToPromote.Role = "Member";
+                }
+                else
+                {
+                    await _userManager.AddToRoleAsync(userToPromote, "Admin");
+                    await _userManager.RemoveFromRoleAsync(userToPromote, "Member");
+                    userToPromote.Role = "Admin";
+                }
+                await _context.SaveChangesAsync();
+            }
 
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

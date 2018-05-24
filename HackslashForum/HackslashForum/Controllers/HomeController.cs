@@ -89,8 +89,8 @@ namespace HackslashForum.Controllers
                     break;
             }
 
-            //var mostUpvotedPost = _context.Post.OrderByDescending(p => p.UpVotes).Take(1).SingleOrDefault();
-            //ViewBag.MostUpvotedPost = mostUpvotedPost;
+            var mostUpvotedPost = _context.Post.OrderByDescending(p => p.UpVotes).Take(1).SingleOrDefault();
+            ViewBag.MostUpvotedPost = mostUpvotedPost;
 
             var mostCommentedPost = _context.Post.OrderByDescending(p => p.Comments.Count).Take(1).SingleOrDefault();
             ViewBag.MostCommentedPost = mostCommentedPost;

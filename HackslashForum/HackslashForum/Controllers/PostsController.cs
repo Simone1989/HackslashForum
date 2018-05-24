@@ -71,12 +71,17 @@ namespace HackslashForum.Controllers
             }
 
             var postAuthor = _context.User.Where(p => p.Id == post.UserId).Take(1).SingleOrDefault();
-            string base64 = Convert.ToBase64String(postAuthor.ProfilePicture);
-            string imgSrc = String.Format("data:image/png;base64,{0}", base64);
-            var model = new IndexViewModel
+            IndexViewModel model = null;
+
+            if(postAuthor.ProfilePicture != null)
             {
-                ImgSrc = imgSrc,
-            };
+                string base64 = Convert.ToBase64String(postAuthor.ProfilePicture);
+                string imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                model = new IndexViewModel
+                {
+                    ImgSrc = imgSrc,
+                };
+            }
 
             //                  I
             //Detta funkar inte v
@@ -98,7 +103,10 @@ namespace HackslashForum.Controllers
 
             //ViewBag.ProfilePicture = model.ImgSrc;
 
-            ViewBag.PostAuthorProfilePicture = model.ImgSrc;
+            if (postAuthor.ProfilePicture != null)
+                ViewBag.PostAuthorProfilePicture = model.ImgSrc;
+            else
+                ViewBag.PostAuthorProfilePicture = null;
 
 
             ViewBag.TotalScore = post.UpVotes - post.DownVotes;
@@ -176,7 +184,8 @@ namespace HackslashForum.Controllers
             else
             {
                 UserVoteModel.Vote = Vote.Up;
-                post.UpVotes += 2;
+                post.UpVotes++;
+                post.DownVotes--;
                 _context.Update(post);
                 _context.VotedUsers.Update(UserVoteModel);
             }
@@ -215,7 +224,8 @@ namespace HackslashForum.Controllers
             else
             {
                 UserVoteModel.Vote = Vote.Down;
-                post.DownVotes += 2;
+                post.DownVotes++;
+                post.UpVotes--;
                 _context.Update(post);
                 _context.VotedUsers.Update(UserVoteModel);
             }
@@ -256,7 +266,8 @@ namespace HackslashForum.Controllers
             else
             {
                 VotedCommentModel.Vote = Vote.Up;
-                comment.Upvotes += 2;
+                comment.Upvotes++;
+                comment.Downvotes--;
                 _context.Update(comment);
                 _context.VotedComments.Update(VotedCommentModel);
             }
@@ -297,7 +308,8 @@ namespace HackslashForum.Controllers
             else
             {
                 VotedCommentModel.Vote = Vote.Down;
-                comment.Downvotes += 2;
+                comment.Downvotes++;
+                comment.Upvotes--;
                 _context.Update(comment);
                 _context.VotedComments.Update(VotedCommentModel);
             }

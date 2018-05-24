@@ -13,8 +13,8 @@ using System;
 namespace HackslashForum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180523194657_AddedTotalVotes")]
-    partial class AddedTotalVotes
+    [Migration("20180524075808_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -174,6 +174,8 @@ namespace HackslashForum.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(80);
+
+                    b.Property<int>("TotalVotes");
 
                     b.Property<int>("UpVotes");
 
