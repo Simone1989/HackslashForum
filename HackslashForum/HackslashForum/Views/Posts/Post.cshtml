@@ -31,7 +31,7 @@
 
                 <div id="post-content-block1">
                     <div class="post-content-profilePic">
-                        @if (ViewBag.ProfilePicture != null)
+                        @if (ViewBag.PostAuthorProfilePicture != null)
                 {
                     <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.ProfilePicture" />
         }
@@ -78,51 +78,12 @@
             </div>
 
             <div class="comments-content">
-
-
+                
                 @foreach (var comment in Model.Comments)
                 {
 
-                                        @if (SignInManager.IsSignedIn(User))
-                    {
-                        var user = await SignInManager.UserManager.GetUserAsync(User);
 
-                        var VotedComment = _context.VotedComments.Where(p => p.CommentId == comment.ID).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
-
-                        if (VotedComment != null && VotedComment.Vote == Vote.Up)
-                        {
-                            <form asp-action="UpvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
-                                <span>
-                                    <img src="~/images/Upvote.png" style="height: 20px; width: 20px; filter: brightness(100%);" />
-                                </span>
-                            </form>
-                        }
-                        else
-                        {
-                            <form asp-action="UpvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
-                                <span>
-                                    <input type="image" src="~/images/Upvote.png" alt="Submit" value="upvote" style="height: 20px; width: 20px; filter: brightness(50%);" />
-                                </span>
-                            </form>
-                        }
-                        <p>@comment.TotalVotes</p>
-                        if (VotedComment != null && VotedComment.Vote == Vote.Down)
-                        {
-                            <form asp-action="DownvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
-                                <span>
-                                    <img src="~/images/Downvote.png" style="height: 20px; width: 20px; filter: brightness(100%);" />
-                                </span>
-                            </form>
-                        }
-                        else
-                        {
-                            <form asp-action="DownvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
-                                <span>
-                                    <input type="image" src="~/images/Downvote.png" alt="Submit" value="downvote" style="height: 20px; width: 20px; filter: brightness(50%);" />
-                                </span>
-                            </form>
-                        }
-                    }
+                    
 
               <div id="comment-style">
                 <div id="comment-block1">
@@ -154,21 +115,68 @@
                     </div>
 
                     <div class="comment-date">
-
-                    <p style="color:gray">@comment.DateTimeCommentMade</p>
+                        <hr style="width:100%;margin:0px 0px 0px 0px;padding:0px;" />
+                        <p style="color:gray">@comment.DateTimeCommentMade</p>
                     </div>
                 </div>
+
+                <div id="comment-block3">
+                        <div id="comments-content-voting">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                        var user = await SignInManager.UserManager.GetUserAsync(User);
+
+                        var VotedComment = _context.VotedComments.Where(p => p.CommentId == comment.ID).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
+
+                        if (VotedComment != null && VotedComment.Vote == Vote.Up)
+                        {   
+                            <form asp-action="UpvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
+                                <span>
+                                    <img src="~/images/Upvote.png" style="height: 20px; width: 20px; filter: brightness(100%);" />
+                                </span>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="UpvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
+                                <span>
+                                    <input type="image" src="~/images/Upvote.png" alt="Submit" value="upvote" style="height: 20px; width: 20px; filter: brightness(50%);" />
+                                </span>
+                            </form>
+                        }
+                        <p style="margin-left: 4px; padding-top: 15px; padding-bottom: 15px;">@comment.TotalVotes</p>
+                        if (VotedComment != null && VotedComment.Vote == Vote.Down)
+                        {
+                            <form asp-action="DownvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
+                                <span>
+                                    <img src="~/images/Downvote.png" style="height: 20px; width: 20px; filter: brightness(100%);" />
+                                </span>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="DownvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
+                                <span>
+                                    <input type="image" src="~/images/Downvote.png" alt="Submit" value="downvote" style="height: 20px; width: 20px; filter: brightness(50%);" />
+                                </span>
+                            </form>
+                        }
+                    }
+                    </div>
+                </div>
+
+
                   </div>
 
                  }
 
-                    <hr style="width:100%;margin:0px 0px 10px 0px;padding:0px;" />
+                    
             </div>
-            </div>
-
             <div class="comments-footer">
                 <p></p>
             </div>
+            </div>
+
 
         </div>
 	</div>
