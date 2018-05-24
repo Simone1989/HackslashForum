@@ -23,7 +23,6 @@ namespace HackslashForum.Controllers
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly RoleManager<ApplicationUser> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -246,8 +245,9 @@ namespace HackslashForum.Controllers
                     var role = new IdentityUserRole<string>
                     {
                         UserId = user.Id,
-                        RoleId = _context.Roles.Where(r => r.Name == "Member").First().Id
+                        RoleId = _context.Roles.Where(r => r.Name == "Member").First().Id,
                     };
+                    user.Role = "Member";
                     _context.Add(role);
                 }
                 else
@@ -257,6 +257,7 @@ namespace HackslashForum.Controllers
                         UserId = user.Id,
                         RoleId = _context.Roles.Where(r => r.Name == "Admin").First().Id
                     };
+                    user.Role = "Admin";
                     _context.Add(role);
                 }
 
@@ -390,7 +391,7 @@ namespace HackslashForum.Controllers
                 {
                     throw new ApplicationException("Error loading external login information during confirmation.");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AccountCreationDate = DateTime.Now };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
