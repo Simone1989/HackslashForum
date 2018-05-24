@@ -9,173 +9,177 @@
 @inject ApplicationDbContext _context;
 
 @{
-    ViewData["Title"] = "Info om inlägg";
+	ViewData["Title"] = "Info om inlägg";
 }
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Post</title>
+	<meta name="viewport" content="width=device-width" />
+	<title>Post</title>
 </head>
 <body>
 	<div class="wrapper">
-        <div class="post-wrapper">
+		<div class="post-wrapper">
 
-            <div class="post-header">
-                <h3 style="margin-left: 10px;">@Model.Title</h3>
+			<div class="post-header">
+				<h3 style="margin-left: 10px;">@Model.Title</h3>
 
-            </div>
+			</div>
 
-            <div class="post-content">
+			<div class="post-content">
 
-                <div id="post-content-block1">
-                    <div class="post-content-profilePic">
-                    <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.PostAuthorProfilePicture" />
-                    </div>
+				<div id="post-content-block1">
+					<div class="post-content-profilePic">
+						<img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.PostAuthorProfilePicture" />
+					</div>
 
-                    <div>
-                        <p>@ViewBag.PostAuthor</p>
-                    </div>
-                </div>
+					<div>
+						<p>@ViewBag.PostAuthor</p>
+					</div>
+				</div>
 
-                <div id="post-content-block2">
-                    <div class="post-content-text">
-
-
-                        <div id="post-content-category">
-                            <p>Kategori: @Model.Category</p>
-                        </div>
-
-                        <div id="post-content-content">
-                            <p>@Model.Content</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="post-header-bottom">
-
-            <span style="float: right; clear: both; padding-right: 20px; padding: 10px;">
-                @await Html.PartialAsync("_LoginUpvote")
-                <p style="float: right; clear: both; padding-right: 3px; padding-top: 6px; font-size: 25px;">@ViewBag.TotalScore</p>
-                @await Html.PartialAsync("_LoginDownvote", Model)
-            </span>
-            </div>
-
-            <div class="comment-form">
-                @await Html.PartialAsync("_LoginComment")
-            </div>
-        </div>
-        
-        <div class="comment-wrapper">
-
-            <div class="comments-header">
-                <h3 style="margin-left: 10px;">Kommentarer</h3>
-            </div>
-
-            <div class="comments-content">
-                
-                @foreach (var comment in Model.Comments)
-                {
+				<div id="post-content-block2">
+					<div class="post-content-text">
 
 
-                    
+						<div id="post-content-category">
+							<p>Kategori: @Model.Category</p>
+						</div>
 
-              <div id="comment-style">
-                <div id="comment-block1">
-  
-                <div>
-                    @{
-                        var commentAuthor = _context.User.Where(p => p.Id == comment.UserId).Take(1).SingleOrDefault();
-                        string base64 = Convert.ToBase64String(commentAuthor.ProfilePicture);
-                        string imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                        var img = new IndexViewModel
-                        {
-                            ImgSrc = imgSrc,
-                        };
-                        <img class="ProfilePic" style="height: 70px; width: 70px;" src="@img.ImgSrc" />
-                    }
-                </div>
+						<div id="post-content-content">
+							<p>@Model.Content</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-                    <div class="comment-author">
-                    <p style="color:green;">@comment.Author:</p>
-                        
-                    </div>
-                </div>
+			<div class="post-header-bottom">
 
-                <div id="comment-block2">
-                    <div class="comment-text">
-                    <p>@comment.Content</p>
-                    <br />
-  
-                    </div>
+				<span style="float: right; clear: both; padding-right: 20px; padding: 10px;">
+					@await Html.PartialAsync("_LoginUpvote")
+					<p style="float: right; clear: both; padding-right: 3px; padding-top: 6px; font-size: 25px;">@ViewBag.TotalScore</p>
+					@await Html.PartialAsync("_LoginDownvote", Model)
+				</span>
+			</div>
 
-                    <div class="comment-date">
-                        <hr style="width:100%;margin:0px 0px 0px 0px;padding:0px;" />
-                        <p style="color:gray">@comment.DateTimeCommentMade</p>
-                    </div>
-                </div>
+			<div class="comment-form">
+				@await Html.PartialAsync("_LoginComment")
+			</div>
+		</div>
 
-                <div id="comment-block3">
-                        <div id="comments-content-voting">
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                        var user = await SignInManager.UserManager.GetUserAsync(User);
+		<div class="comment-wrapper">
 
-                        var VotedComment = _context.VotedComments.Where(p => p.CommentId == comment.ID).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
+			<div class="comments-header">
+				<h3 style="margin-left: 10px;">Kommentarer</h3>
+			</div>
 
-                        if (VotedComment != null && VotedComment.Vote == Vote.Up)
-                        {   
-                            <form asp-action="UpvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
-                                <span>
-                                    <img src="~/images/Upvote.png" style="height: 20px; width: 20px; filter: brightness(100%);" />
-                                </span>
-                            </form>
-                        }
-                        else
-                        {
-                            <form asp-action="UpvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
-                                <span>
-                                    <input type="image" src="~/images/Upvote.png" alt="Submit" value="upvote" style="height: 20px; width: 20px; filter: brightness(50%);" />
-                                </span>
-                            </form>
-                        }
-                        <p style="margin-left: 4px; padding-top: 15px; padding-bottom: 15px;">@comment.TotalVotes</p>
-                        if (VotedComment != null && VotedComment.Vote == Vote.Down)
-                        {
-                            <form asp-action="DownvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
-                                <span>
-                                    <img src="~/images/Downvote.png" style="height: 20px; width: 20px; filter: brightness(100%);" />
-                                </span>
-                            </form>
-                        }
-                        else
-                        {
-                            <form asp-action="DownvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
-                                <span>
-                                    <input type="image" src="~/images/Downvote.png" alt="Submit" value="downvote" style="height: 20px; width: 20px; filter: brightness(50%);" />
-                                </span>
-                            </form>
-                        }
-                    }
-                    </div>
-                </div>
+			<div class="comments-content">
+
+				@foreach (var comment in Model.Comments)
+				{
 
 
-                  </div>
-
-                }
-
-                    
-            </div>
-            <div class="comments-footer">
-            </div>
-            </div>
 
 
-        </div>
-        </div>
+					<div id="comment-style">
+						<div id="comment-block1">
+
+							<div>
+								@{
+									var commentAuthor = _context.User.Where(p => p.Id == comment.UserId).Take(1).SingleOrDefault();
+									if (commentAuthor.ProfilePicture != null)
+									{
+										string base64 = Convert.ToBase64String(commentAuthor.ProfilePicture);
+										string imgSrc = String.Format("data:image/png;base64,{0}", base64);
+
+										var img = new IndexViewModel
+										{
+											ImgSrc = imgSrc,
+										};
+									<img class="ProfilePic" style="height: 70px; width: 70px;" src="@img.ImgSrc" />
+									}
+								}
+							</div>
+
+							<div class="comment-author">
+								<p style="color:green;">@comment.Author:</p>
+
+							</div>
+						</div>
+
+						<div id="comment-block2">
+							<div class="comment-text">
+								<p>@comment.Content</p>
+								<br />
+
+							</div>
+
+							<div class="comment-date">
+								<hr style="width:100%;margin:0px 0px 0px 0px;padding:0px;" />
+								<p style="color:gray">@comment.DateTimeCommentMade</p>
+							</div>
+						</div>
+
+						<div id="comment-block3">
+							<div id="comments-content-voting">
+								@if (SignInManager.IsSignedIn(User))
+								{
+									var user = await SignInManager.UserManager.GetUserAsync(User);
+
+									var VotedComment = _context.VotedComments.Where(p => p.CommentId == comment.ID).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
+
+									if (VotedComment != null && VotedComment.Vote == Vote.Up)
+									{
+										<form asp-action="UpvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
+											<span>
+												<img src="~/images/Upvote.png" style="height: 20px; width: 20px; filter: brightness(100%);" />
+											</span>
+										</form>
+									}
+									else
+									{
+										<form asp-action="UpvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
+											<span>
+												<input type="image" src="~/images/Upvote.png" alt="Submit" value="upvote" style="height: 20px; width: 20px; filter: brightness(50%);" />
+											</span>
+										</form>
+									}
+									<p style="margin-left: 4px; padding-top: 15px; padding-bottom: 15px;">@comment.TotalVotes</p>
+									if (VotedComment != null && VotedComment.Vote == Vote.Down)
+									{
+										<form asp-action="DownvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
+											<span>
+												<img src="~/images/Downvote.png" style="height: 20px; width: 20px; filter: brightness(100%);" />
+											</span>
+										</form>
+									}
+									else
+									{
+										<form asp-action="DownvoteComment" asp-route-id="@comment.ID" asp-controller="Posts">
+											<span>
+												<input type="image" src="~/images/Downvote.png" alt="Submit" value="downvote" style="height: 20px; width: 20px; filter: brightness(50%);" />
+											</span>
+										</form>
+									}
+								}
+							</div>
+						</div>
+
+
+					</div>
+
+				}
+
+
+			</div>
+			<div class="comments-footer">
+			</div>
+		</div>
+
+
+	</div>
+	</div>
 	</div>
 </body>
 </html>
