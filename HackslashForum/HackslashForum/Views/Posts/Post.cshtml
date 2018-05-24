@@ -13,51 +13,101 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="post-wrapper">
-			<div class="post-header">
-				<h3 style="margin-left: 10px;">@Model.Title</h3>
-				<span style="float: right; clear: both;">
-					@await Html.PartialAsync("_LoginUpvote")
-					<p style="float: right; clear: both;">@ViewBag.TotalScore</p>
-					@await Html.PartialAsync("_LoginDownvote", Model)
-				</span>
-			</div>
-            <div class="post-content">
-                <div>
-                    @if (ViewBag.ProfilePicture != null)
-                    {
-                        <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.ProfilePicture" />
-                    }
-                </div>
-                <p>Användare: @ViewBag.PostAuthor</p>
-                <p>Kategori: @Model.Category</p>
-                <p>@Model.Content</p>
+        <div class="post-wrapper">
+
+            <div class="post-header">
+                <h3 style="margin-left: 10px;">@Model.Title</h3>
+
             </div>
-			<div class="comment-form">
-				@await Html.PartialAsync("_LoginComment")
-			</div>
-		</div>
-		<div class="comment-wrapper">
-			<div class="comments-header">
-				<h3 style="margin-left: 10px;">Kommentarer</h3>
-			</div>
-            <div class="comments-content">
-                @foreach (var comment in ViewBag.Comments)
+
+            <div class="post-content">
+
+                <div id="post-content-block1">
+                    <div class="post-content-profilePic">
+                        @if (ViewBag.ProfilePicture != null)
                 {
+                    <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.ProfilePicture" />
+        }
+                    </div>
+
+                    <div>
+                        <p>@ViewBag.PostAuthor</p>
+                    </div>
+                </div>
+
+                <div id="post-content-block2">
+                    <div class="post-content-text">
+
+
+                        <div id="post-content-category">
+                            <p>Kategori: @Model.Category</p>
+                        </div>
+
+                        <div id="post-content-content">
+                            <p>@Model.Content</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post-header-bottom">
+
+            <span style="float: right; clear: both; padding-right: 20px; padding: 10px;">
+                @await Html.PartialAsync("_LoginUpvote")
+                <p style="float: right; clear: both; padding-right: 3px; padding-top: 6px; font-size: 25px;">@ViewBag.TotalScore</p>
+                @await Html.PartialAsync("_LoginDownvote", Model)
+            </span>
+            </div>
+
+            <div class="comment-form">
+                @await Html.PartialAsync("_LoginComment")
+            </div>
+        </div>
+        
+        <div class="comment-wrapper">
+
+            <div class="comments-header">
+                <h3 style="margin-left: 10px;">Kommentarer</h3>
+            </div>
+
+            <div class="comments-content">
+
+                @foreach (var comment in ViewBag.Comments)
+                 {
+            <div id="comment-style">
+                <div id="comment-block1">
                     <div>
                         @if (ViewBag.ProfilePicture != null)
-                        {
-                            <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.ProfilePicture" />
-                        }
+                         {
+                    <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.ProfilePicture" />
+                         }
                     </div>
-                    <p style="color:green;">@comment.Author:</p>
-                    <p>@comment.Content</p>
-                    <br />
-                    <p style="color:gray">@comment.DateTimeCommentMade</p>
-                    <hr style="width:100%;margin:0px 0px 10px 0px;padding:0px;" />
-                }
+
+                    <div class="comment-author">
+                        <p style="color:green;">@comment.Author</p>
+                    </div>
+                </div>
+
+                <div id="comment-block2">
+                    <div class="comment-text">
+                        <p>@comment.Content</p>
+                        <br />
+                    </div>
+
+                    <div class="comment-date">
+                        <hr style="width:100%;margin:0px 0px 0px 0px;padding:0px;" />
+                        <p style="color:gray">@comment.DateTimeCommentMade</p>
+                    </div>
+                </div>
             </div>
-		</div>
+                 }
+            </div>
+
+            <div class="comments-footer">
+                <p></p>
+            </div>
+
+        </div>
 	</div>
 </body>
 </html>
