@@ -79,53 +79,11 @@
 
             <div class="comments-content">
 
-                @foreach (var comment in ViewBag.Comments)
-                 {
-            <div id="comment-style">
-                <div id="comment-block1">
-                    <div>
-                        @if (ViewBag.ProfilePicture != null)
-                         {
-                    <img class="ProfilePic" style="height: 70px; width: 70px;" src="@ViewBag.ProfilePicture" />
-                         }
-                    </div>
 
-                    <div class="comment-author">
-                        <p style="color:green;">@comment.Author</p>
-                    </div>
-                </div>
-
-                <div id="comment-block2">
-                    <div class="comment-text">
-                        <p>@comment.Content</p>
-                        <br />
-                    </div>
-
-                    <div class="comment-date">
-                        <hr style="width:100%;margin:0px 0px 0px 0px;padding:0px;" />
-                        <p style="color:gray">@comment.DateTimeCommentMade</p>
-                    </div>
-                </div>
                 @foreach (var comment in Model.Comments)
                 {
-                <div>
-                    @{
-                        var commentAuthor = _context.User.Where(p => p.Id == comment.UserId).Take(1).SingleOrDefault();
-                        string base64 = Convert.ToBase64String(commentAuthor.ProfilePicture);
-                        string imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                        var img = new IndexViewModel
-                        {
-                            ImgSrc = imgSrc,
-                        };
-                        <img class="ProfilePic" style="height: 70px; width: 70px;" src="@img.ImgSrc" />
-                    }
-                </div>
-                    <p style="color:green;">@comment.Author:</p>
-                    <p>@comment.Content</p>
-                    <br />
-                    <p style="color:gray">@comment.DateTimeCommentMade</p>
 
-                    @if (SignInManager.IsSignedIn(User))
+                                        @if (SignInManager.IsSignedIn(User))
                     {
                         var user = await SignInManager.UserManager.GetUserAsync(User);
 
@@ -165,10 +123,47 @@
                             </form>
                         }
                     }
-                    <hr style="width:100%;margin:0px 0px 10px 0px;padding:0px;" />
-                }
-            </div>
+
+              <div id="comment-style">
+                <div id="comment-block1">
+  
+                <div>
+                    @{
+                        var commentAuthor = _context.User.Where(p => p.Id == comment.UserId).Take(1).SingleOrDefault();
+                        string base64 = Convert.ToBase64String(commentAuthor.ProfilePicture);
+                        string imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                        var img = new IndexViewModel
+                        {
+                            ImgSrc = imgSrc,
+                        };
+                        <img class="ProfilePic" style="height: 70px; width: 70px;" src="@img.ImgSrc" />
+                    }
+                </div>
+
+                    <div class="comment-author">
+                    <p style="color:green;">@comment.Author:</p>
+                        
+                    </div>
+                </div>
+
+                <div id="comment-block2">
+                    <div class="comment-text">
+                    <p>@comment.Content</p>
+                    <br />
+  
+                    </div>
+
+                    <div class="comment-date">
+
+                    <p style="color:gray">@comment.DateTimeCommentMade</p>
+                    </div>
+                </div>
+                  </div>
+
                  }
+
+                    <hr style="width:100%;margin:0px 0px 10px 0px;padding:0px;" />
+            </div>
             </div>
 
             <div class="comments-footer">
