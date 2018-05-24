@@ -69,22 +69,36 @@ namespace HackslashForum.Controllers
             {
                 return NotFound();
             }
-            var user = await _manager.GetUserAsync(User);
 
-            string base64 = "";
-            string imgSrc = "";
-            if (user.ProfilePicture != null)
-            {
-                base64 = Convert.ToBase64String(user.ProfilePicture);
-                imgSrc = String.Format("data:image/png;base64,{0}", base64);
-            }
+            var postAuthor = _context.User.Where(p => p.Id == post.UserId).Take(1).SingleOrDefault();
+            string base64 = Convert.ToBase64String(postAuthor.ProfilePicture);
+            string imgSrc = String.Format("data:image/png;base64,{0}", base64);
             var model = new IndexViewModel
             {
-
                 ImgSrc = imgSrc,
             };
 
-            ViewBag.ProfilePicture = model.ImgSrc;
+            //                  I
+            //Detta funkar inte v
+
+            //var user = await _manager.GetUserAsync(User);
+
+            //string base64 = "";
+            //string imgSrc = "";
+            //if (user.ProfilePicture != null)
+            //{
+            //    base64 = Convert.ToBase64String(user.ProfilePicture);
+            //    imgSrc = String.Format("data:image/png;base64,{0}", base64);
+            //}
+            //var model = new IndexViewModel
+            //{
+
+            //    ImgSrc = imgSrc,
+            //};
+
+            //ViewBag.ProfilePicture = model.ImgSrc;
+
+            ViewBag.PostAuthorProfilePicture = model.ImgSrc;
 
 
             ViewBag.TotalScore = post.UpVotes - post.DownVotes;
@@ -118,8 +132,10 @@ namespace HackslashForum.Controllers
             Comment comment = new Comment
             {
                 User = user,
+                UserId = user.Id,
                 Author = user.UserName,
                 Post = post,
+                PostId = post.Id,
                 DateTimeCommentMade = DateTime.Now,
                 Content = content
             };
@@ -192,20 +208,102 @@ namespace HackslashForum.Controllers
                     UserId = user.Id,
                     Vote = Vote.Down
                 };
-                post.UpVotes--;
+                post.DownVotes++;
                 _context.Update(post);
                 _context.VotedUsers.Add(VotedUser);
             }
             else
             {
                 UserVoteModel.Vote = Vote.Down;
-                post.UpVotes -= 2;
+                post.DownVotes += 2;
                 _context.Update(post);
                 _context.VotedUsers.Update(UserVoteModel);
             }
             _context.SaveChanges();
 
             return RedirectToAction($"Post/{id}");
+        }
+
+        public async Task<IActionResult> UpvoteComment(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var comment = _context.Comment.Where(p => p.ID == id).Take(1).SingleOrDefault();
+
+            var post = _context.Post.Where(p => p.Id == comment.PostId).Take(1).SingleOrDefault();
+
+            var user = await _signInManager.UserManager.GetUserAsync(User);
+
+            var VotedCommentModel = _context.VotedComments.Where(p => p.CommentId == id).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
+
+            VoteOnCommentModel VotedComment = null;
+
+            if (VotedCommentModel == null)
+            {
+                VotedComment = new VoteOnCommentModel
+                {
+                    Comment = comment,
+                    CommentId = comment.ID,
+                    User = user,
+                    UserId = user.Id,
+                    Vote = Vote.Up
+                };
+                comment.Upvotes++;
+                _context.Update(comment);
+                _context.VotedComments.Add(VotedComment);
+            }
+            else
+            {
+                VotedCommentModel.Vote = Vote.Up;
+                comment.Upvotes += 2;
+                _context.Update(comment);
+                _context.VotedComments.Update(VotedCommentModel);
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction($"Post/{post.Id}");
+        }
+
+        public async Task<IActionResult> DownvoteComment(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var comment = _context.Comment.Where(p => p.ID == id).Take(1).SingleOrDefault();
+
+            var post = _context.Post.Where(p => p.Id == comment.PostId).Take(1).SingleOrDefault();
+
+            var user = await _signInManager.UserManager.GetUserAsync(User);
+
+            var VotedCommentModel = _context.VotedComments.Where(p => p.CommentId == id).Where(p => p.UserId == user.Id).Take(1).SingleOrDefault();
+
+            VoteOnCommentModel VotedComment = null;
+
+            if (VotedCommentModel == null)
+            {
+                VotedComment = new VoteOnCommentModel
+                {
+                    Comment = comment,
+                    CommentId = comment.ID,
+                    User = user,
+                    UserId = user.Id,
+                    Vote = Vote.Down
+                };
+                comment.Downvotes++;
+                _context.Update(comment);
+                _context.VotedComments.Add(VotedComment);
+            }
+            else
+            {
+                VotedCommentModel.Vote = Vote.Down;
+                comment.Downvotes += 2;
+                _context.Update(comment);
+                _context.VotedComments.Update(VotedCommentModel);
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction($"Post/{post.Id}");
         }
 
         //// GET: Posts/Create
@@ -250,6 +348,7 @@ namespace HackslashForum.Controllers
             {
                 var user = await _manager.GetUserAsync(User);
                 post.User = user;
+                post.UserId = user.Id;
 
                 _context.Add(post);
                 await _context.SaveChangesAsync();

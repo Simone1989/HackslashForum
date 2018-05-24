@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace HackslashForum.Migrations
 {
-    public partial class init : Migration
+    public partial class AddedUserIdToCommentAndPost : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -115,7 +115,8 @@ namespace HackslashForum.Migrations
                     Content = table.Column<string>(nullable: true),
                     DateTimeCommentMade = table.Column<DateTime>(nullable: false),
                     Downvotes = table.Column<int>(nullable: false),
-                    PostId = table.Column<int>(nullable: true),
+                    PostId = table.Column<int>(nullable: false),
+                    TotalVotes = table.Column<int>(nullable: false),
                     Upvotes = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
@@ -135,6 +136,7 @@ namespace HackslashForum.Migrations
                     DateTimePostCreated = table.Column<DateTime>(nullable: false),
                     DownVotes = table.Column<int>(nullable: false),
                     Title = table.Column<string>(maxLength: 80, nullable: false),
+                    TotalVotes = table.Column<int>(nullable: false),
                     UpVotes = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
@@ -176,6 +178,33 @@ namespace HackslashForum.Migrations
                         name: "FK_AspNetUsers_Post_PostId",
                         column: x => x.PostId,
                         principalTable: "Post",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VotedComments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CommentId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    Vote = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VotedComments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VotedComments_Comment_CommentId",
+                        column: x => x.CommentId,
+                        principalTable: "Comment",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VotedComments_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -267,6 +296,16 @@ namespace HackslashForum.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_VotedComments_CommentId",
+                table: "VotedComments",
+                column: "CommentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VotedComments_UserId",
+                table: "VotedComments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_VotedUsers_PostId",
                 table: "VotedUsers",
                 column: "PostId");
@@ -322,7 +361,7 @@ namespace HackslashForum.Migrations
                 column: "PostId",
                 principalTable: "Post",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Post_AspNetUsers_UserId",
@@ -355,13 +394,16 @@ namespace HackslashForum.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Comment");
+                name: "VotedComments");
 
             migrationBuilder.DropTable(
                 name: "VotedUsers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Comment");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

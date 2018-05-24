@@ -21,6 +21,7 @@
     {
 <ul class="nav navbar-nav spaceFont">
     <li><a asp-area="" asp-controller="Posts" asp-action="Create">Skapa inl&#228gg</a></li>
+    <li><a href="https://localhost:44369/Category/Index">Kategorier</a></li>
     <li><a asp-controller="MeetUp" asp-action="Index">Meetups</a></li>
     <li><a asp-controller="Home" asp-action="TopList">Topplistor</a></li>
     <li><a asp-controller="Home" asp-action="Contact">Kontakt</a></li>
@@ -47,6 +48,7 @@ else if (SignInManager.IsSignedIn(User))
         //Ä funkar inte :/
     <ul class="nav navbar-nav spaceFont">
         <li><a asp-area="" asp-controller="Posts" asp-action="Create">Skapa inl&#228gg</a></li>
+        <li><a href="https://localhost:44369/Category/Index">Kategorier</a></li>
         <li><a asp-controller="MeetUp" asp-action="Index">Meetups</a></li>
         <li><a asp-controller="Home" asp-action="TopList">Topplistor</a></li>
         <li><a asp-controller="Home" asp-action="Contact">Kontakt</a></li>

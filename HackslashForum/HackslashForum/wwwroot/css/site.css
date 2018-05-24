@@ -6,7 +6,6 @@
 
 .content {
 	background-color: white;
-	width: 1200px;
 	padding: 20px;
 	height: 100%;
 	margin-top: -13px;
@@ -50,6 +49,34 @@
 #FuckBS {
     width: 78%;
 }
+
+#CategoryItem {
+    margin: auto;
+    padding: 0px;
+    border-bottom: solid black 1px;
+    width: 60%;
+}
+
+#CategoryItem a {
+    text-decoration: none;
+    color: green;
+}
+
+#CategoryItem h3 {
+        margin-top: 0px;
+        padding-top: 10px;
+        margin-left: 20px;
+}
+
+#CategoryItem:hover {
+    background-color: #a6a6a6;
+}
+
+#admin-style a{
+    color: green;
+    text-decoration: none;
+}
+
 /*footer {
     position: absolute;
     left: 0px;
@@ -272,4 +299,17 @@ footer p {
         flex-direction: column;
         width: 100%;
     }
+
+    .post {
+        width: 60%;
+    }
+
+    #FuckBS {
+        width: 60%;
+    }
+
+    .body-content {
+        width: 767px;
+    }
+
 }
