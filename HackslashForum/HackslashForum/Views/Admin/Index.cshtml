@@ -8,16 +8,15 @@
 <div id="admin-style">
     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
     {
-        <h2 style="font-family: Orbitron">Admin</h2>
-        <br />
+        <h2 style="font-family: Orbitron">Adminsida</h2>
         <hr />
-        <a href="https://localhost:44369/Posts/Index"><h4 style="font-family: Orbitron">Inlägg</h4></a>
-        <br />
-        <a href="https://localhost:44369/Comments/Index"><h4 style="font-family: Orbitron">Kommentarer</h4></a>
-        <br />
-        <a href="https://localhost:44369/ApplicationUsers/Index"><h4 style="font-family: Orbitron">Användare</h4></a>
-        <br />
-        <a href="https://localhost:44369/account/RegisterRole"><h4 style="font-family: Orbitron">Ändra Roller</h4></a>
+        <a href="https://localhost:44369/Posts/Index"><h4>Administrera inlägg</h4></a>
+
+        <a href="https://localhost:44369/ApplicationUsers/Index"><h4>Administrera användare</h4></a>
+
+        <a href="https://localhost:44369/account/RegisterRole"><h4>Hantera roller</h4></a>
+
+        <a href="https://localhost:44369/Comments/Index"><h4>Administrera kommentarer</h4></a>
     }
     else
     {

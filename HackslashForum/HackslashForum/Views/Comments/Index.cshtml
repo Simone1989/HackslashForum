@@ -21,10 +21,10 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Content)
+                        Innehåll
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DateTimeCommentMade)
+                        Kommentar skapad
                     </th>
                     <th></th>
                 </tr>
@@ -41,9 +41,8 @@
                         </td>
 
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.ID">Redigera</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ID">Radera</a>
                         </td>
                     </tr>
                 }

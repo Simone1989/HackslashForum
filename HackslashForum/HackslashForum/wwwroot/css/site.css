@@ -233,6 +233,7 @@ footer p {
 }
 
 .comment-text {
+    height: 85%;
     width: 100%;
     word-wrap: break-word;
 }
@@ -452,4 +453,21 @@ footer p {
         width: 100%;
     }
 
+    .container {
+        margin-bottom: 50px;
+    }
+
+    #footer-nav {
+        padding-top: 20px;
+    }
+}
+
+@media(min-width: 767px) and  (max-width:899px) {
+    .container {
+        margin-bottom: 50px;
+    }
+
+    #footer-nav {
+        padding-top: 20px;
+    }
 }
