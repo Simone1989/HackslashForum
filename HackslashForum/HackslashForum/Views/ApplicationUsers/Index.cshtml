@@ -7,26 +7,24 @@
 
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 {
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.LastLogin)
+                    Användarnamn
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.AccountCreationDate)
+                    Senast inloggad
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.UserName)
+                    Kontot skapats
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Email)
+                    Email
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Role)
+                    Roll
                 </th>
                 <th></th>
             </tr>
@@ -36,13 +34,13 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.LastLogin)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.AccountCreationDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Email)
@@ -51,9 +49,8 @@
                         @Html.DisplayFor(modelItem => item.Role)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Radera</a>
                     </td>
                 </tr>
             }

@@ -23,10 +23,10 @@
                 Kategori
             </th>
             <th>
-                Rösta upp
+                Uppröstningar
             </th>
             <th>
-                Rösta ner
+                Nedröstningar
             </th>
             <th></th>
         </tr>
@@ -57,9 +57,8 @@
                 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                 {
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Radera</a>
                     </td>
                 }
             </tr>
