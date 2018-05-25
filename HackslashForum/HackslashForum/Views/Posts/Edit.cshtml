@@ -50,6 +50,8 @@
                 <input asp-for="DownVotes" class="form-control" />
                 <span asp-validation-for="DownVotes" class="text-danger"></span>
             </div>
+            <input asp-for="UserId" type="hidden" />
+            <input asp-for="User" type="hidden" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
