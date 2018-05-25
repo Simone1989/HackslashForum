@@ -426,6 +426,9 @@ footer p {
         width: 100%;
     }
 
+    .TopListPara {
+        width: 400px;
+    }
     .post {
         width: 60%;
     }

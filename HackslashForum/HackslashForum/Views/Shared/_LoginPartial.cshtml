@@ -20,12 +20,13 @@
     if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
     {
 <ul class="nav navbar-nav spaceFont">
-    <li><a asp-area="" asp-controller="Posts" asp-action="Create">Skapa inl&#228gg</a></li>
-    <li><a href="https://localhost:44369/Category/Index">Kategorier</a></li>
-    <li><a asp-controller="MeetUp" asp-action="Index">Meetups</a></li>
-    <li><a asp-controller="Home" asp-action="TopList">Topplistor</a></li>
-    <li><a asp-controller="Home" asp-action="Contact">Kontakt</a></li>
-    <li><a href="https://localhost:44369/Admin/Index">Admin</a></li>
+	<li><a asp-controller="Home" asp-action="Index">Inl&#228gg</a></li>
+	<li><a asp-area="" asp-controller="Posts" asp-action="Create">Skapa inl&#228gg</a></li>
+	<li><a href="https://localhost:44369/Category/Index">Kategorier</a></li>
+	<li><a asp-controller="MeetUp" asp-action="Index">Meetups</a></li>
+	<li><a asp-controller="Home" asp-action="TopList">Topplistor</a></li>
+	<li><a asp-controller="Home" asp-action="Contact">Kontakt</a></li>
+	<li><a href="https://localhost:44369/Admin/Index">Admin</a></li>
 </ul>
 
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
