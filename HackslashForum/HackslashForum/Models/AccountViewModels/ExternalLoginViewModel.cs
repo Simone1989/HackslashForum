@@ -11,5 +11,7 @@ namespace HackslashForum.Models.AccountViewModels
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        public DateTime LastLogin = DateTime.Now;
     }
 }

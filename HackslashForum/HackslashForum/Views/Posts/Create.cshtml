@@ -1,0 +1,52 @@
+﻿@model HackslashForum.Post
+
+@{
+    ViewData["Title"] = "Skapa Inlägg";
+ }
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+	<div>
+		<h2 style="font-family: Orbitron">Skapa ett inlägg</h2>
+		<hr />
+		<div class="row">
+			<div class="col-md-4">
+				<form asp-action="Create">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						<label asp-for="Title" class="control-label">Titel</label>
+						<input asp-for="Title" class="form-control" />
+						<span asp-validation-for="Title" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Category" class="control-label">Kategori</label>
+						<select asp-for="Category" asp-items="Html.GetEnumSelectList<Category>()" class="form-control"></select>
+						<span asp-validation-for="Category" class="text-danger"></span>
+					</div>
+					<div class="form-group big-textbox">
+						<textarea id="input" asp-for="Content" style="min-width:340px;max-width:340px"></textarea>
+						<span asp-validation-for="Content" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Skapa" class="btn btn-default" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

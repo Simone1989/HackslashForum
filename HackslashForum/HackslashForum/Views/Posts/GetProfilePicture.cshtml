@@ -1,0 +1,14 @@
+﻿@model IndexViewModel
+
+@{
+    ViewData["Title"] = "GetProfilePicture";
+}
+
+<h2>GetProfilePicture</h2>
+<div>
+    @if (Model.ImgSrc != null)
+    {
+        <img class="ProfilePic" src="@Model.ImgSrc" />
+    }
+
+</div>

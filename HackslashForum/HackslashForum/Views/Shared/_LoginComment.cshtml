@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using HackslashForum.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-action="Comment" asp-route-id="@Model.Id" asp-controller="Posts">
+        <textarea name="content" style="min-width:100%;max-width:100%;min-height:26px;"></textarea>
+        <br />
+        <input type="submit" value="Kommentera" />
+    </form>
+}

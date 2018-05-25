@@ -1,0 +1,29 @@
+﻿@model IEnumerable<HackslashForum.Category>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>test</title>
+</head>
+<body>
+
+    <div style="width: 483px; margin: auto;">
+	<h2 style="font-family: Orbitron">Se inlägg baserat på kategori</h2>
+    </div>
+
+    <div>
+        @foreach (var item in Model)
+	    {
+		    var name = item.ToString();
+		    var x = item.GetType().GetMember(item.ToString()).First().CustomAttributes.First().NamedArguments.First().TypedValue.Value;
+
+                 <div id="CategoryItem">
+                 <a href="https://localhost:44369/Category/@name"><h3>@x</h3></a>
+                 </div>
+         }
+    </div>
+</body>
+</html>
+

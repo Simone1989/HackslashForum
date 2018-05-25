@@ -1,5 +1,27 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
 
-/HackslashForum/.vs/HackslashForum/v15/Server/sqlite3/db.lock
+HackslashForum/.vs/HackslashForum/v15/Server/sqlite3/db.lock
+*.ide
+HackslashForum/.vs/HackslashForum/v15/Server/sqlite3/storage.ide-shm
+HackslashForum/.vs/HackslashForum/v15/Server/sqlite3/storage.ide-wal
+
+HackslashForum/\.vs/HackslashForum/v15/Server/sqlite3/storage\.ide-wal
+
+*.sqlite
+
+HackslashForum/\.vs/HackslashForum/v15/
+
+HackslashForum/\.vs/config/
+
+HackslashForum/HackslashForum/Migrations/20180517112309_Initial\.cs
+
+HackslashForum/HackslashForum/Migrations/20180517112309_Initial\.Designer\.cs
+
+HackslashForum/HackslashForum/Migrations/20180522064210_init\.cs
+
+HackslashForum/HackslashForum/Migrations/20180522064210_init\.Designer\.cs
+
+HackslashForum/HackslashForum/Migrations/ApplicationDbContextModelSnapshot\.cs
+
+HackslashForum/HackslashForum/Migrations/20180522111239_aisndas\.cs
+
+HackslashForum/HackslashForum/Migrations/20180522111239_aisndas\.Designer\.cs

@@ -1,0 +1,115 @@
+﻿@model HackslashForum.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+    <h4>Edit User</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="LastLogin" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="AccountCreationDate" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="Location" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="ProfilePicture" class="form-control" />
+                </div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="NormalizedUserName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <h2><a href="/account/RegisterRole/">Change Authorization</a></h2>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="NormalizedEmail" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="hidden" asp-for="EmailConfirmed" />
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="PasswordHash" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="SecurityStamp" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="ConcurrencyStamp" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="PhoneNumber" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="hidden" asp-for="PhoneNumberConfirmed" />
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="hidden" asp-for="TwoFactorEnabled" />
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="LockoutEnd" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="hidden" asp-for="LockoutEnabled" />
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="AccessFailedCount" class="form-control" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+  
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>

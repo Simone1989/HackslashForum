@@ -1,0 +1,60 @@
+﻿@model IEnumerable<HackslashForum.Models.ApplicationUser>
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Användarnamn
+                </th>
+                <th>
+                    Senast inloggad
+                </th>
+                <th>
+                    Kontot skapats
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Roll
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastLogin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountCreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Radera</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}

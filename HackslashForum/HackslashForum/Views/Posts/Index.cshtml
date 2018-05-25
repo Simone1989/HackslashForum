@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HackslashForum.Post>
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Inlägg";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Rubrik
+            </th>
+            <th>
+                Inlägg skapat
+            </th>
+            <th>
+                Innehåll
+            </th>
+            <th>
+                Kategori
+            </th>
+            <th>
+                Uppröstningar
+            </th>
+            <th>
+                Nedröstningar
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                   <a href="https://localhost:44369/Posts/Post/@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTimePostCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpVotes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DownVotes)
+                </td>
+                
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Radera</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
