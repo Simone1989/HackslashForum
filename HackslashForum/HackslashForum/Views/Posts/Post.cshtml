@@ -44,7 +44,7 @@
 
 
 						<div id="post-content-category">
-							<p>Kategori: @Model.Category</p>
+                            <p>Kategori: @Model.Category.GetType().GetMember(Model.Category.ToString()).First().CustomAttributes.First().NamedArguments.First().TypedValue.Value</p>
 						</div>
 
 						<div id="post-content-content">
