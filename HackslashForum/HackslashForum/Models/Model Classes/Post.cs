@@ -17,7 +17,11 @@ namespace HackslashForum
         [Display(Name = "Java")]
         Java,
         [Display(Name = "C#")]
-        Csharp
+        Csharp,
+        [Display(Name = "Python")]
+        Python,
+        [Display(Name = "Övrigt")]
+        Övrigt    
     }
 
     public class Post
