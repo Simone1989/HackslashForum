@@ -1,0 +1,13 @@
+﻿@model IEnumerable<HackslashForum.Post>
+
+
+@foreach (var item in Model)
+{
+    int cid = item.Id;
+    <div class="post" style="margin: auto;">
+
+        <a href="https://localhost:44369/Posts/Post/@cid">@item.Title</a>
+        <img src="~/images/Downvote.png" style="float:right;" width="20" height="20" /><p> @Html.DisplayFor(modelItem => item.DownVotes)</p>
+        <img src="~/images/Upvote.png" style="float:right;" width="20" height="20" /><p> @Html.DisplayFor(modelItem => item.UpVotes)</p>
+    </div>
+}
